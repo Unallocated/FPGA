@@ -104,10 +104,27 @@
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_par.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="sram_summary.html"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="sram_summary.xml"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram_test_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="sram_test_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="sram_test_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="sram_usage.xml"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="sram_wrapper.bld"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="sram_wrapper.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="sram_wrapper.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="sram_wrapper.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="sram_wrapper.ngd"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="sram_wrapper.ngr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram_wrapper.prj"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="sram_wrapper.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="sram_wrapper.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="sram_wrapper.xst"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram_wrapper_beh.prj"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="sram_wrapper_envsettings.html"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="sram_wrapper_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="sram_wrapper_isim_beh.wdb"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="sram_wrapper_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="sram_wrapper_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_wrapper_ngdbuild.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="sram_wrapper_summary.html"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_wrapper_xst.xrpt"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_xst.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="usage_statistics_webtalk.html"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="webtalk.log"/>
@@ -122,12 +139,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1391564486" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1391564486">
+    <transform xil_pn:end_ts="1349140608" xil_pn:in_ck="6557148950674002396" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1349140608">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="class_cpu.vhd"/>
@@ -135,21 +151,21 @@
       <outfile xil_pn:name="serial_rx.vhd"/>
       <outfile xil_pn:name="sram.vhd"/>
       <outfile xil_pn:name="sram_test.vhd"/>
+      <outfile xil_pn:name="sram_wrapper.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1390961469" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-3107391882403301496" xil_pn:start_ts="1390961469">
+    <transform xil_pn:end_ts="1349140608" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-927527133717887786" xil_pn:start_ts="1349140608">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390961469" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="6941682702583503878" xil_pn:start_ts="1390961469">
+    <transform xil_pn:end_ts="1349140608" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1600813436564784468" xil_pn:start_ts="1349140608">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390961372" xil_pn:in_ck="3812117616627700841" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="4036362434682964035" xil_pn:start_ts="1390961372">
+    <transform xil_pn:end_ts="1392769291" xil_pn:in_ck="3812117616627700841" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="5479457125473768035" xil_pn:start_ts="1392769291">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1391564486" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1391564486">
+    <transform xil_pn:end_ts="1349140608" xil_pn:in_ck="6557148950674002396" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1349140608">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -162,8 +178,9 @@
       <outfile xil_pn:name="serial_rx.vhd"/>
       <outfile xil_pn:name="sram.vhd"/>
       <outfile xil_pn:name="sram_test.vhd"/>
+      <outfile xil_pn:name="sram_wrapper.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1391564487" xil_pn:in_ck="-231947199585602710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="8021894323529217584" xil_pn:start_ts="1391564486">
+    <transform xil_pn:end_ts="1349140610" xil_pn:in_ck="6817742718363847853" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="2026381794283178751" xil_pn:start_ts="1349140608">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -174,11 +191,11 @@
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="sram_test_beh.prj"/>
-      <outfile xil_pn:name="sram_test_isim_beh.exe"/>
+      <outfile xil_pn:name="sram_wrapper_beh.prj"/>
+      <outfile xil_pn:name="sram_wrapper_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1391564487" xil_pn:in_ck="3616034903062263649" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7139996702641544611" xil_pn:start_ts="1391564487">
+    <transform xil_pn:end_ts="1349140611" xil_pn:in_ck="-729941358184293373" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="8545952831889878796" xil_pn:start_ts="1349140610">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
@@ -186,20 +203,74 @@
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="sram_test_isim_beh.wdb"/>
+      <outfile xil_pn:name="sram_wrapper_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1390955872" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1390955872">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1391560946" xil_pn:in_ck="5252585598274710" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="1289474809424044075" xil_pn:start_ts="1391560946">
+    <transform xil_pn:end_ts="1349138925" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6240695512900785748" xil_pn:start_ts="1349138925">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349138926" xil_pn:in_ck="3812117616627700841" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="5479457125473768035" xil_pn:start_ts="1349138925">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:name="TRAN_SubProjectAbstractToPreProxy">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349138926" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-927527133717887786" xil_pn:start_ts="1349138926">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349138926" xil_pn:in_ck="3177180403299825046" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="1106364426758808884" xil_pn:start_ts="1349138926">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349138926" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-8160772769341493779" xil_pn:start_ts="1349138926">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349146286" xil_pn:in_ck="2446982493918494571" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-7346352405293759684" xil_pn:start_ts="1349146277">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="sram_wrapper.lso"/>
+      <outfile xil_pn:name="sram_wrapper.ngc"/>
+      <outfile xil_pn:name="sram_wrapper.ngr"/>
+      <outfile xil_pn:name="sram_wrapper.prj"/>
+      <outfile xil_pn:name="sram_wrapper.stx"/>
+      <outfile xil_pn:name="sram_wrapper.syr"/>
+      <outfile xil_pn:name="sram_wrapper.xst"/>
+      <outfile xil_pn:name="sram_wrapper_beh.prj"/>
+      <outfile xil_pn:name="sram_wrapper_xst.xrpt"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
+    </transform>
+    <transform xil_pn:end_ts="1349142980" xil_pn:in_ck="-4564839718985320203" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="2607004999388713035" xil_pn:start_ts="1349142980">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1349142987" xil_pn:in_ck="-2891072058673035839" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="3198596222130558350" xil_pn:start_ts="1349142980">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
+    </transform>
+    <transform xil_pn:end_ts="1349142992" xil_pn:in_ck="6854367706581597199" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-8696165629784430154" xil_pn:start_ts="1349142987">
+      <status xil_pn:value="FailedRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
   </transforms>
 
