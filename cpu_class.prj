@@ -1,0 +1,3 @@
+vhdl work "ipcore_dir/memory.vhd"
+vhdl work "lib.vhd"
+vhdl work "cpu_class.vhd"

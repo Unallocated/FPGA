@@ -1,0 +1,46 @@
+Release 14.6 ngdbuild P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild -intstyle
+ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3
+multiline_bitmap.ngc multiline_bitmap.ngd
+
+Reading NGO file "/home/main/class/fpga/multiline_bitmap.ngc" ...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "nexys3.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+INFO:ConstraintSystem:178 - TNM 'sys_clk_pin', used in period specification
+   'TS_sys_clk_pin', was traced into DCM_SP instance Inst_clock/dcm_sp_inst. The
+   following new TNM groups and period specifications were generated at the
+   DCM_SP output(s): 
+   CLKFX: <TIMESPEC TS_Inst_clock_clkfx = PERIOD "Inst_clock_clkfx"
+   TS_sys_clk_pin * 0.25 HIGH 50%>
+
+Done...
+
+INFO:NgdBuild:1222 - Setting CLKIN_PERIOD attribute associated with DCM instance
+   Inst_clock/dcm_sp_inst to 10.000000 ns based on the period specification
+   (<TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;> [nexys3.ucf(9)]).
+Checking expanded design ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 501348 kilobytes
+
+Writing NGD file "multiline_bitmap.ngd" ...
+Total REAL time to NGDBUILD completion:  3 sec
+Total CPU time to NGDBUILD completion:   3 sec
+
+Writing NGDBUILD log file "multiline_bitmap.bld"...

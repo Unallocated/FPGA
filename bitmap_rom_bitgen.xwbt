@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/main/class/fpga/bitmap_rom.ncd
+OUTFILE=/home/main/class/fpga/bitmap_rom.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=/home/main/class/fpga
+LICENSE=WebPack
+USER_INFO=210714202_0_0_033

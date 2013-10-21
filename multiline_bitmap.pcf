@@ -1,0 +1,70 @@
+//! **************************************************************************
+// Written by: Map P.68d on Mon Oct 14 14:25:40 2013
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "red<1>" LOCATE = SITE "V7" LEVEL 1;
+COMP "red<2>" LOCATE = SITE "N7" LEVEL 1;
+COMP "led<0>" LOCATE = SITE "U16" LEVEL 1;
+COMP "led<1>" LOCATE = SITE "V16" LEVEL 1;
+COMP "led<2>" LOCATE = SITE "U15" LEVEL 1;
+COMP "clk" LOCATE = SITE "V10" LEVEL 1;
+COMP "led<3>" LOCATE = SITE "V15" LEVEL 1;
+COMP "led<4>" LOCATE = SITE "M11" LEVEL 1;
+COMP "led<5>" LOCATE = SITE "N11" LEVEL 1;
+COMP "hs" LOCATE = SITE "N6" LEVEL 1;
+COMP "led<6>" LOCATE = SITE "R11" LEVEL 1;
+COMP "led<7>" LOCATE = SITE "T11" LEVEL 1;
+COMP "green<0>" LOCATE = SITE "P8" LEVEL 1;
+COMP "green<1>" LOCATE = SITE "T6" LEVEL 1;
+COMP "green<2>" LOCATE = SITE "V6" LEVEL 1;
+COMP "vs" LOCATE = SITE "P7" LEVEL 1;
+COMP "blue<0>" LOCATE = SITE "R7" LEVEL 1;
+COMP "blue<1>" LOCATE = SITE "T7" LEVEL 1;
+COMP "red<0>" LOCATE = SITE "U7" LEVEL 1;
+TIMEGRP Inst_clock_clkfx = BEL "char_pos_0" BEL "char_pos_1" BEL "char_pos_2"
+        BEL "Inst_clock/clkout1_buf" BEL "Inst_vga_configurable/v_counter_9"
+        BEL "Inst_vga_configurable/v_counter_8" BEL
+        "Inst_vga_configurable/v_counter_7" BEL
+        "Inst_vga_configurable/v_counter_6" BEL
+        "Inst_vga_configurable/v_counter_5" BEL
+        "Inst_vga_configurable/v_counter_4" BEL
+        "Inst_vga_configurable/v_counter_3" BEL
+        "Inst_vga_configurable/v_counter_2" BEL
+        "Inst_vga_configurable/v_counter_1" BEL
+        "Inst_vga_configurable/v_counter_0" BEL
+        "Inst_vga_configurable/h_counter_9" BEL
+        "Inst_vga_configurable/h_counter_8" BEL
+        "Inst_vga_configurable/h_counter_7" BEL
+        "Inst_vga_configurable/h_counter_6" BEL
+        "Inst_vga_configurable/h_counter_5" BEL
+        "Inst_vga_configurable/h_counter_4" BEL
+        "Inst_vga_configurable/h_counter_3" BEL
+        "Inst_vga_configurable/h_counter_2" BEL
+        "Inst_vga_configurable/h_counter_1" BEL
+        "Inst_vga_configurable/h_counter_0" BEL "Inst_vga_configurable/hs" BEL
+        "Inst_vga_configurable/vs" BEL "red_buf_0" BEL
+        "Inst_vga_configurable/y_pos_5" BEL "Inst_vga_configurable/y_pos_1"
+        BEL "Inst_vga_configurable/y_pos_0" BEL
+        "Inst_vga_configurable/x_pos_5" BEL "Inst_vga_configurable/x_pos_4"
+        BEL "Inst_vga_configurable/y_pos_9" BEL
+        "Inst_vga_configurable/y_pos_8" BEL "Inst_vga_configurable/y_pos_7"
+        BEL "Inst_vga_configurable/y_pos_6" BEL
+        "Inst_vga_configurable/y_pos_4" BEL "Inst_vga_configurable/y_pos_3"
+        BEL "Inst_vga_configurable/y_pos_2" BEL
+        "Inst_vga_configurable/x_pos_9" BEL "Inst_vga_configurable/x_pos_8"
+        BEL "Inst_vga_configurable/x_pos_7" BEL
+        "Inst_vga_configurable/x_pos_6" BEL "Inst_vga_configurable/x_pos_3"
+        BEL "Inst_vga_configurable/x_pos_2" BEL
+        "Inst_vga_configurable/x_pos_1" BEL "Inst_vga_configurable/x_pos_0";
+PIN SP6_BUFIO_INSERT_ML_BUFIO2_0_pins<0> = BEL "SP6_BUFIO_INSERT_ML_BUFIO2_0"
+        PINNAME DIVCLK;
+PIN Inst_clock/dcm_sp_inst_pins<3> = BEL "Inst_clock/dcm_sp_inst" PINNAME
+        CLKIN;
+TIMEGRP sys_clk_pin = PIN "SP6_BUFIO_INSERT_ML_BUFIO2_0_pins<0>" PIN
+        "Inst_clock/dcm_sp_inst_pins<3>";
+TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
+TS_Inst_clock_clkfx = PERIOD TIMEGRP "Inst_clock_clkfx" TS_sys_clk_pin * 0.25
+        HIGH 50%;
+SCHEMATIC END;
+

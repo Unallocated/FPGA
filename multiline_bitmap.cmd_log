@@ -1,0 +1,136 @@
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 
+xst -intstyle ise -ifn "/home/main/class/fpga/multiline_bitmap.xst" -ofn "/home/main/class/fpga/multiline_bitmap.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 multiline_bitmap.ngc multiline_bitmap.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o multiline_bitmap_map.ncd multiline_bitmap.ngd multiline_bitmap.pcf 
+par -w -intstyle ise -ol high -mt 4 multiline_bitmap_map.ncd multiline_bitmap.ncd multiline_bitmap.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml multiline_bitmap.twx multiline_bitmap.ncd -o multiline_bitmap.twr multiline_bitmap.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f multiline_bitmap.ut multiline_bitmap.ncd 

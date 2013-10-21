@@ -1,0 +1,23 @@
+NET "clk" TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD "clk" 50 MHz HIGH 50%;
+
+# PlanAhead Generated physical constraints 
+NET "clk" LOC = P56;
+NET "rst" LOC = P38;
+
+# Mojo
+net "red<0>" loc="p33";
+net "blue<0>" loc="p41";
+net "green<0>" loc="p35";
+
+net "hs" loc="p12";
+net "vs" loc="p15";
+
+#net "leds<0>" loc="g1";
+#net "leds<1>" loc="p4";
+#net "leds<2>" loc="n4";
+#net "leds<3>" loc="n5";
+#net "leds<4>" loc="p6";
+#net "leds<5>" loc="p7";
+#net "leds<6>" loc="m11";
+#net "leds<7>" loc="m5";

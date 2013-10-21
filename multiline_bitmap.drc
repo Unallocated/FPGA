@@ -1,0 +1,11 @@
+Release 14.6 Drc P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Mon Oct 14 14:25:57 2013
+
+drc -z multiline_bitmap.ncd multiline_bitmap.pcf
+
+INFO:PhysDesignRules:1861 - To achieve optimal frequency synthesis performance
+   with the CLKFX and CLKFX180 outputs of the DCM comp Inst_clock/dcm_sp_inst,
+   consult the device Data Sheet.
+DRC detected 0 errors and 0 warnings.
