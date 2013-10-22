@@ -21,6 +21,9 @@ end cpu_class;
 -- 256 element stack register (16 bit wide)
 -- 5 8-bit io registers
 --
+--
+-- tristate logic on the ports ?
+-- map the ports to memory?
 architecture Behavioral of cpu_class is
 
 	COMPONENT memory
@@ -40,8 +43,8 @@ architecture Behavioral of cpu_class is
 	signal mem_data_in    : std_logic_vector(7 downto 0) := (others => '0');
 	signal mem_data_out : std_logic_vector(7 downto 0);
 	
-	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
-	signal register_b : std_logic_vector(7 downto 0) := (others => '0');
+	signal register_a : std_logic_vector(15 downto 0) := (others => '0');
+	signal register_b : std_logic_vector(15 downto 0) := (others => '0');
 	
 	signal porta_buf : std_logic_vector(7 downto 0);
 	signal portb_buf : std_logic_vector(7 downto 0);
@@ -60,30 +63,43 @@ architecture Behavioral of cpu_class is
 		suba : opcode;
 		multa : opcode;
 		diva : opcode;
-		loada : opcode;
+		movla : opcode;
 		jump : opcode;
+		movaf : opcode;
+		porta : opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
-		noop => "00000000",  -- no extra registers used
-		adda => "00000001",    -- one extra byte that is the 8 bit value to add to register_a
-		suba => "00000010",    -- one extra byte that is the 8 bit value to subtract from register_a
-		multa => "00000011",   -- one extra byte that is the 8 bit value to multiply register_a by
-		diva => "00000100",      -- one extra byte that is the 8 bit value to divide register_a by
-		loada => "00000101",   -- one extra byte that is the 8 bit value to load into register_a
-		jump => "00000110"
+		-- Do nothing.  No extra args used.
+		noop => "00000000",
+		-- Add to register a.  Takes 2 more args that are the value to add
+		adda => "00000001",
+		-- Subtract from register a.  Takes 2 more args that are the value to subtract
+		suba => "00000010", 
+		-- Multiply register a.  Takes 2 more args that are the value to multiply by
+		multa => "00000011",
+		-- Divide register a.  Takes 2 more arguments that are the value to divide by
+		diva => "00000100",
+		-- Move a value into register a.  Takes 2 more arguments that are the value to move in
+		movla => "00000101", 
+		-- Move the program counter to a set location.  Takes 2 more args that are the location to move to
+		jump=> "00000110",
+		-- Move data from the a register to memory.  Takes 2 more args that are the memory location
+		movaf => "00000111",
+		-- Load a value into the porta register.  Takes 1 arg that is the value.
+		porta => "00001000"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.loada,
+		opcodes.porta,
 		"00001111",
 		opcodes.noop,
 		opcodes.noop,
-		opcodes.loada,
+		opcodes.porta,
 		"10101010",
-		opcodes.loada,
+		opcodes.porta,
 		"11110000",
 		opcodes.jump,
 		"00000000",
@@ -97,10 +113,10 @@ begin
 	portc <= portc_buf;
 	portd <= portd_buf;
 	
-	porta_buf <= register_a;
+	porta_buf <= register_a(7 downto 0);
 
 	clock_divider : process(clk, rst)
-		variable counter : integer range 0 to 100000000/2 := 0;
+		variable counter : integer range 0 to 100000000/8 := 0;
 	begin
 		if(rst = '1') then
 			counter := 0;
@@ -131,9 +147,9 @@ begin
 				case current_opcode is
 					when opcodes.noop =>
 						null;
-					when opcodes.loada => 
+					when opcodes.porta => 
 						program_counter := program_counter + 1;
-						register_a <= program(program_counter);
+						register_a(7 downto 0) <= program(program_counter);
 					when opcodes.jump =>
 						temp_one := program(program_counter + 1);
 						temp_two := program(program_counter + 2);

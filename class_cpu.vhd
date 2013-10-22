@@ -45,6 +45,8 @@ architecture Behavioral of class_cpu is
 	
 	constant program : program_type := (
 		-- program goes here
+		"00000000",
+		"00000001"
 	);
 	
 begin
