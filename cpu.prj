@@ -1,4 +1,0 @@
-vhdl work "ipcore_dir/adder.vhd"
-vhdl work "ipcore_dir/mult.vhd"
-vhdl work "lib.vhd"
-vhdl work "cpu.vhd"

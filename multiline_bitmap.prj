@@ -1,4 +1,0 @@
-vhdl work "ipcore_dir/nexys3_clock.vhd"
-vhdl work "lib.vhd"
-vhdl work "vga_configurable.vhd"
-vhdl work "multiline_bitmap.vhd"
