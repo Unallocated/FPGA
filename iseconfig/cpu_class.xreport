@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-10-20T22:37:50</DateModified>
+  <DateModified>2013-10-21T20:59:17</DateModified>
   <ModuleName>cpu_class</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/main/class/fpga/iseconfig/cpu_class.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/main/class/fpga/</ImplementationReportsDirectory>
+  <SavedFilePath>C:/Users/main-local/Documents/GitHub/FPGA/iseconfig/cpu_class.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/main-local/Documents/GitHub/FPGA\</ImplementationReportsDirectory>
   <DateInitialized>2013-10-18T21:14:43</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
