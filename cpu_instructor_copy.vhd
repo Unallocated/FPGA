@@ -2,14 +2,14 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
 
-entity cpu_class is
+entity cpu_instructor_copy is
     Port ( clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
            porta : inout  STD_LOGIC_VECTOR (7 downto 0);
            portb : inout  STD_LOGIC_VECTOR (7 downto 0);
            portc : inout  STD_LOGIC_VECTOR (7 downto 0);
            portd : inout  STD_LOGIC_VECTOR (7 downto 0));
-end cpu_class;
+end cpu_instructor_copy;
 
 --
 -- add, sub, mult, divide
@@ -27,7 +27,7 @@ end cpu_class;
 -- map the ports to memory?
 
 
-architecture Behavioral of cpu_class is
+architecture Behavioral of cpu_instructor_copy is
 
 	-- Component declaration for the CPU's memory
 	COMPONENT memory
