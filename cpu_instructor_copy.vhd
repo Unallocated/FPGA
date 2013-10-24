@@ -76,7 +76,8 @@ architecture Behavioral of cpu_instructor_copy is
 		movaf : opcode;   -- move register a to some memory address (3 byte instr)
 		jmp   : opcode;   -- sets value of program counter (3 byte instr)
 		porta : opcode;   -- sets value of the porta output (2 byte instr)
-		adda  : opcode;
+		adda  : opcode;   -- adds next byte in the program to register_a (2 byte instr)
+		suba  : opcode;   -- subtracts next byte int program from register_a (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -85,7 +86,8 @@ architecture Behavioral of cpu_instructor_copy is
 		movaf => "00000010",
 		jmp   => "00000011",
 		porta => "00000100",
-		adda  => "00000101"
+		adda  => "00000101",
+		suba => "00000110"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
@@ -100,6 +102,11 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.mova,
 		"11110000",
 		opcodes.adda,
+		"00000011",
+		opcodes.movaf,
+		"00000000",
+		"00000000",
+		opcodes.suba,
 		"00000011",
 		opcodes.movaf,
 		"00000000",
@@ -135,7 +142,9 @@ begin
 		variable current_opcode : opcode;
 		variable current_opcode_int : integer range 0 to 255;
 		variable wide_buffer : std_logic_vector(15 downto 0);
-		variable wide_buffer_int : integer range 0 to (2**mem_addr'length) - 1 := 0;
+		variable wide_buffer_int : integer range 0 to (2**wide_buffer'length) - 1 := 0;
+		variable narrow_buffer : std_logic_vector(7 downto 0);
+		variable narrow_buffer_int : integer range 0 to (2**narrow_buffer'length) - 1 := 0;
 	begin
 		if(real_rst = '1') then
 			program_counter := 0;
@@ -186,7 +195,12 @@ begin
 						mem_we <= "1";
 					when opcodes.adda =>
 						program_counter := program_counter + 1;
-						register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(program(program_counter)), 8);
+						narrow_buffer := program(program_counter);
+						register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(narrow_buffer), 8);
+					when opcodes.suba =>
+						program_counter := program_counter + 1;
+						narrow_buffer := program(program_counter);
+						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(narrow_buffer), 8);
 					when others =>
 						null;
 				end case;

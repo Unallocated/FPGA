@@ -1,7 +1,7 @@
 Release 14.6 Drc P.68d (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Wed Oct 23 22:31:55 2013
+Wed Oct 23 22:47:17 2013
 
 drc -z cpu_instructor_copy.ncd cpu_instructor_copy.pcf
 
