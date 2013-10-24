@@ -42,116 +42,154 @@ end cpu_instructor_copy;
 
 architecture Behavioral of cpu_instructor_copy is
 
-	-- Component declaration for the CPU's memory
 	COMPONENT memory
 	  PORT (
-		 clka  : IN STD_LOGIC;
-		 wea   : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+		 clka : IN STD_LOGIC;
+		 wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
 		 addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 dina  : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 	  );
 	END COMPONENT;
 	
-	-- Scaled down clock for the CPU
 	signal cpu_clock : std_logic := '0';
+	signal real_rst : std_logic;
 	
-	-- Signals to interface with the memory
-	signal mem_we       : std_logic_vector(0 downto 0) := (others => '0');
-	signal mem_addr     : std_logic_vector(15 downto 0) := (others => '0');
-	signal mem_data_in  : std_logic_vector(7 downto 0) := (others => '0');
-	signal mem_data_out : std_logic_vector(7 downto 0);
-	
-	-- Two temp storage registers to modify data in
-	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
-	signal register_b : std_logic_vector(7 downto 0) := (others => '0');
-	
-	-- All of the IO ports are 8 bit
 	signal porta_buf : std_logic_vector(7 downto 0);
 	signal portb_buf : std_logic_vector(7 downto 0);
 	signal portc_buf : std_logic_vector(7 downto 0);
 	signal portd_buf : std_logic_vector(7 downto 0);
 	
-	signal real_rst : std_logic;
+	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
 	
-	-- Map to various flags to identify things like overflow, negative, etc
-	type flag_type is record
-		a_overflow : std_logic;
-		delay_count : integer range 0 to 31;
-	end record;
+	signal mem_we : std_logic_vector(0 downto 0) := (others => '0');
+	signal mem_addr : std_logic_vector(15 downto 0) := (others => '0');
+	signal mem_data_in : std_logic_vector(7 downto 0) := (others => '0');
+	signal mem_data_out : std_logic_vector(7 downto 0);
 	
-	signal flags : flag_type;
-	
-	-- Each stack element needs to be 8 bits wide to match the opcode width
-	type stack_type is array(0 to 255) of std_logic_vector(7 downto 0);
-	
-	-- The stack will store pointers to locations in the main program
-	signal stack : stack_type := (others => (others => '0'));
-	
-	-- All opcodes are 8 bits wide
 	subtype opcode is std_logic_vector(7 downto 0);
 	
-	-- All of the available opcodes must be defined here
 	type opcodes_type is record
-		noop  : opcode;
-		movla : opcode;
-		movaf : opcode;
-		jump  : opcode;
+		noop  : opcode;   -- do nothing
+		mova  : opcode;   -- move next opcode to register a (2 byte instr)
+		movaf : opcode;   -- move register a to some memory address (3 byte instr)
+		jmp   : opcode;   -- sets value of program counter (3 byte instr)
+		porta : opcode;   -- sets value of the porta output (2 byte instr)
 	end record;
 	
-	-- All of the opcodes are given an 8-bit value here
 	constant opcodes : opcodes_type := (
-		-- Do nothing.  No extra args used.
-		noop => "00000000",
-		-- Move a value into register a.  Takes 2 more arguments that are the value to move in
-		movla => "00000001", 
-		-- Move data from the a register to memory.  Takes 2 more args that are the memory location
+		noop  => "00000000",
+		mova  => "00000001",
 		movaf => "00000010",
-		-- Move the program counter to a set location.  Takes 2 more args that are the location to move to
-		jump=> "00000011"
+		jmp   => "00000011",
+		porta => "00000100"
 	);
 	
-	-- Unbounded array of opcodes that will store the program
 	type program_type is array(natural range <>) of opcode;
 	
-	-- The actual program
 	constant program : program_type := (
-		opcodes.movla,
+		opcodes.mova,
 		"10101010",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
 		opcodes.noop,
-		opcodes.movla,
-		"01010101",
-		opcodes.movaf,
-		"00000000",
-		"00000000",
-		opcodes.noop,
-		opcodes.movla,
+		opcodes.mova,
 		"11110000",
 		opcodes.movaf,
 		"00000000",
-		"00000100",
-		opcodes.noop,
-		opcodes.jump,
+		"00000000",
+		opcodes.jmp,
 		"00000000",
 		"00000000"
 	);
 	
+--	constant program : program_type := (
+--		opcodes.noop,
+--		opcodes.porta,
+--		"10101010",
+--		opcodes.noop,
+--		opcodes.porta,
+--		"00001111",
+--		opcodes.jmp,
+--		"00000000",
+--		"00000000"
+--	);
+	
 begin
 
-	real_rst <= not rst;  -- For Mojo
---	real_rst <= rst;      -- For Nexys3
-
+	real_rst <= rst;
+	
 	porta <= porta_buf;
 	portb <= portb_buf;
 	portc <= portc_buf;
 	portd <= portd_buf;
 	
+	brain : process(cpu_clock, real_rst)
+		variable program_counter : integer range -1 to program'length + 1 := 0;
+		variable current_opcode : opcode;
+		variable current_opcode_int : integer range 0 to 255;
+		variable wide_buffer : std_logic_vector(15 downto 0);
+		variable wide_buffer_int : integer range 0 to (2**mem_addr'length) - 1 := 0;
+	begin
+		if(real_rst = '1') then
+			program_counter := 0;
+		elsif(rising_edge(cpu_clock)) then
+			if(program_counter < program'high) then
+				current_opcode := program(program_counter);
+				current_opcode_int := conv_integer(current_opcode);
+				
+				mem_we <= "0";
+				
+				case current_opcode is
+					when opcodes.noop =>
+						null;
+					when opcodes.jmp =>
+						program_counter := program_counter + 1;
+						wide_buffer(15 downto 8) := program(program_counter);
+						program_counter := program_counter + 1;
+						wide_buffer(7 downto 0) := program(program_counter);
+						program_counter := conv_integer(wide_buffer) - 1;
+					when opcodes.porta =>
+						program_counter := program_counter + 1;
+						porta_buf <= program(program_counter);
+					when opcodes.mova =>
+						program_counter := program_counter + 1;
+						register_a <= program(program_counter);
+					when opcodes.movaf =>
+						program_counter := program_counter + 1;
+						wide_buffer(15 downto 8) := program(program_counter);
+						program_counter := program_counter + 1;
+						wide_buffer(7 downto 0) := program(program_counter);
+						
+						wide_buffer_int := conv_integer(wide_buffer);
+						case wide_buffer_int is
+							when 0 =>
+								porta_buf <= register_a;
+							when 1 =>
+								portb_buf <= register_a;
+							when 2 =>
+								portc_buf <= register_a;
+							when 3 =>
+								portd_buf <= register_a;
+							when others =>
+								null;
+						end case;
+						
+						mem_addr <= wide_buffer;
+						mem_data_in <= register_a;
+						mem_we <= "1";
+					when others =>
+						null;
+				end case;
+				
+				program_counter := program_counter + 1;
+			end if;
+		end if;
+	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/8 := 0;
+		variable counter : integer range 0 to 100000000/2 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
@@ -162,73 +200,6 @@ begin
 			end if;
 			
 			counter := counter + 1;
-		end if;
-	end process;
-	
-	cpu_process : process(cpu_clock, real_rst)
-		variable program_counter : integer range 0 to 65535 := 0;
-		variable current_opcode : opcode := (others => '0');
-		variable current_opcode_int : integer range 0 to (2**opcode'length) - 1;
-		variable temp_one : opcode;
-		variable temp_two : opcode;
-		variable wide_buffer : std_logic_vector(15 downto 0);
-	begin
-		if(real_rst = '1') then
-			program_counter := 0;
-		elsif(rising_edge(cpu_clock)) then
-			if(program_counter < program'length) then
-				current_opcode := program(program_counter);
-				current_opcode_int := conv_integer(current_opcode);
-				
-				if(mem_we = "1") then
-					mem_we <= "0";
-				end if;
-				
-				case current_opcode is
-					when opcodes.noop =>
-						-- Delay one cycle
-						null;
-					when opcodes.movla =>
-						-- Move data from the next element in the program counter to register a
-						program_counter := program_counter + 1;
-						register_a <= program(program_counter);
-					when opcodes.movaf =>
-						program_counter := program_counter + 1;
-						wide_buffer(15 downto 8) := program(program_counter);
-						program_counter := program_counter + 1;
-						wide_buffer(7 downto 0) := program(program_counter);
-						
-						if(conv_integer(wide_buffer) < 4) then
-							case wide_buffer is
-								when "0000000000000000" =>
-									porta_buf <= register_a;
-								when "0000000000000001" =>
-									portb_buf <= register_a;
-								when "0000000000000010" =>
-									portc_buf <= register_a;
-								when "0000000000000011" =>
-									portd_buf <= register_a;
-								when others =>
-									-- This can't happen, but ISE still bitches about it
-									null;
-							end case;
-						end if;
-						
-						mem_addr <= wide_buffer;
-						mem_data_in <= register_a;
-						mem_we <= "1";
-					when opcodes.jump =>
-						temp_one := program(program_counter + 1);
-						temp_two := program(program_counter + 2);
-						program_counter := conv_integer(temp_one & temp_two);
-					when others =>
-						null;
-				end case;
-				
-				if(current_opcode /= opcodes.jump) then
-					program_counter := program_counter + 1;
-				end if;
-			end if;
 		end if;
 	end process;
 
@@ -242,4 +213,5 @@ begin
 	  );
 
 end Behavioral;
+
 

@@ -41,18 +41,15 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="class_cpu.ngc"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="class_cpu.ngd"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="class_cpu.ngr"/>
-    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="class_cpu.pad"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="class_cpu.par" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="class_cpu.pcf" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="class_cpu.prj"/>
-    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="class_cpu.ptwx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="class_cpu.stx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="class_cpu.syr"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="class_cpu.twr" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="class_cpu.twx" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="class_cpu.unroutes" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="class_cpu.ut" xil_pn:subbranch="FPGAConfiguration"/>
-    <file xil_pn:fileType="FILE_XPI" xil_pn:name="class_cpu.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="class_cpu.xst"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="class_cpu_envsettings.html"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="class_cpu_guide.ncd" xil_pn:origination="imported"/>
@@ -60,14 +57,9 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="class_cpu_map.mrp" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="class_cpu_map.ncd" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="class_cpu_map.ngm" xil_pn:subbranch="Map"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="class_cpu_map.xrpt"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="class_cpu_ngdbuild.xrpt"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="class_cpu_pad.csv" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="class_cpu_pad.txt" xil_pn:subbranch="Par"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="class_cpu_par.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="class_cpu_summary.html"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="class_cpu_summary.xml"/>
-    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="class_cpu_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="class_cpu_xst.xrpt"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="clock_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="cpu_class.cmd_log"/>
@@ -82,6 +74,44 @@
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="cpu_class_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="cpu_class_xst.xrpt"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="cpu_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="cpu_instructor_copy.bgn" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="cpu_instructor_copy.bit" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="cpu_instructor_copy.bld"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="cpu_instructor_copy.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_DRC" xil_pn:name="cpu_instructor_copy.drc" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="cpu_instructor_copy.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="cpu_instructor_copy.ncd" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="cpu_instructor_copy.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="cpu_instructor_copy.ngd"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="cpu_instructor_copy.ngr"/>
+    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="cpu_instructor_copy.pad"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="cpu_instructor_copy.par" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="cpu_instructor_copy.pcf" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="cpu_instructor_copy.prj"/>
+    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="cpu_instructor_copy.ptwx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="cpu_instructor_copy.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="cpu_instructor_copy.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="cpu_instructor_copy.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="cpu_instructor_copy.twx" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="cpu_instructor_copy.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="cpu_instructor_copy.ut" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:fileType="FILE_XPI" xil_pn:name="cpu_instructor_copy.xpi"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="cpu_instructor_copy.xst"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="cpu_instructor_copy_envsettings.html"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="cpu_instructor_copy_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="cpu_instructor_copy_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="cpu_instructor_copy_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="cpu_instructor_copy_map.ncd" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="cpu_instructor_copy_map.ngm" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="cpu_instructor_copy_map.xrpt"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="cpu_instructor_copy_ngdbuild.xrpt"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="cpu_instructor_copy_pad.csv" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="cpu_instructor_copy_pad.txt" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="cpu_instructor_copy_par.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="cpu_instructor_copy_summary.html"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="cpu_instructor_copy_summary.xml"/>
+    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="cpu_instructor_copy_usage.xml"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="cpu_instructor_copy_xst.xrpt"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="draw_bars_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="draw_bits_counting_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="draw_bits_guide.ncd" xil_pn:origination="imported"/>
@@ -102,108 +132,108 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382486592" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="4689899189416917918" xil_pn:start_ts="1382486592">
+    <transform xil_pn:end_ts="1382580870" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6112021171292210591" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382486592" xil_pn:in_ck="-2674334883656940480" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-1803038854308719379" xil_pn:start_ts="1382486592">
+    <transform xil_pn:end_ts="1382580870" xil_pn:in_ck="-2674334883656940480" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-3253090552255172786" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="ipcore_dir/memory.ngc"/>
       <outfile xil_pn:name="ipcore_dir/memory.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1382135562" xil_pn:in_ck="1425425450342739649" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1382135562">
+    <transform xil_pn:end_ts="1382580870" xil_pn:in_ck="3980669207868729007" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382486592" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="8942968537779628384" xil_pn:start_ts="1382486592">
+    <transform xil_pn:end_ts="1382580870" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="4847175408830549473" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382403715" xil_pn:in_ck="3980669207868729007" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="1106364426758808884" xil_pn:start_ts="1382403715">
+    <transform xil_pn:end_ts="1382580870" xil_pn:in_ck="3980669207868729007" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="1106364426758808884" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382486592" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="1884698462098001079" xil_pn:start_ts="1382486592">
+    <transform xil_pn:end_ts="1382580870" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="1030506810807577496" xil_pn:start_ts="1382580870">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382491720" xil_pn:in_ck="-8263655656807852749" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-7957322312331706842" xil_pn:start_ts="1382491709">
+    <transform xil_pn:end_ts="1382581350" xil_pn:in_ck="-8263655656807852749" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-3332510721009790169" xil_pn:start_ts="1382581339">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.lso"/>
-      <outfile xil_pn:name="class_cpu.ngc"/>
-      <outfile xil_pn:name="class_cpu.ngr"/>
-      <outfile xil_pn:name="class_cpu.prj"/>
-      <outfile xil_pn:name="class_cpu.stx"/>
-      <outfile xil_pn:name="class_cpu.syr"/>
-      <outfile xil_pn:name="class_cpu.xst"/>
-      <outfile xil_pn:name="class_cpu_xst.xrpt"/>
+      <outfile xil_pn:name="cpu_instructor_copy.lso"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ngc"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ngr"/>
+      <outfile xil_pn:name="cpu_instructor_copy.prj"/>
+      <outfile xil_pn:name="cpu_instructor_copy.stx"/>
+      <outfile xil_pn:name="cpu_instructor_copy.syr"/>
+      <outfile xil_pn:name="cpu_instructor_copy.xst"/>
+      <outfile xil_pn:name="cpu_instructor_copy_xst.xrpt"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1382489399" xil_pn:in_ck="5252585598274710" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-3882160272915247723" xil_pn:start_ts="1382489398">
+    <transform xil_pn:end_ts="1382580985" xil_pn:in_ck="5252585598274710" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-4235732469501365514" xil_pn:start_ts="1382580985">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1382491726" xil_pn:in_ck="-7707663874894316118" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="777063747364091640" xil_pn:start_ts="1382491720">
+    <transform xil_pn:end_ts="1382581356" xil_pn:in_ck="-4062163115734073490" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-7087917572136461255" xil_pn:start_ts="1382581350">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.bld"/>
-      <outfile xil_pn:name="class_cpu.ngd"/>
-      <outfile xil_pn:name="class_cpu_ngdbuild.xrpt"/>
+      <outfile xil_pn:name="cpu_instructor_copy.bld"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ngd"/>
+      <outfile xil_pn:name="cpu_instructor_copy_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1382491735" xil_pn:in_ck="9097021551641491674" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-8696165629784430154" xil_pn:start_ts="1382491726">
+    <transform xil_pn:end_ts="1382581364" xil_pn:in_ck="-4754995869835764833" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-8696165629784430154" xil_pn:start_ts="1382581356">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.pcf"/>
-      <outfile xil_pn:name="class_cpu_map.map"/>
-      <outfile xil_pn:name="class_cpu_map.mrp"/>
-      <outfile xil_pn:name="class_cpu_map.ncd"/>
-      <outfile xil_pn:name="class_cpu_map.ngm"/>
-      <outfile xil_pn:name="class_cpu_map.xrpt"/>
-      <outfile xil_pn:name="class_cpu_summary.xml"/>
-      <outfile xil_pn:name="class_cpu_usage.xml"/>
+      <outfile xil_pn:name="cpu_instructor_copy.pcf"/>
+      <outfile xil_pn:name="cpu_instructor_copy_map.map"/>
+      <outfile xil_pn:name="cpu_instructor_copy_map.mrp"/>
+      <outfile xil_pn:name="cpu_instructor_copy_map.ncd"/>
+      <outfile xil_pn:name="cpu_instructor_copy_map.ngm"/>
+      <outfile xil_pn:name="cpu_instructor_copy_map.xrpt"/>
+      <outfile xil_pn:name="cpu_instructor_copy_summary.xml"/>
+      <outfile xil_pn:name="cpu_instructor_copy_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1382491751" xil_pn:in_ck="553327200114294067" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-611939928561283414" xil_pn:start_ts="1382491735">
+    <transform xil_pn:end_ts="1382581376" xil_pn:in_ck="2836761493437417265" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="-611939928561283414" xil_pn:start_ts="1382581364">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.ncd"/>
-      <outfile xil_pn:name="class_cpu.pad"/>
-      <outfile xil_pn:name="class_cpu.par"/>
-      <outfile xil_pn:name="class_cpu.ptwx"/>
-      <outfile xil_pn:name="class_cpu.unroutes"/>
-      <outfile xil_pn:name="class_cpu.xpi"/>
-      <outfile xil_pn:name="class_cpu_pad.csv"/>
-      <outfile xil_pn:name="class_cpu_pad.txt"/>
-      <outfile xil_pn:name="class_cpu_par.xrpt"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ncd"/>
+      <outfile xil_pn:name="cpu_instructor_copy.pad"/>
+      <outfile xil_pn:name="cpu_instructor_copy.par"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ptwx"/>
+      <outfile xil_pn:name="cpu_instructor_copy.unroutes"/>
+      <outfile xil_pn:name="cpu_instructor_copy.xpi"/>
+      <outfile xil_pn:name="cpu_instructor_copy_pad.csv"/>
+      <outfile xil_pn:name="cpu_instructor_copy_pad.txt"/>
+      <outfile xil_pn:name="cpu_instructor_copy_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1382491758" xil_pn:in_ck="4712979220841121472" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1382491751">
+    <transform xil_pn:end_ts="1382581384" xil_pn:in_ck="-1856558893683297471" xil_pn:name="TRANEXT_bitFile_spartan6" xil_pn:prop_ck="396117104113915555" xil_pn:start_ts="1382581376">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.bgn"/>
-      <outfile xil_pn:name="class_cpu.bit"/>
-      <outfile xil_pn:name="class_cpu.drc"/>
-      <outfile xil_pn:name="class_cpu.ut"/>
+      <outfile xil_pn:name="cpu_instructor_copy.bgn"/>
+      <outfile xil_pn:name="cpu_instructor_copy.bit"/>
+      <outfile xil_pn:name="cpu_instructor_copy.drc"/>
+      <outfile xil_pn:name="cpu_instructor_copy.ut"/>
       <outfile xil_pn:name="usage_statistics_webtalk.html"/>
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1382491751" xil_pn:in_ck="8894853125586584406" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1382491746">
+    <transform xil_pn:end_ts="1382581376" xil_pn:in_ck="-4893581380878023401" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1382581371">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
-      <outfile xil_pn:name="class_cpu.twr"/>
-      <outfile xil_pn:name="class_cpu.twx"/>
+      <outfile xil_pn:name="cpu_instructor_copy.twr"/>
+      <outfile xil_pn:name="cpu_instructor_copy.twx"/>
     </transform>
   </transforms>
 
