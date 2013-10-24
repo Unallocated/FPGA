@@ -25,6 +25,19 @@ end cpu_instructor_copy;
 --
 -- tristate logic on the ports ?
 -- map the ports to memory?
+-- Always increment program counter (allow negative)
+-- Always set mem_we to zero on the rising edge
+--
+-- overflow/underflow flag
+-- reg_a, reg_b is zero flag
+-- adda (2 byte)
+-- suba (2 byte)
+-- mula (2 byte)
+-- lshifta (2 byte)
+-- rshifta (2 byte)
+-- lror (2 bytes)
+-- rror (2 bytes)
+-- flags record
 
 
 architecture Behavioral of cpu_instructor_copy is
@@ -63,7 +76,7 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	-- Map to various flags to identify things like overflow, negative, etc
 	type flag_type is record
-		overflow : std_logic;
+		a_overflow : std_logic;
 		delay_count : integer range 0 to 31;
 	end record;
 	
