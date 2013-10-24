@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
+use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
 
 entity cpu_instructor_copy is
     Port ( clk : in  STD_LOGIC;
@@ -75,6 +76,7 @@ architecture Behavioral of cpu_instructor_copy is
 		movaf : opcode;   -- move register a to some memory address (3 byte instr)
 		jmp   : opcode;   -- sets value of program counter (3 byte instr)
 		porta : opcode;   -- sets value of the porta output (2 byte instr)
+		adda  : opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -82,7 +84,8 @@ architecture Behavioral of cpu_instructor_copy is
 		mova  => "00000001",
 		movaf => "00000010",
 		jmp   => "00000011",
-		porta => "00000100"
+		porta => "00000100",
+		adda  => "00000101"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
@@ -96,6 +99,8 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.noop,
 		opcodes.mova,
 		"11110000",
+		opcodes.adda,
+		"00000011",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
@@ -179,6 +184,9 @@ begin
 						mem_addr <= wide_buffer;
 						mem_data_in <= register_a;
 						mem_we <= "1";
+					when opcodes.adda =>
+						program_counter := program_counter + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(program(program_counter)), 8);
 					when others =>
 						null;
 				end case;
