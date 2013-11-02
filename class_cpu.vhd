@@ -1,6 +1,8 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
+use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
+use IEEE.NUMERIC_STD.all;
 
 entity class_cpu is
     Port ( clk : in  STD_LOGIC;
@@ -56,6 +58,13 @@ architecture Behavioral of class_cpu is
 		movaf : opcode;   -- move register a to some memory address (3 byte instr)
 		jmp   : opcode;   -- sets value of program counter (3 byte instr)
 		porta : opcode;   -- sets value of the porta output (2 byte instr)
+		adda  : opcode;   -- adds value of next byte to register_a (2 byte instr)
+		suba  : opcode;   -- subtract value of next byte from register_a (2 byte instr)
+		lsla  : opcode;   -- left shift register_a by number of bits defined by next byte (2 byte instr)
+		lsra  : opcode;   -- right shift register_a by number of bits defined by next byte (2 byte instr)
+		mula  : opcode;   -- multiply register_a by value in next byte (2 byte instr)
+		lrla  : opcode;   -- left rotate register_a by number of bits in next byte (2 byte instr)
+		lrra  : opcode;   -- right rotate register_a by number of bits in next byte (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -63,43 +72,34 @@ architecture Behavioral of class_cpu is
 		mova  => "00000001",
 		movaf => "00000010",
 		jmp   => "00000011",
-		porta => "00000100"
+		porta => "00000100",
+		adda  => "00000101",
+		suba  => "00000110",
+		lsla  => "00000111",
+		lsra  => "00001000",
+		mula  => "00001001",
+		lrla  => "00001010",
+		lrra  => "00001011"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
 		opcodes.mova,
-		"10101010",
-		opcodes.movaf,
-		"00000000",
-		"00000000",
-		opcodes.noop,
-		opcodes.mova,
-		"11110000",
+		"01111110",
+		opcodes.lrra,
+		"00000001",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
 		opcodes.jmp,
 		"00000000",
-		"00000000"
+		"00000010"
 	);
-	
---	constant program : program_type := (
---		opcodes.noop,
---		opcodes.porta,
---		"10101010",
---		opcodes.noop,
---		opcodes.porta,
---		"00001111",
---		opcodes.jmp,
---		"00000000",
---		"00000000"
---	);
 	
 begin
 
-	real_rst <= rst;
+	real_rst <= not rst;
 	
 	porta <= porta_buf;
 	portb <= portb_buf;
@@ -107,17 +107,19 @@ begin
 	portd <= portd_buf;
 	
 	brain : process(cpu_clock, real_rst)
-		variable program_counter : integer := 0;
+		variable pc : integer := 0;
 		variable current_opcode : opcode;
 		variable current_opcode_int : integer range 0 to 255;
 		variable wide_buffer : std_logic_vector(15 downto 0);
 		variable wide_buffer_int : integer range 0 to (2**16) - 1 := 0;
+		variable narrow_buffer : std_logic_vector(7 downto 0);
+		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
 	begin
 		if(real_rst = '1') then
-			program_counter := 0;
+			pc := 0;
 		elsif(rising_edge(cpu_clock)) then
-			if(program_counter < program'high) then
-				current_opcode := program(program_counter);
+			if(pc < program'high) then
+				current_opcode := program(pc);
 				current_opcode_int := conv_integer(current_opcode);
 				
 				if(mem_we = "1") then
@@ -128,22 +130,22 @@ begin
 					when opcodes.noop =>
 						null;
 					when opcodes.jmp =>
-						program_counter := program_counter + 1;
-						wide_buffer(15 downto 8) := program(program_counter);
-						program_counter := program_counter + 1;
-						wide_buffer(7 downto 0) := program(program_counter);
-						program_counter := conv_integer(wide_buffer);
+						pc := pc + 1;
+						wide_buffer(15 downto 8) := program(pc);
+						pc := pc + 1;
+						wide_buffer(7 downto 0) := program(pc);
+						pc := conv_integer(wide_buffer);
 					when opcodes.porta =>
-						program_counter := program_counter + 1;
-						porta_buf <= program(program_counter);
+						pc := pc + 1;
+						porta_buf <= program(pc);
 					when opcodes.mova =>
-						program_counter := program_counter + 1;
-						register_a <= program(program_counter);
+						pc := pc + 1;
+						register_a <= program(pc);
 					when opcodes.movaf =>
-						program_counter := program_counter + 1;
-						wide_buffer(15 downto 8) := program(program_counter);
-						program_counter := program_counter + 1;
-						wide_buffer(7 downto 0) := program(program_counter);
+						pc := pc + 1;
+						wide_buffer(15 downto 8) := program(pc);
+						pc := pc + 1;
+						wide_buffer(7 downto 0) := program(pc);
 						
 						wide_buffer_int := conv_integer(wide_buffer);
 						case wide_buffer_int is
@@ -162,19 +164,63 @@ begin
 						mem_addr <= wide_buffer;
 						mem_data_in <= register_a;
 						mem_we <= "1";
+					when opcodes.adda =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
+					when opcodes.suba =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
+						
+						
+--					when opcodes.lsla =>
+--						pc := pc + 1;
+--						register_a <= conv_std_logic_vector(conv_integer(register_a) * (2**conv_integer(program(pc))),8);
+					when opcodes.lsla =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
+						
+						
+--					when opcodes.lsra =>
+--						pc := pc + 1;
+--						register_a <= conv_std_logic_vector(conv_integer(register_a) / (2**conv_integer(program(pc))),8);
+					when opcodes.lsra =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
+					
+					
+					when opcodes.mula =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
+					when opcodes.lrla =>
+						pc := pc + 1;
+						narrow_buffer_int := conv_integer(program(pc)) mod 8;
+						
+						if(narrow_buffer_int /= 0) then
+							register_a <= register_a(7 - narrow_buffer_int downto 0) & 
+										register_a(7 downto 8 - narrow_buffer_int);
+						end if;
+					when opcodes.lrra =>
+						pc := pc + 1;
+						narrow_buffer_int := conv_integer(program(pc)) mod 8;
+						
+						if(narrow_buffer_int /= 0) then
+							register_a <= register_a(narrow_buffer_int - 1 downto 0) &
+										register_a(7 downto narrow_buffer_int);
+						end if;
+					
 					when others =>
 						null;
 				end case;
 				
 				if(current_opcode /= opcodes.jmp) then
-					program_counter := program_counter + 1;
+					pc := pc + 1;
 				end if;
 			end if;
 		end if;
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/2 := 0;
+		variable counter : integer range 0 to 100000000/30 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;

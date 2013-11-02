@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -50,7 +50,7 @@ Ignore Synthesis Constraint File   : NO
 ---- Target Parameters
 Output File Name                   : "cpu_instructor_copy"
 Output Format                      : NGC
-Target Device                      : xc6slx16-3-csg324
+Target Device                      : xc6slx9-3-tqg144
 
 ---- Source Options
 Use New Parser                     : yes
@@ -134,7 +134,7 @@ Elaborating entity <memory> (architecture <memory_a>) from library <work>.
 
 Synthesizing Unit <cpu_instructor_copy>.
     Related source file is "/home/main/git/FPGA/cpu_instructor_copy.vhd".
-INFO:Xst:3210 - "/home/main/git/FPGA/cpu_instructor_copy.vhd" line 228: Output port <douta> of the instance <cpu_memory> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/main/git/FPGA/cpu_instructor_copy.vhd" line 285: Output port <douta> of the instance <cpu_memory> is unconnected or connected to loadless signal.
     Found 26-bit register for signal <clock_divider.counter>.
     Found 6-bit register for signal <brain.program_counter>.
     Found 1-bit register for signal <cpu_clock>.
@@ -146,23 +146,27 @@ INFO:Xst:3210 - "/home/main/git/FPGA/cpu_instructor_copy.vhd" line 228: Output p
     Found 8-bit register for signal <portd>.
     Found 16-bit register for signal <mem_addr>.
     Found 8-bit register for signal <mem_data_in>.
-    Found 6-bit adder for signal <n0142> created at line 168.
-    Found 6-bit adder for signal <brain.program_counter[5]_GND_5_o_add_17_OUT> created at line 176.
-    Found 8-bit adder for signal <register_a[7]_brain.program_counter[5]_add_30_OUT> created at line 199.
-    Found 6-bit adder for signal <GND_5_o_GND_5_o_add_52_OUT> created at line 208.
-    Found 26-bit adder for signal <clock_divider.counter[25]_GND_5_o_add_80_OUT> created at line 224.
-    Found 6-bit subtractor for signal <GND_5_o_GND_5_o_sub_11_OUT<5:0>> created at line 166.
-    Found 8-bit subtractor for signal <GND_5_o_GND_5_o_sub_34_OUT<7:0>> created at line 203.
-    Found 32x8-bit Read Only RAM for signal <brain.program_counter[4]_X_5_o_wide_mux_5_OUT>
-    Found 32x8-bit Read Only RAM for signal <n0145>
-    Found 32x8-bit Read Only RAM for signal <brain.program_counter[5]_X_5_o_wide_mux_18_OUT>
-    Found 6-bit comparator greater for signal <GND_5_o_brain.program_counter[5]_LessThan_5_o> created at line 152
+    Found 6-bit adder for signal <n0148> created at line 218.
+    Found 6-bit adder for signal <brain.program_counter[5]_GND_6_o_add_17_OUT> created at line 226.
+    Found 8-bit adder for signal <register_a[7]_brain.program_counter[5]_add_30_OUT> created at line 249.
+    Found 6-bit adder for signal <GND_6_o_GND_6_o_add_61_OUT> created at line 265.
+    Found 26-bit adder for signal <clock_divider.counter[25]_GND_6_o_add_89_OUT> created at line 281.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_11_OUT<5:0>> created at line 216.
+    Found 8-bit subtractor for signal <GND_6_o_GND_6_o_sub_34_OUT<7:0>> created at line 253.
+    Found 8x8-bit multiplier for signal <n0103> created at line 256.
+    Found 8-bit shifter rotate left for signal <register_a[7]_brain.program_counter[5]_rotate_left_39_OUT> created at line 260
+    Found 16x8-bit Read Only RAM for signal <brain.program_counter[3]_X_6_o_wide_mux_5_OUT>
+    Found 16x8-bit Read Only RAM for signal <n0151>
+    Found 16x8-bit Read Only RAM for signal <brain.program_counter[5]_X_6_o_wide_mux_18_OUT>
+    Found 6-bit comparator greater for signal <GND_6_o_brain.program_counter[5]_LessThan_5_o> created at line 202
     Summary:
 	inferred   3 RAM(s).
+	inferred   1 Multiplier(s).
 	inferred   6 Adder/Subtractor(s).
 	inferred  98 D-type flip-flop(s).
 	inferred   1 Comparator(s).
-	inferred   9 Multiplexer(s).
+	inferred  16 Multiplexer(s).
+	inferred   1 Combinational logic shifter(s).
 Unit <cpu_instructor_copy> synthesized.
 
 =========================================================================
@@ -170,7 +174,9 @@ HDL Synthesis Report
 
 Macro Statistics
 # RAMs                                                 : 3
- 32x8-bit single-port Read Only RAM                    : 3
+ 16x8-bit single-port Read Only RAM                    : 3
+# Multipliers                                          : 1
+ 8x8-bit multiplier                                    : 1
 # Adders/Subtractors                                   : 6
  26-bit adder                                          : 1
  6-bit adder                                           : 3
@@ -184,11 +190,14 @@ Macro Statistics
  8-bit register                                        : 6
 # Comparators                                          : 1
  6-bit comparator greater                              : 1
-# Multiplexers                                         : 9
- 6-bit 2-to-1 multiplexer                              : 7
- 8-bit 2-to-1 multiplexer                              : 2
+# Multiplexers                                         : 16
+ 6-bit 2-to-1 multiplexer                              : 9
+ 8-bit 2-to-1 multiplexer                              : 7
+# Logic shifters                                       : 1
+ 8-bit shifter rotate left                             : 1
 
 =========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 *                       Advanced HDL Synthesis                          *
@@ -198,38 +207,37 @@ Reading core <ipcore_dir/memory.ngc>.
 Loading core <memory> for timing and area information for instance <cpu_memory>.
 
 Synthesizing (advanced) Unit <cpu_instructor_copy>.
-The following registers are absorbed into accumulator <register_a>: 1 register on signal <register_a>.
 The following registers are absorbed into counter <clock_divider.counter>: 1 register on signal <clock_divider.counter>.
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.program_counter[4]_X_5_o_wide_mux_5_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.program_counter[3]_X_6_o_wide_mux_5_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
-    |     aspect ratio   | 32-word x 8-bit                     |          |
+    |     aspect ratio   | 16-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <brain.program_counter<4:0>> |          |
+    |     addrA          | connected to signal <brain.program_counter<3:0>> |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_n0145> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_n0151> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
-    |     aspect ratio   | 32-word x 8-bit                     |          |
+    |     aspect ratio   | 16-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <n0142<4:0>>    |          |
+    |     addrA          | connected to signal <n0148<3:0>>    |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.program_counter[5]_X_5_o_wide_mux_18_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.program_counter[5]_X_6_o_wide_mux_18_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
-    |     aspect ratio   | 32-word x 8-bit                     |          |
+    |     aspect ratio   | 16-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <brain.program_counter[5]_GND_5_o_add_17_OUT<4:0>> |          |
+    |     addrA          | connected to signal <brain.program_counter[5]_GND_6_o_add_17_OUT<3:0>> |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
@@ -240,87 +248,86 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # RAMs                                                 : 3
- 32x8-bit single-port distributed Read Only RAM        : 3
-# Adders/Subtractors                                   : 4
+ 16x8-bit single-port distributed Read Only RAM        : 3
+# Multipliers                                          : 1
+ 8x8-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 5
  6-bit adder                                           : 3
  6-bit subtractor                                      : 1
+ 8-bit addsub                                          : 1
 # Counters                                             : 1
  26-bit up counter                                     : 1
-# Accumulators                                         : 1
- 8-bit updown loadable accumulator                     : 1
-# Registers                                            : 64
- Flip-Flops                                            : 64
+# Registers                                            : 72
+ Flip-Flops                                            : 72
 # Comparators                                          : 1
  6-bit comparator greater                              : 1
-# Multiplexers                                         : 8
- 6-bit 2-to-1 multiplexer                              : 7
- 8-bit 2-to-1 multiplexer                              : 1
+# Multiplexers                                         : 16
+ 6-bit 2-to-1 multiplexer                              : 9
+ 8-bit 2-to-1 multiplexer                              : 7
+# Logic shifters                                       : 1
+ 8-bit shifter rotate left                             : 1
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <mem_addr_4> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_6> 
-INFO:Xst:2261 - The FF/Latch <mem_addr_5> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_7> 
-INFO:Xst:2261 - The FF/Latch <mem_addr_12> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_14> 
-INFO:Xst:2261 - The FF/Latch <mem_addr_13> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_15> 
+INFO:Xst:2261 - The FF/Latch <mem_addr_2> in Unit <cpu_instructor_copy> is equivalent to the following 2 FFs/Latches, which will be removed : <mem_addr_5> <mem_addr_6> 
+INFO:Xst:2261 - The FF/Latch <mem_addr_3> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_4> 
+INFO:Xst:2261 - The FF/Latch <mem_addr_10> in Unit <cpu_instructor_copy> is equivalent to the following 2 FFs/Latches, which will be removed : <mem_addr_13> <mem_addr_14> 
+INFO:Xst:2261 - The FF/Latch <mem_addr_11> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <mem_addr_12> 
 
 Optimizing unit <cpu_instructor_copy> ...
-WARNING:Xst:1710 - FF/Latch <portd_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portd_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <portd_buf_0> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portb_buf_0> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <portc_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portd_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <portc_buf_0> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portc_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_0> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_1> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_2> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_3> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_4> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_5> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_6> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <portb_buf_7> (without init value) has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_0> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_1> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_2> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_3> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <mem_addr_4> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <mem_addr_5> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <mem_addr_7> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_8> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_9> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_10> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <mem_addr_11> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <mem_addr_12> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <mem_addr_13> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <mem_addr_15> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <brain.program_counter_4> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <brain.program_counter_5> has a constant value of 0 in block <cpu_instructor_copy>. This FF/Latch will be trimmed during the optimization process.
-INFO:Xst:2261 - The FF/Latch <mem_data_in_0> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_0> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_1> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_1> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_2> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_2> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_3> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_3> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_4> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_4> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_5> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_5> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_6> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_6> 
-INFO:Xst:2261 - The FF/Latch <mem_data_in_7> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <porta_buf_7> 
+INFO:Xst:2261 - The FF/Latch <register_a_0> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <register_a_7> 
+INFO:Xst:2261 - The FF/Latch <register_a_1> in Unit <cpu_instructor_copy> is equivalent to the following 3 FFs/Latches, which will be removed : <register_a_2> <register_a_5> <register_a_6> 
+INFO:Xst:2261 - The FF/Latch <register_a_3> in Unit <cpu_instructor_copy> is equivalent to the following FF/Latch, which will be removed : <register_a_4> 
+INFO:Xst:2261 - The FF/Latch <mem_data_in_0> in Unit <cpu_instructor_copy> is equivalent to the following 3 FFs/Latches, which will be removed : <mem_data_in_7> <porta_buf_0> <porta_buf_7> 
+INFO:Xst:2261 - The FF/Latch <mem_data_in_1> in Unit <cpu_instructor_copy> is equivalent to the following 7 FFs/Latches, which will be removed : <mem_data_in_2> <mem_data_in_5> <mem_data_in_6> <porta_buf_1> <porta_buf_2> <porta_buf_5> <porta_buf_6> 
+INFO:Xst:2261 - The FF/Latch <mem_data_in_3> in Unit <cpu_instructor_copy> is equivalent to the following 3 FFs/Latches, which will be removed : <mem_data_in_4> <porta_buf_3> <porta_buf_4> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block cpu_instructor_copy, actual ratio is 0.
-FlipFlop brain.program_counter_0 has been replicated 2 time(s)
-FlipFlop brain.program_counter_1 has been replicated 2 time(s)
-FlipFlop brain.program_counter_2 has been replicated 2 time(s)
-FlipFlop brain.program_counter_3 has been replicated 2 time(s)
-FlipFlop brain.program_counter_4 has been replicated 2 time(s)
+Found area constraint ratio of 100 (+ 5) on block cpu_instructor_copy, actual ratio is 1.
+FlipFlop brain.program_counter_0 has been replicated 1 time(s)
+FlipFlop brain.program_counter_1 has been replicated 1 time(s)
+FlipFlop brain.program_counter_2 has been replicated 1 time(s)
+FlipFlop brain.program_counter_3 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -328,8 +335,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 59
- Flip-Flops                                            : 59
+# Registers                                            : 42
+ Flip-Flops                                            : 42
 
 =========================================================================
 
@@ -352,58 +359,60 @@ Top Level Output File Name         : cpu_instructor_copy.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 152
+# BELS                             : 158
 #      GND                         : 2
-#      INV                         : 3
+#      INV                         : 2
 #      LUT1                        : 25
-#      LUT2                        : 5
-#      LUT3                        : 10
-#      LUT4                        : 1
-#      LUT5                        : 8
-#      LUT6                        : 30
+#      LUT2                        : 6
+#      LUT3                        : 4
+#      LUT4                        : 11
+#      LUT5                        : 11
+#      LUT6                        : 29
 #      MUXCY                       : 32
 #      VCC                         : 2
 #      XORCY                       : 34
-# FlipFlops/Latches                : 61
+# FlipFlops/Latches                : 44
 #      FDC                         : 27
-#      FDCE                        : 15
-#      FDE                         : 18
+#      FDCE                        : 8
+#      FDE                         : 8
 #      FDR                         : 1
 # RAMS                             : 32
 #      RAMB16BWER                  : 32
-# Clock Buffers                    : 2
-#      BUFG                        : 1
+# Clock Buffers                    : 1
 #      BUFGP                       : 1
 # IO Buffers                       : 33
 #      IBUF                        : 1
 #      OBUF                        : 32
+# DSPs                             : 1
+#      DSP48A1                     : 1
 
 Device utilization summary:
 ---------------------------
 
-Selected Device : 6slx16csg324-3 
+Selected Device : 6slx9tqg144-3 
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              61  out of  18224     0%  
- Number of Slice LUTs:                   82  out of   9112     0%  
-    Number used as Logic:                82  out of   9112     0%  
+ Number of Slice Registers:              44  out of  11440     0%  
+ Number of Slice LUTs:                   88  out of   5720     1%  
+    Number used as Logic:                88  out of   5720     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     88
-   Number with an unused Flip Flop:      27  out of     88    30%  
-   Number with an unused LUT:             6  out of     88     6%  
-   Number of fully used LUT-FF pairs:    55  out of     88    62%  
-   Number of unique control sets:         7
+ Number of LUT Flip Flop pairs used:     94
+   Number with an unused Flip Flop:      50  out of     94    53%  
+   Number with an unused LUT:             6  out of     94     6%  
+   Number of fully used LUT-FF pairs:    38  out of     94    40%  
+   Number of unique control sets:         6
 
 IO Utilization: 
  Number of IOs:                          34
- Number of bonded IOBs:                  34  out of    232    14%  
+ Number of bonded IOBs:                  34  out of    102    33%  
 
 Specific Feature Utilization:
  Number of Block RAM/FIFO:               32  out of     32   100%  
     Number using Block RAM only:         32
- Number of BUFG/BUFGCTRLs:                2  out of     16    12%  
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+ Number of DSP48A1s:                      1  out of     16     6%  
 
 ---------------------------
 Partition Resource Summary:
@@ -426,7 +435,7 @@ Clock Information:
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                                                                                                                | Load  |
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
-cpu_clock                          | BUFG                                                                                                                                 | 66    |
+cpu_clock                          | NONE(register_a_0)                                                                                                                   | 50    |
 clk                                | BUFGP                                                                                                                                | 27    |
 cpu_memory/N1                      | NONE(cpu_memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[31].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram)| 32    |
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
@@ -440,9 +449,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 2.866ns (Maximum Frequency: 348.864MHz)
-   Minimum input arrival time before clock: 4.389ns
-   Maximum output required time after clock: 3.762ns
+   Minimum period: 8.082ns (Maximum Frequency: 123.738MHz)
+   Minimum input arrival time before clock: 4.170ns
+   Maximum output required time after clock: 4.110ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -451,74 +460,86 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'cpu_clock'
-  Clock period: 2.866ns (frequency: 348.864MHz)
-  Total number of paths / destination ports: 807 / 224
+  Clock period: 8.082ns (frequency: 123.738MHz)
+  Total number of paths / destination ports: 3479 / 199
 -------------------------------------------------------------------------
-Delay:               2.866ns (Levels of Logic = 1)
-  Source:            brain.program_counter_4_1 (FF)
-  Destination:       brain.program_counter_0 (FF)
+Delay:               8.082ns (Levels of Logic = 12)
+  Source:            brain.program_counter_2 (FF)
+  Destination:       Mmult_n0103 (DSP)
   Source Clock:      cpu_clock rising
   Destination Clock: cpu_clock rising
 
-  Data Path: brain.program_counter_4_1 to brain.program_counter_0
+  Data Path: brain.program_counter_2 to Mmult_n0103
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             4   0.447   0.912  brain.program_counter_4_1 (brain.program_counter_4_1)
-     LUT3:I0->O           15   0.205   0.981  GND_5_o_brain.program_counter[5]_LessThan_5_o1 (GND_5_o_brain.program_counter[5]_LessThan_5_o)
-     FDCE:CE                   0.322          brain.program_counter_0
+     FDCE:C->Q            18   0.447   1.050  brain.program_counter_2 (brain.program_counter_2)
+     LUT4:I3->O            6   0.205   0.744  _n0315_inv11 (_n0315_inv1)
+     DSP48A1:A2->M0        2   2.835   0.617  Mmult_n0103 (n0103<0>)
+     LUT6:I5->O            1   0.205   0.000  Mmux__n0278_rs_lut<0> (Mmux__n0278_rs_lut<0>)
+     MUXCY:S->O            1   0.172   0.000  Mmux__n0278_rs_cy<0> (Mmux__n0278_rs_cy<0>)
+     MUXCY:CI->O           1   0.019   0.000  Mmux__n0278_rs_cy<1> (Mmux__n0278_rs_cy<1>)
+     MUXCY:CI->O           1   0.019   0.000  Mmux__n0278_rs_cy<2> (Mmux__n0278_rs_cy<2>)
+     MUXCY:CI->O           1   0.019   0.000  Mmux__n0278_rs_cy<3> (Mmux__n0278_rs_cy<3>)
+     MUXCY:CI->O           1   0.019   0.000  Mmux__n0278_rs_cy<4> (Mmux__n0278_rs_cy<4>)
+     MUXCY:CI->O           1   0.019   0.000  Mmux__n0278_rs_cy<5> (Mmux__n0278_rs_cy<5>)
+     MUXCY:CI->O           0   0.019   0.000  Mmux__n0278_rs_cy<6> (Mmux__n0278_rs_cy<6>)
+     XORCY:CI->O           1   0.180   0.580  Mmux__n0278_rs_xor<7> (_n0278<7>)
+     LUT6:I5->O            1   0.205   0.579  Mmux__n02268 (_n0226<7>)
+     DSP48A1:B7                0.149          Mmult_n0103
     ----------------------------------------
-    Total                      2.866ns (0.974ns logic, 1.892ns route)
-                                       (34.0% logic, 66.0% route)
+    Total                      8.082ns (4.512ns logic, 3.570ns route)
+                                       (55.8% logic, 44.2% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 2.763ns (frequency: 361.912MHz)
-  Total number of paths / destination ports: 378 / 27
+  Clock period: 3.893ns (frequency: 256.875MHz)
+  Total number of paths / destination ports: 379 / 27
 -------------------------------------------------------------------------
-Delay:               2.763ns (Levels of Logic = 2)
-  Source:            clock_divider.counter_1 (FF)
+Delay:               3.893ns (Levels of Logic = 3)
+  Source:            clock_divider.counter_7 (FF)
   Destination:       cpu_clock (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: clock_divider.counter_1 to cpu_clock
+  Data Path: clock_divider.counter_7 to cpu_clock
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              2   0.447   0.981  clock_divider.counter_1 (clock_divider.counter_1)
-     LUT6:I0->O            1   0.203   0.827  GND_5_o_clock_divider.counter[25]_equal_80_o<25>1 (GND_5_o_clock_divider.counter[25]_equal_80_o<25>)
-     LUT6:I2->O            1   0.203   0.000  cpu_clock_rstpot (cpu_clock_rstpot)
+     FDC:C->Q              2   0.447   0.981  clock_divider.counter_7 (clock_divider.counter_7)
+     LUT6:I0->O            1   0.203   0.944  GND_6_o_clock_divider.counter[25]_equal_89_o<25>2 (GND_6_o_clock_divider.counter[25]_equal_89_o<25>1)
+     LUT6:I0->O            1   0.203   0.808  GND_6_o_clock_divider.counter[25]_equal_89_o<25>5 (GND_6_o_clock_divider.counter[25]_equal_89_o)
+     LUT3:I0->O            1   0.205   0.000  cpu_clock_rstpot (cpu_clock_rstpot)
      FDC:D                     0.102          cpu_clock
     ----------------------------------------
-    Total                      2.763ns (0.955ns logic, 1.808ns route)
-                                       (34.6% logic, 65.4% route)
+    Total                      3.893ns (1.160ns logic, 2.733ns route)
+                                       (29.8% logic, 70.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'cpu_clock'
-  Total number of paths / destination ports: 33 / 33
+  Total number of paths / destination ports: 17 / 17
 -------------------------------------------------------------------------
-Offset:              4.389ns (Levels of Logic = 2)
+Offset:              4.170ns (Levels of Logic = 2)
   Source:            rst (PAD)
-  Destination:       register_a_1 (FF)
+  Destination:       mem_we_0 (FF)
   Destination Clock: cpu_clock rising
 
-  Data Path: rst to register_a_1
+  Data Path: rst to mem_we_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            47   1.222   1.869  rst_IBUF (rst_IBUF)
-     LUT6:I0->O            7   0.203   0.773  _n0280_inv1 (_n0280_inv)
-     FDE:CE                    0.322          register_a_1
+     IBUF:I->O            39   1.222   1.736  rst_IBUF (rst_IBUF)
+     LUT5:I0->O            1   0.203   0.579  _n02361 (_n0236)
+     FDR:R                     0.430          mem_we_0
     ----------------------------------------
-    Total                      4.389ns (1.747ns logic, 2.642ns route)
-                                       (39.8% logic, 60.2% route)
+    Total                      4.170ns (1.855ns logic, 2.315ns route)
+                                       (44.5% logic, 55.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
   Total number of paths / destination ports: 27 / 27
 -------------------------------------------------------------------------
-Offset:              3.156ns (Levels of Logic = 1)
+Offset:              3.043ns (Levels of Logic = 1)
   Source:            rst (PAD)
   Destination:       clock_divider.counter_0 (FF)
   Destination Clock: clk rising
@@ -527,30 +548,30 @@ Offset:              3.156ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            47   1.222   1.504  rst_IBUF (rst_IBUF)
+     IBUF:I->O            39   1.222   1.391  rst_IBUF (rst_IBUF)
      FDC:CLR                   0.430          clock_divider.counter_0
     ----------------------------------------
-    Total                      3.156ns (1.652ns logic, 1.504ns route)
-                                       (52.3% logic, 47.7% route)
+    Total                      3.043ns (1.652ns logic, 1.391ns route)
+                                       (54.3% logic, 45.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'cpu_clock'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              3.762ns (Levels of Logic = 1)
-  Source:            mem_data_in_7 (FF)
-  Destination:       porta<7> (PAD)
+Offset:              4.110ns (Levels of Logic = 1)
+  Source:            mem_data_in_1 (FF)
+  Destination:       porta<6> (PAD)
   Source Clock:      cpu_clock rising
 
-  Data Path: mem_data_in_7 to porta<7>
+  Data Path: mem_data_in_1 to porta<6>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              6   0.447   0.744  mem_data_in_7 (mem_data_in_7)
-     OBUF:I->O                 2.571          porta_7_OBUF (porta<7>)
+     FDE:C->Q             20   0.447   1.092  mem_data_in_1 (mem_data_in_1)
+     OBUF:I->O                 2.571          porta_6_OBUF (porta<6>)
     ----------------------------------------
-    Total                      3.762ns (3.018ns logic, 0.744ns route)
-                                       (80.2% logic, 19.8% route)
+    Total                      4.110ns (3.018ns logic, 1.092ns route)
+                                       (73.4% logic, 26.6% route)
 
 =========================================================================
 
@@ -562,7 +583,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    2.763|         |         |         |
+clk            |    3.893|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock cpu_clock
@@ -570,21 +591,21 @@ Clock to Setup on destination clock cpu_clock
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-cpu_clock      |    2.866|         |         |         |
+cpu_clock      |    8.082|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 9.20 secs
+Total CPU time to Xst completion: 9.41 secs
  
 --> 
 
 
-Total memory usage is 491096 kilobytes
+Total memory usage is 492652 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   38 (   0 filtered)
-Number of infos    :   17 (   0 filtered)
+Number of warnings :   37 (   0 filtered)
+Number of infos    :   16 (   0 filtered)
 

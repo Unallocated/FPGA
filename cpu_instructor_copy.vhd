@@ -2,6 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
 use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
+use IEEE.NUMERIC_STD.all;
 
 entity cpu_instructor_copy is
     Port ( clk : in  STD_LOGIC;
@@ -26,19 +27,31 @@ end cpu_instructor_copy;
 --
 -- tristate logic on the ports ?
 -- map the ports to memory?
--- Always increment program counter (allow negative)
--- Always set mem_we to zero on the rising edge
+-- Always increment program counter (allow negative)  DONE
+-- Always set mem_we to zero on the rising edge  DONE
 --
 -- overflow/underflow flag
 -- reg_a, reg_b is zero flag
--- adda (2 byte)
--- suba (2 byte)
--- mula (2 byte)
--- lshifta (2 byte)
--- rshifta (2 byte)
+-- adda (2 byte)  DONE
+-- suba (2 byte)  DONE
+-- mula (2 byte)  DONE
+-- lshifta (2 byte) DONE
+-- rshifta (2 byte) DONE
 -- lror (2 bytes)
--- rror (2 bytes)
+-- rror (2 bytes)   
 -- flags record
+-- jump if ne to (value to be ne to), (program_loc)
+
+-- testing zero not zero flag (daniel and tony)
+
+-- stack does not get zeroed out as things are popped off.  
+-- instead, just update the stack pointer (decriment)
+
+-- put zero at the top of the stack or have an instruction that
+-- defines where the program actually starts
+
+-- program positions added to the stack should be one greater than
+-- the location of the program counter at time of branch. 
 
 
 architecture Behavioral of cpu_instructor_copy is
@@ -78,6 +91,11 @@ architecture Behavioral of cpu_instructor_copy is
 		porta : opcode;   -- sets value of the porta output (2 byte instr)
 		adda  : opcode;   -- adds next byte in the program to register_a (2 byte instr)
 		suba  : opcode;   -- subtracts next byte int program from register_a (2 byte instr)
+		multa : opcode;   -- multiply next byte with register_a and store in register_a (2 byte instr)
+		lsa   : opcode;   -- left shift register_a by x bits (2 byte instr)
+		rsa   : opcode;   -- right shift register_a by x bits (2 byte instr)
+		rola  : opcode;   -- left rotate register_a by x bits (2 byte instr)
+		rora  : opcode;   -- right rotate register_a by x bits (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -87,27 +105,26 @@ architecture Behavioral of cpu_instructor_copy is
 		jmp   => "00000011",
 		porta => "00000100",
 		adda  => "00000101",
-		suba => "00000110"
+		suba  => "00000110",
+		multa => "00000111",
+		lsa   => "00001000",
+		rsa   => "00001001",
+		rola  => "00001010",
+		rora  => "00001011"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
+		opcodes.noop,
 		opcodes.mova,
-		"10101010",
+		"01111110",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
 		opcodes.noop,
 		opcodes.mova,
-		"11110000",
-		opcodes.adda,
-		"00000011",
-		opcodes.movaf,
-		"00000000",
-		"00000000",
-		opcodes.suba,
-		"00000011",
+		"11100111",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
@@ -115,6 +132,32 @@ architecture Behavioral of cpu_instructor_copy is
 		"00000000",
 		"00000000"
 	);
+
+
+	
+--	constant program : program_type := (
+--		opcodes.mova,
+--		"10101010",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000000",
+--		opcodes.noop,
+--		opcodes.mova,
+--		"11110000",
+--		opcodes.adda,
+--		"00000011",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000000",
+--		opcodes.suba,
+--		"00000011",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000000",
+--		opcodes.jmp,
+--		"00000000",
+--		"00000000"
+--	);
 	
 --	constant program : program_type := (
 --		opcodes.noop,
@@ -127,8 +170,15 @@ architecture Behavioral of cpu_instructor_copy is
 --		"00000000",
 --		"00000000"
 --	);
+
+
+	function incr(pc, inc : integer) return integer is
+	begin
+		return pc + inc;
+	end incr;
 	
 begin
+
 
 	real_rst <= rst;
 	
@@ -201,6 +251,13 @@ begin
 						program_counter := program_counter + 1;
 						narrow_buffer := program(program_counter);
 						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(narrow_buffer), 8);
+					when opcodes.multa =>
+						program_counter := program_counter + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(program_counter)), 8);
+					when opcodes.lsa =>
+						program_counter := program_counter + 1;
+						current_opcode_int := conv_integer(program(program_counter));
+						register_a <= std_logic_vector(unsigned(register_a) rol current_opcode_int);
 					when others =>
 						null;
 				end case;

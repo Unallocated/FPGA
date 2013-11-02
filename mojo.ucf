@@ -1,23 +1,49 @@
+
+## Clock signal
 NET "clk" TNM_NET = clk;
 TIMESPEC TS_clk = PERIOD "clk" 50 MHz HIGH 50%;
-
-# PlanAhead Generated physical constraints 
 NET "clk" LOC = P56;
-NET "rst" LOC = P38;
 
-# Mojo
-net "red<0>" loc="p33";
-net "blue<0>" loc="p41";
-net "green<0>" loc="p35";
 
-net "hs" loc="p12";
-net "vs" loc="p15";
+## Leds
+NET "porta<0>"         LOC = "P134" | IOSTANDARD = "LVCMOS33";  
+NET "porta<1>"         LOC = "P133" | IOSTANDARD = "LVCMOS33";  
+NET "porta<2>"         LOC = "P132" | IOSTANDARD = "LVCMOS33";  
+NET "porta<3>"         LOC = "P131" | IOSTANDARD = "LVCMOS33";  
+NET "porta<4>"         LOC = "P127" | IOSTANDARD = "LVCMOS33";  
+NET "porta<5>"         LOC = "P126" | IOSTANDARD = "LVCMOS33";  
+NET "porta<6>"         LOC = "P124" | IOSTANDARD = "LVCMOS33";  
+NET "porta<7>"         LOC = "P123" | IOSTANDARD = "LVCMOS33";  
 
-#net "leds<0>" loc="g1";
-#net "leds<1>" loc="p4";
-#net "leds<2>" loc="n4";
-#net "leds<3>" loc="n5";
-#net "leds<4>" loc="p6";
-#net "leds<5>" loc="p7";
-#net "leds<6>" loc="m11";
-#net "leds<7>" loc="m5";
+## Buttons
+NET "rst"         LOC = "P38"  | IOSTANDARD = "LVCMOS33";  
+
+##JB
+NET "portb<0>"          LOC = "P58"  | IOSTANDARD = "LVCMOS33";
+NET "portb<1>"          LOC = "P67"  | IOSTANDARD = "LVCMOS33";
+NET "portb<2>"          LOC = "P79"  | IOSTANDARD = "LVCMOS33";
+NET "portb<3>"          LOC = "P81"  | IOSTANDARD = "LVCMOS33";
+NET "portb<4>"          LOC = "P83"  | IOSTANDARD = "LVCMOS33";
+NET "portb<5>"          LOC = "P85"  | IOSTANDARD = "LVCMOS33";
+NET "portb<6>"          LOC = "P88"  | IOSTANDARD = "LVCMOS33";
+NET "portb<7>"          LOC = "P93"  | IOSTANDARD = "LVCMOS33";
+
+##JC
+NET "portc<0>"          LOC = "P95"  | IOSTANDARD = "LVCMOS33";
+NET "portc<1>"          LOC = "P98"  | IOSTANDARD = "LVCMOS33";
+NET "portc<2>"          LOC = "P100"  | IOSTANDARD = "LVCMOS33";
+NET "portc<3>"          LOC = "P102"  | IOSTANDARD = "LVCMOS33";
+NET "portc<4>"          LOC = "P105"  | IOSTANDARD = "LVCMOS33";
+NET "portc<5>"          LOC = "P112"  | IOSTANDARD = "LVCMOS33";
+NET "portc<6>"          LOC = "P115"  | IOSTANDARD = "LVCMOS33";
+NET "portc<7>"          LOC = "P117"  | IOSTANDARD = "LVCMOS33";
+
+##JD, LX16 Die only
+NET "portd<0>"          LOC = "P50" | IOSTANDARD = "LVCMOS33";
+NET "portd<1>"          LOC = "P40" | IOSTANDARD = "LVCMOS33";
+NET "portd<2>"          LOC = "P34" | IOSTANDARD = "LVCMOS33";
+NET "portd<3>"          LOC = "P32" | IOSTANDARD = "LVCMOS33";
+NET "portd<4>"          LOC = "P29" | IOSTANDARD = "LVCMOS33";
+NET "portd<5>"          LOC = "P26" | IOSTANDARD = "LVCMOS33";
+NET "portd<6>"          LOC = "P23" | IOSTANDARD = "LVCMOS33";
+NET "portd<7>"          LOC = "P21" | IOSTANDARD = "LVCMOS33";
