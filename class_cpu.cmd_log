@@ -119,3 +119,5 @@ xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/
 xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
 xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
 xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
+xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
+xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 

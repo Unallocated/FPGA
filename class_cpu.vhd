@@ -191,22 +191,36 @@ begin
 					when opcodes.mula =>
 						pc := pc + 1;
 						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
+						
+						
+--					when opcodes.lrla =>
+--						pc := pc + 1;
+--						narrow_buffer_int := conv_integer(program(pc)) mod 8;
+--						
+--						if(narrow_buffer_int /= 0) then
+--							register_a <= register_a(7 - narrow_buffer_int downto 0) & 
+--										register_a(7 downto 8 - narrow_buffer_int);
+--						end if;
+
 					when opcodes.lrla =>
 						pc := pc + 1;
-						narrow_buffer_int := conv_integer(program(pc)) mod 8;
-						
-						if(narrow_buffer_int /= 0) then
-							register_a <= register_a(7 - narrow_buffer_int downto 0) & 
-										register_a(7 downto 8 - narrow_buffer_int);
-						end if;
+						register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
+					
+
+--					when opcodes.lrra =>
+--						pc := pc + 1;
+--						narrow_buffer_int := conv_integer(program(pc)) mod 8;
+--						
+--						if(narrow_buffer_int /= 0) then
+--							register_a <= register_a(narrow_buffer_int - 1 downto 0) &
+--										register_a(7 downto narrow_buffer_int);
+--						end if;
+
 					when opcodes.lrra =>
 						pc := pc + 1;
-						narrow_buffer_int := conv_integer(program(pc)) mod 8;
-						
-						if(narrow_buffer_int /= 0) then
-							register_a <= register_a(narrow_buffer_int - 1 downto 0) &
-										register_a(7 downto narrow_buffer_int);
-						end if;
+						register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
+
+
 					
 					when others =>
 						null;
