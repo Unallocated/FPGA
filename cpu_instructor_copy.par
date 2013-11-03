@@ -1,7 +1,7 @@
 Release 14.6 par P.68d (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-MAIN::  Sat Nov 02 22:23:36 2013
+MAIN::  Sun Nov 03 10:33:28 2013
 
 par -w -intstyle ise -ol high -mt 4 cpu_instructor_copy_map.ncd
 cpu_instructor_copy.ncd cpu_instructor_copy.pcf 
@@ -22,16 +22,16 @@ Device speed data version:  "PRODUCTION 1.23 2013-06-08".
 Device Utilization Summary:
 
 Slice Logic Utilization:
-  Number of Slice Registers:                    57 out of  18,224    1%
-    Number used as Flip Flops:                  57
+  Number of Slice Registers:                    61 out of  18,224    1%
+    Number used as Flip Flops:                  61
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                        104 out of   9,112    1%
-    Number used as logic:                      101 out of   9,112    1%
-      Number using O6 output only:              53
-      Number using O5 output only:              27
-      Number using O5 and O6:                   21
+  Number of Slice LUTs:                        117 out of   9,112    1%
+    Number used as logic:                      114 out of   9,112    1%
+      Number using O6 output only:              67
+      Number using O5 output only:              31
+      Number using O5 and O6:                   16
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   2,176    0%
     Number used exclusively as route-thrus:      3
@@ -40,12 +40,12 @@ Slice Logic Utilization:
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    37 out of   2,278    1%
-  Number of MUXCYs used:                        64 out of   4,556    1%
-  Number of LUT Flip Flop pairs used:          112
-    Number with an unused Flip Flop:            63 out of     112   56%
-    Number with an unused LUT:                   8 out of     112    7%
-    Number of fully used LUT-FF pairs:          41 out of     112   36%
+  Number of occupied Slices:                    43 out of   2,278    1%
+  Number of MUXCYs used:                        68 out of   4,556    1%
+  Number of LUT Flip Flop pairs used:          123
+    Number with an unused Flip Flop:            66 out of     123   53%
+    Number with an unused LUT:                   6 out of     123    4%
+    Number of fully used LUT-FF pairs:          51 out of     123   41%
     Number of slice register sites lost
       to control set restrictions:               0 out of  18,224    0%
 
@@ -92,13 +92,13 @@ PAR will use up to 4 processors
 Starting Multi-threaded Router
 
 
-Phase  1  : 1434 unrouted;      REAL time: 5 secs 
+Phase  1  : 1485 unrouted;      REAL time: 5 secs 
 
-Phase  2  : 500 unrouted;      REAL time: 5 secs 
+Phase  2  : 549 unrouted;      REAL time: 5 secs 
 
-Phase  3  : 241 unrouted;      REAL time: 6 secs 
+Phase  3  : 251 unrouted;      REAL time: 5 secs 
 
-Phase  4  : 241 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 6 secs 
+Phase  4  : 251 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 6 secs 
 
 Updating file: cpu_instructor_copy.ncd with current fully routed design.
 
@@ -114,7 +114,7 @@ Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 
 Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 6 secs 
 Total REAL time to Router completion: 6 secs 
-Total CPU time to Router completion (all processors): 7 secs 
+Total CPU time to Router completion (all processors): 6 secs 
 
 Generating "PAR" statistics.
 
@@ -125,9 +125,9 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|      cpu_clock_BUFG |  BUFGMUX_X2Y3| No   |   19 |  0.042     |  0.903      |
+|      cpu_clock_BUFG |  BUFGMUX_X2Y3| No   |   21 |  0.047     |  0.903      |
 +---------------------+--------------+------+------+------------+-------------+
-|           clk_BUFGP | BUFGMUX_X3Y13| No   |    7 |  0.008     |  0.892      |
+|           clk_BUFGP | BUFGMUX_X3Y13| No   |    8 |  0.008     |  0.881      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -147,8 +147,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | SETUP       |     7.001ns|     2.999ns|       0|           0
-  pin" 100 MHz HIGH 50%                     | HOLD        |     0.473ns|            |       0|           0
+  TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | SETUP       |     7.036ns|     2.964ns|       0|           0
+  pin" 100 MHz HIGH 50%                     | HOLD        |     0.472ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 

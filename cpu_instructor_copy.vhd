@@ -119,6 +119,11 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	constant program : program_type := (
 		opcodes.mova,
+		"11111111",
+		opcodes.movaf,
+		"00000000",
+		"00000000",
+		opcodes.mova,
 		"11001100",
 		opcodes.movaf,
 		"00000000",
@@ -134,9 +139,6 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.mova,
 		"11111111",
 		opcodes.movaf,
-		"00000000",
-		"00000000",
-		opcodes.jmp,
 		"00000000",
 		"00000000"
 	);
@@ -160,15 +162,15 @@ begin
 		variable narrow_buffer : std_logic_vector(7 downto 0);
 		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
 	begin
---		porta_buf <= conv_std_logic_vector(delay,8);
 		if(real_rst = '1') then
 			pc := 0;
 		elsif(rising_edge(cpu_clock)) then
 			if(pc < program'high) then
+			
 				current_opcode := program(pc);
 				current_opcode_int := conv_integer(current_opcode);
-				mem_we <= "0";
 				
+				mem_we <= "0";
 				
 				case current_opcode is
 					when opcodes.noop =>
@@ -179,9 +181,9 @@ begin
 						pc := pc + 1;
 						wide_buffer(7 downto 0) := program(pc);
 						pc := conv_integer(wide_buffer) - 1;
---					when opcodes.porta =>
---						pc := pc + 1;
---						porta_buf <= program(pc);
+					when opcodes.porta =>
+						pc := pc + 1;
+						porta_buf <= program(pc);
 					when opcodes.mova =>
 						pc := pc + 1;
 						register_a <= program(pc);
@@ -256,7 +258,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
+		variable counter : integer range 0 to 100000000/1 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
