@@ -97,6 +97,7 @@ architecture Behavioral of cpu_instructor_copy is
 		lrla  : opcode;   -- left rotate register_a by number of bits in next byte (2 byte instr)
 		lrra  : opcode;   -- right rotate register_a by number of bits in next byte (2 byte instr)
 		movfa : opcode;   -- move a value from memory into register_a (3 byte instr)
+		janez : opcode;   -- jump if register_a is not zero (3 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -112,32 +113,28 @@ architecture Behavioral of cpu_instructor_copy is
 		mula  => "00001001",
 		lrla  => "00001010",
 		lrra  => "00001011",
-		movfa => "00001100"
+		movfa => "00001100",
+		janez => "00001101"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
 		opcodes.mova,
-		"11111111",
+		"01010101",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
-		opcodes.mova,
-		"11001100",
-		opcodes.movaf,
-		"00000000",
-		"00001100",
-		opcodes.mova,
-		"00000000",
-		opcodes.movfa,
-		"00000000",
-		"00001100",
+		opcodes.suba,
+		"00000001",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
+		opcodes.janez,
+		"00000000",
+		"00000101",
 		opcodes.mova,
-		"11111111",
+		"11110000",
 		opcodes.movaf,
 		"00000000",
 		"00000000"
@@ -241,9 +238,16 @@ begin
 							mem_addr <= wide_buffer;
 							delay := 1;
 						elsif(delay = 1) then
-							narrow_buffer := mem_data_out;
-							register_a <= narrow_buffer;
+							register_a <= mem_data_out;
 							delay := 0;
+						end if;
+					when opcodes.janez =>
+						pc := pc + 1;
+						wide_buffer(15 downto 8) := program(pc);
+						pc := pc + 1;
+						wide_buffer(7 downto 0) := program(pc);
+						if(register_a /= "00000000") then
+							pc := conv_integer(wide_buffer) - 1;
 						end if;
 					when others =>
 						null;
@@ -258,7 +262,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/1 := 0;
+		variable counter : integer range 0 to 100000000/64 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
