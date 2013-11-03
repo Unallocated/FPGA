@@ -98,6 +98,7 @@ architecture Behavioral of cpu_instructor_copy is
 		lrra  : opcode;   -- right rotate register_a by number of bits in next byte (2 byte instr)
 		movfa : opcode;   -- move a value from memory into register_a (3 byte instr)
 		janez : opcode;   -- jump if register_a is not zero (3 byte instr)
+		jane  : opcode;   -- jump if register_a is not equal to the next byte (4 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -114,7 +115,8 @@ architecture Behavioral of cpu_instructor_copy is
 		lrla  => "00001010",
 		lrra  => "00001011",
 		movfa => "00001100",
-		janez => "00001101"
+		janez => "00001101",
+		jane  => "00001110"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
@@ -130,7 +132,8 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.movaf,
 		"00000000",
 		"00000000",
-		opcodes.janez,
+		opcodes.jane,
+		"00000101",
 		"00000000",
 		"00000101",
 		opcodes.mova,
@@ -249,6 +252,18 @@ begin
 						if(register_a /= "00000000") then
 							pc := conv_integer(wide_buffer) - 1;
 						end if;
+					when opcodes.jane =>
+						pc := pc + 1;
+						if(register_a /= program(pc)) then
+							pc := pc + 1;
+							wide_buffer(15 downto 8) := program(pc);
+							pc := pc + 1;
+							wide_buffer(7 downto 0) := program(pc);
+							pc := conv_integer(wide_buffer) - 1;
+						else
+							pc := pc + 2;
+						end if;
+						
 					when others =>
 						null;
 				end case;
