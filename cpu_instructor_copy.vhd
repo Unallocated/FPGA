@@ -119,29 +119,31 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	constant program : program_type := (
 		opcodes.mova,
+		"11001100",
+		opcodes.movaf,
+		"00000000",
+		"00001100",
+		opcodes.mova,
+		"00000000",
+		opcodes.movfa,
+		"00000000",
 		"00001100",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
-		opcodes.movaf,
-		"10000000",
-		"00000000",
 		opcodes.mova,
-		"00000000",
+		"11111111",
 		opcodes.movaf,
 		"00000000",
 		"00000000",
-		opcodes.movfa,
-		"10000000",
-		"00000000",
-		opcodes.movaf,
+		opcodes.jmp,
 		"00000000",
 		"00000000"
 	);
 	
 begin
 
-	real_rst <= not rst;
+	real_rst <= rst;
 	
 	porta <= porta_buf;
 	portb <= portb_buf;
@@ -158,108 +160,103 @@ begin
 		variable narrow_buffer : std_logic_vector(7 downto 0);
 		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
 	begin
+--		porta_buf <= conv_std_logic_vector(delay,8);
 		if(real_rst = '1') then
 			pc := 0;
 		elsif(rising_edge(cpu_clock)) then
 			if(pc < program'high) then
 				current_opcode := program(pc);
 				current_opcode_int := conv_integer(current_opcode);
-				
 				mem_we <= "0";
 				
-				if(delay /= 0) then
-					delay := delay - 1;
-				else
-					case current_opcode is
-						when opcodes.noop =>
-							null;
-						when opcodes.jmp =>
+				
+				case current_opcode is
+					when opcodes.noop =>
+						null;
+					when opcodes.jmp =>
+						pc := pc + 1;
+						wide_buffer(15 downto 8) := program(pc);
+						pc := pc + 1;
+						wide_buffer(7 downto 0) := program(pc);
+						pc := conv_integer(wide_buffer) - 1;
+--					when opcodes.porta =>
+--						pc := pc + 1;
+--						porta_buf <= program(pc);
+					when opcodes.mova =>
+						pc := pc + 1;
+						register_a <= program(pc);
+					when opcodes.movaf =>
+						pc := pc + 1;
+						wide_buffer(15 downto 8) := program(pc);
+						pc := pc + 1;
+						wide_buffer(7 downto 0) := program(pc);
+						
+						wide_buffer_int := conv_integer(wide_buffer);
+						case wide_buffer_int is
+							when 0 =>
+								porta_buf <= register_a;
+							when 1 =>
+								portb_buf <= register_a;
+							when 2 =>
+								portc_buf <= register_a;
+							when 3 =>
+								portd_buf <= register_a;
+							when others =>
+								null;
+						end case;
+						
+						mem_addr <= wide_buffer;
+						mem_data_in <= register_a;
+						mem_we <= "1";
+					when opcodes.adda =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
+					when opcodes.suba =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
+					when opcodes.lsla =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
+					when opcodes.lsra =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
+					when opcodes.mula =>
+						pc := pc + 1;
+						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
+					when opcodes.lrla =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
+					when opcodes.lrra =>
+						pc := pc + 1;
+						register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
+					when opcodes.movfa =>
+						if(delay = 0) then
 							pc := pc + 1;
 							wide_buffer(15 downto 8) := program(pc);
 							pc := pc + 1;
 							wide_buffer(7 downto 0) := program(pc);
-							pc := conv_integer(wide_buffer) - 1;
-						when opcodes.porta =>
-							pc := pc + 1;
-							porta_buf <= program(pc);
-						when opcodes.mova =>
-							pc := pc + 1;
-							register_a <= program(pc);
-						when opcodes.movaf =>
-							pc := pc + 1;
-							wide_buffer(15 downto 8) := program(pc);
-							pc := pc + 1;
-							wide_buffer(7 downto 0) := program(pc);
-							
-							wide_buffer_int := conv_integer(wide_buffer);
-							case wide_buffer_int is
-								when 0 =>
-									porta_buf <= register_a;
-								when 1 =>
-									portb_buf <= register_a;
-								when 2 =>
-									portc_buf <= register_a;
-								when 3 =>
-									portd_buf <= register_a;
-								when others =>
-									null;
-							end case;
 							
 							mem_addr <= wide_buffer;
-							mem_data_in <= register_a;
-							mem_we <= "1";
-						when opcodes.adda =>
-							pc := pc + 1;
-							register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
-						when opcodes.suba =>
-							pc := pc + 1;
-							register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
-						when opcodes.lsla =>
-							pc := pc + 1;
-							register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
-						when opcodes.lsra =>
-							pc := pc + 1;
-							register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
-						when opcodes.mula =>
-							pc := pc + 1;
-							register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
-						when opcodes.lrla =>
-							pc := pc + 1;
-							register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
-						when opcodes.lrra =>
-							pc := pc + 1;
-							register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
-						when opcodes.movfa =>
-							if(delay = 0) then
-								pc := pc + 1;
-								wide_buffer(15 downto 8) := program(pc);
-								pc := pc + 1;
-								wide_buffer(7 downto 0) := program(pc);
-								
-								mem_addr <= wide_buffer;
-								delay := 2;
-							elsif(delay = 1) then
-								register_a <= mem_data_out;
-							end if;
-						when others =>
-							null;
-					end case;
-					
-					if(delay /= 0) then 
-						delay := delay - 1;
-					end if;
-					
-					if(delay = 0) then
-						pc := pc + 1;
-					end if;
-					
+							delay := 1;
+						elsif(delay = 1) then
+							narrow_buffer := mem_data_out;
+							register_a <= narrow_buffer;
+							delay := 0;
+						end if;
+					when others =>
+						null;
+				end case;
+				
+				if(delay = 0) then 
+					pc := pc + 1;
 				end if;
+				
 			end if;
 		end if;
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/30 := 0;
+		variable counter : integer range 0 to 100000000/16 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;

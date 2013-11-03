@@ -5,7 +5,7 @@ run
 -use_new_parser yes
 -ofn cpu_instructor_copy
 -ofmt NGC
--p xc6slx9-3-tqg144
+-p xc6slx16-3-csg324
 -top cpu_instructor_copy
 -opt_mode Speed
 -opt_level 1

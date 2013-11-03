@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=/home/main/git/FPGA/cpu_instructor_copy.ncd
-OUTFILE=/home/main/git/FPGA/cpu_instructor_copy.bit
+INFILE=C:\Users\main-local\Documents\GitHub\FPGA\cpu_instructor_copy.ncd
+OUTFILE=C:\Users\main-local\Documents\GitHub\FPGA\cpu_instructor_copy.bit
 FAMILY=Spartan6
-PART=xc6slx9-3tqg144
-WORKINGDIR=/home/main/git/FPGA
+PART=xc6slx16-3csg324
+WORKINGDIR=C:\Users\main-local\Documents\GitHub\FPGA
 LICENSE=WebPack
-USER_INFO=210714202_0_0_033
+USER_INFO=210714202_0_0_758
