@@ -304,6 +304,8 @@ begin
 								pc := pc + 1;
 								wide_buffer(7 downto 0) := program(pc);
 								pc := conv_integer(wide_buffer) - 1;
+							else
+								pc := pc + 2;
 							end if;
 						end if;
 						
