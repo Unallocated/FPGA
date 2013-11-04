@@ -1,21 +1,8 @@
 //! **************************************************************************
-// Written by: Map P.68d on Sun Nov 03 11:23:41 2013
+// Written by: Map P.68d on Sun Nov 03 23:52:33 2013
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "portd<0>" LOCATE = SITE "G11" LEVEL 1;
-COMP "portc<4>" LOCATE = SITE "G1" LEVEL 1;
-COMP "portd<1>" LOCATE = SITE "F10" LEVEL 1;
-COMP "portc<5>" LOCATE = SITE "J7" LEVEL 1;
-COMP "portd<2>" LOCATE = SITE "F11" LEVEL 1;
-COMP "portc<6>" LOCATE = SITE "J6" LEVEL 1;
-COMP "portd<3>" LOCATE = SITE "E11" LEVEL 1;
-COMP "portc<7>" LOCATE = SITE "F2" LEVEL 1;
-COMP "portd<4>" LOCATE = SITE "D12" LEVEL 1;
-COMP "portd<5>" LOCATE = SITE "C12" LEVEL 1;
-COMP "portd<6>" LOCATE = SITE "F12" LEVEL 1;
-COMP "portd<7>" LOCATE = SITE "E12" LEVEL 1;
-COMP "rst" LOCATE = SITE "B8" LEVEL 1;
 COMP "clk" LOCATE = SITE "V10" LEVEL 1;
 COMP "porta<0>" LOCATE = SITE "U16" LEVEL 1;
 COMP "porta<1>" LOCATE = SITE "V16" LEVEL 1;
@@ -37,6 +24,19 @@ COMP "portc<2>" LOCATE = SITE "K6" LEVEL 1;
 COMP "portb<6>" LOCATE = SITE "K3" LEVEL 1;
 COMP "portc<3>" LOCATE = SITE "G3" LEVEL 1;
 COMP "portb<7>" LOCATE = SITE "K5" LEVEL 1;
+COMP "portd<0>" LOCATE = SITE "G11" LEVEL 1;
+COMP "portc<4>" LOCATE = SITE "G1" LEVEL 1;
+COMP "portd<1>" LOCATE = SITE "F10" LEVEL 1;
+COMP "portc<5>" LOCATE = SITE "J7" LEVEL 1;
+COMP "portd<2>" LOCATE = SITE "F11" LEVEL 1;
+COMP "portc<6>" LOCATE = SITE "J6" LEVEL 1;
+COMP "portd<3>" LOCATE = SITE "E11" LEVEL 1;
+COMP "portc<7>" LOCATE = SITE "F2" LEVEL 1;
+COMP "portd<4>" LOCATE = SITE "D12" LEVEL 1;
+COMP "portd<5>" LOCATE = SITE "C12" LEVEL 1;
+COMP "portd<6>" LOCATE = SITE "F12" LEVEL 1;
+COMP "portd<7>" LOCATE = SITE "E12" LEVEL 1;
+COMP "rst" LOCATE = SITE "B8" LEVEL 1;
 TIMEGRP sys_clk_pin = BEL "cpu_clock" BEL "clock_divider.counter_0" BEL
         "clock_divider.counter_1" BEL "clock_divider.counter_2" BEL
         "clock_divider.counter_3" BEL "clock_divider.counter_4" BEL
@@ -48,6 +48,7 @@ TIMEGRP sys_clk_pin = BEL "cpu_clock" BEL "clock_divider.counter_0" BEL
         "clock_divider.counter_15" BEL "clock_divider.counter_16" BEL
         "clock_divider.counter_17" BEL "clock_divider.counter_18" BEL
         "clock_divider.counter_19" BEL "clock_divider.counter_20" BEL
+        "clock_divider.counter_21" BEL "clock_divider.counter_22" BEL
         "clk_BUFGP/BUFG";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 SCHEMATIC END;

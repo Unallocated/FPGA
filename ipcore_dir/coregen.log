@@ -1,9 +1,5 @@
-Welcome to Xilinx CORE Generator.
-Help system initialized.
-The IP Catalog has been reloaded.
-Opening project file /home/main/git/FPGA/ipcore_dir/coregen.cgp.
-Customize and GenerateINFO:sim:172 - Generating IP...
+INFO:sim:172 - Generating IP...
 Applying current project options...
 Finished applying current project options.
 Cancelled executing Tcl generator.
-Closed project file.
+Wrote CGP file for project 'memory'.

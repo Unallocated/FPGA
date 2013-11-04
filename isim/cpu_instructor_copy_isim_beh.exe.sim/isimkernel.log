@@ -1,0 +1,10 @@
+Command line:
+   cpu_instructor_copy_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  55126
+
+Sun Nov  3 23:04:45 2013
+
+
+ Elaboration Time: 0.52 sec
