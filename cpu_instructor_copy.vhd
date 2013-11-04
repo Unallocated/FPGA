@@ -308,30 +308,6 @@ begin
 								pc := pc + 2;
 							end if;
 						end if;
-						
-						
---						if(delay = 0) then
---							pc := pc + 1;
---							wide_buffer(15 downto 8) := program(pc);
---							pc := pc + 1;
---							wide_buffer(7 downto 0) := program(pc);
---							
---							mem_addr <= wide_buffer;
---							
---							delay := 1;
---						else
---							pc := pc + 1;
---							wide_buffer(15 downto 8) := program(pc);
---							pc := pc + 1;
---							wide_buffer(7 downto 0) := program(pc);
---							
---							if(register_a /= mem_data_out) then
---								pc := conv_integer(wide_buffer) - 1;
---							end if;
---							
---							
---							delay := 0;
---						end if;
 					when others =>
 						null;
 				end case;
