@@ -137,7 +137,9 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.movfa,
 		"00000000",
 		"10000000",
-		opcodes.porta
+		opcodes.movaf,
+		"00000000",
+		"00000000"
 --		opcodes.mova,  -- 5
 --		"11111111",
 --		opcodes.movaf,  -- 7
@@ -172,19 +174,16 @@ begin
 		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
 		variable moo : integer := 0;
 	begin
---		porta_buf <= conv_std_logic_vector(delay, 8);
---		porta_buf <= register_a;
+	
 		if(real_rst = '1') then
 			pc := 0;
---			porta_buf <= "00000000";
 		elsif(rising_edge(cpu_clock)) then
+			if(delay = 0) then
+				current_opcode := program(pc);
+				current_opcode_int := conv_integer(current_opcode);
+			end if;
+			
 			if(pc <= program'high) then
-				if(delay = 0) then
-					current_opcode := program(pc);
-					current_opcode_int := conv_integer(current_opcode);
-				end if;
-				
---				mem_we <= "0";
 				
 				case current_opcode is
 					when opcodes.noop =>
@@ -195,9 +194,9 @@ begin
 						pc := pc + 1;
 						wide_buffer(7 downto 0) := program(pc);
 						pc := conv_integer(wide_buffer) - 1;
-					when opcodes.porta =>
---						pc := pc + 1;
-						porta_buf <= register_a;
+--					when opcodes.porta =>
+----						pc := pc + 1;
+--						porta_buf <= register_a;
 					when opcodes.mova =>
 						pc := pc + 1;
 						register_a <= program(pc);
@@ -269,17 +268,31 @@ begin
 --						end if;
 					when opcodes.movaf =>
 						if(moo = 0) then
---							pc := pc + 1;
---							wide_buffer(15 downto 8) := program(pc);
---							pc := pc + 1;
---							wide_buffer(7 downto 0) := program(pc);
-							
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_data_in <= register_a;
+							wide_buffer_int := conv_integer(program(pc + 1) & program(pc + 2));
+							pc := pc - 1;
+							moo := 2;
+							
+							
+							
+							case wide_buffer_int is
+								when 0 =>
+									porta_buf <= register_a;
+								when 1 =>
+									portb_buf <= register_a;
+								when 2 =>
+									portc_buf <= register_a;
+								when 3 =>
+									portd_buf <= register_a;
+								when others =>
+									null;
+							end case;
+							
+						elsif(moo = 2) then
 							mem_we <= "1";
 							moo := 1;
 							pc := pc - 1;
---							pc := pc - 2;
 						else
 							mem_we <= "0";
 							moo := 0;
@@ -290,9 +303,12 @@ begin
 							mem_addr <= program(pc + 1) & program(pc + 2);
 						 	pc := pc - 1;
 --						 	pc := pc - 2;
-						 	mem_addr <= wide_buffer;
+--						 	mem_addr <= wide_buffer;
 						 	mem_we <= "0";
-						 	moo := 1;
+						 	moo := 2;
+						elsif(moo = 2) then
+							moo := 1;
+							pc := pc - 1;
 						else
 						 	register_a <= mem_data_out;
 						 	moo := 0;
@@ -354,7 +370,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
+		variable counter : integer range 0 to 100000000/2 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
