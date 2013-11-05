@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.68d on Mon Nov 04 08:01:09 2013
+// Written by: Map P.68d on Mon Nov 04 18:54:20 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -48,6 +48,7 @@ TIMEGRP sys_clk_pin = BEL "cpu_clock" BEL "clock_divider.counter_0" BEL
         "clock_divider.counter_15" BEL "clock_divider.counter_16" BEL
         "clock_divider.counter_17" BEL "clock_divider.counter_18" BEL
         "clock_divider.counter_19" BEL "clock_divider.counter_20" BEL
+        "clock_divider.counter_21" BEL "clock_divider.counter_22" BEL
         "clk_BUFGP/BUFG";
 TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 SCHEMATIC END;

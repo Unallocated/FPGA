@@ -13,7 +13,17 @@ my $opcodes = {
 	'jmp'   => [3, 2],
 	'porta' => [4, 1],
 	'adda'  => [5, 1],
-	'suba'  => [6, 1]
+	'suba'  => [6, 1],
+	'lsla'  => [7, 1],
+	'lsra'  => [8, 1],
+	'mula'  => [9, 1],
+	'lrla'  => [10, 1],
+	'lrra'  => [11, 1],
+	'movfa' => [12, 2],
+	'janez' => [13, 2],
+	'jane'  => [14, 3],
+	'janef' => [15, 4],
+	'addca' => [16, 1]
 };
 
 my %usedOpcodes;

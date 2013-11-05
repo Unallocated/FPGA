@@ -74,6 +74,14 @@ architecture Behavioral of cpu_instructor_copy is
 	signal portc_buf : std_logic_vector(7 downto 0);
 	signal portd_buf : std_logic_vector(7 downto 0);
 	
+	type flags_type is record
+		carry : std_logic;
+	end record;
+	
+	signal flags : flags_type := (
+		carry => '0'
+	);
+	
 	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
 	
 	signal mem_we : std_logic_vector(0 downto 0) := (others => '0');
@@ -100,6 +108,7 @@ architecture Behavioral of cpu_instructor_copy is
 		janez : opcode;   -- jump if register_a is not zero (3 byte instr)
 		jane  : opcode;   -- jump if register_a is not equal to the next byte (4 byte instr)
 		janef : opcode;   -- jump if register_a is not equal to the value in memory location f (4 byte instr)
+		addca : opcode;   -- add the carry bit and next byte to register_a
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -118,48 +127,77 @@ architecture Behavioral of cpu_instructor_copy is
 		movfa => "00001100",
 		janez => "00001101",
 		jane  => "00001110",
-		janef => "00001111"
+		janef => "00001111",
+		addca => "00010000"
 	);
 	
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
 		opcodes.mova,
-		"00000000",
+		x"80",
 		opcodes.movaf,
-		"00000000",
-		"00000100",
+		x"40",
+		x"00",
 		opcodes.mova,
-		"00001111",
+		x"00",
 		opcodes.movaf,
-		"00000000",
-		"11111111",
+		x"40",
+		x"01",
+		opcodes.mula,
+		x"03",
+		opcodes.movaf,
+		x"00",
+		x"00",
 		opcodes.movfa,
-		"00000000",
-		"11111111",
-		opcodes.suba,
-		"00000001",
-		opcodes.movaf,
-		"00000000",
-		"00000000",
-		opcodes.movaf,
-		"00000000",
-		"11111111",
-		opcodes.mova,
-		"00000000",
-		opcodes.movfa,
-		"00000000",
-		"11111111",
+		x"40",
+		x"01",
+		opcodes.adda,
+		x"40",
 		opcodes.janef,
-		"00000000",
-		"00000100",
-		"00000000",
-		"00001010",
-		opcodes.mova,
-		"01010101",
-		opcodes.movaf,
-		"00000000",
-		"00000000"
+		x"40",
+		x"00",
+		x"00",
+		x"06",
+		opcodes.jmp,
+		x"00",
+		x"00"
+--		opcodes.mova,
+--		"00000000",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000100",
+--		opcodes.mova,
+--		"00001111",
+--		opcodes.movaf,
+--		"00000000",
+--		"11111111",
+--		opcodes.movfa,
+--		"00000000",
+--		"11111111",
+--		opcodes.suba,
+--		"00000001",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000000",
+--		opcodes.movaf,
+--		"00000000",
+--		"11111111",
+--		opcodes.mova,
+--		"00000000",
+--		opcodes.movfa,
+--		"00000000",
+--		"11111111",
+--		opcodes.janef,
+--		"00000000",
+--		"00000100",
+--		"00000000",
+--		"00001010",
+--		opcodes.mova,
+--		"01010101",
+--		opcodes.movaf,
+--		"00000000",
+--		"00000000"
 		
 	);
 	
@@ -171,6 +209,8 @@ begin
 	portb <= portb_buf;
 	portc <= portc_buf;
 	portd <= portd_buf;
+	
+	porta_buf <= (others => flags.carry);
 	
 	brain : process(cpu_clock, real_rst)
 		variable pc : integer range 0 to program'length:= 0;
@@ -208,6 +248,10 @@ begin
 						register_a <= program(pc);
 					when opcodes.adda =>
 						pc := pc + 1;
+						if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
+							flags.carry <= '1';
+						end if;
+						
 						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
 					when opcodes.suba =>
 						pc := pc + 1;
@@ -242,8 +286,8 @@ begin
 							mem_we <= "0";
 							
 							case wide_buffer_int is
-								when 0 =>
-									porta_buf <= register_a;
+--								when 0 =>
+--									porta_buf <= register_a;
 								when 1 =>
 									portb_buf <= register_a;
 								when 2 =>
@@ -308,6 +352,13 @@ begin
 								pc := pc + 2;
 							end if;
 						end if;
+					when opcodes.addca =>
+						pc := pc + 1;
+						if(flags.carry = '1') then
+							register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(program(pc)) + 1, 8);
+						else
+							register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(program(pc)), 8);
+						end if;
 					when others =>
 						null;
 				end case;
@@ -321,7 +372,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/64 := 0;
+		variable counter : integer range 0 to 100000000/16 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
