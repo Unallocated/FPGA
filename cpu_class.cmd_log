@@ -1,1 +1,0 @@
-xst -intstyle ise -ifn "C:/Users/main-local/Documents/GitHub/FPGA/cpu_class.xst" -ofn "C:/Users/main-local/Documents/GitHub/FPGA/cpu_class.syr" 

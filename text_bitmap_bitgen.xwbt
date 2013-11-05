@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=C:\Users\main-local\fpga\fpga\text_bitmap.ncd
-OUTFILE=C:\Users\main-local\fpga\fpga\text_bitmap.bit
-FAMILY=Spartan6
-PART=xc6slx16-3csg324
-WORKINGDIR=C:\Users\main-local\fpga\fpga
-LICENSE=WebPack
-USER_INFO=210714202_0_0_758
