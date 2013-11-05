@@ -133,7 +133,7 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	type program_type is array(natural range <>) of opcode;
 	
-	constant program : program_type := (
+	constant two_byte_program : program_type := (
 		opcodes.mova,
 		x"80",
 		opcodes.movaf,
@@ -162,44 +162,67 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.jmp,
 		x"00",
 		x"00"
---		opcodes.mova,
---		"00000000",
---		opcodes.movaf,
---		"00000000",
---		"00000100",
---		opcodes.mova,
---		"00001111",
---		opcodes.movaf,
---		"00000000",
---		"11111111",
---		opcodes.movfa,
---		"00000000",
---		"11111111",
---		opcodes.suba,
---		"00000001",
---		opcodes.movaf,
---		"00000000",
---		"00000000",
---		opcodes.movaf,
---		"00000000",
---		"11111111",
---		opcodes.mova,
---		"00000000",
---		opcodes.movfa,
---		"00000000",
---		"11111111",
---		opcodes.janef,
---		"00000000",
---		"00000100",
---		"00000000",
---		"00001010",
---		opcodes.mova,
---		"01010101",
---		opcodes.movaf,
---		"00000000",
---		"00000000"
-		
 	);
+	
+	constant program : program_type := (
+		opcodes.mova,
+		"00000000",
+		opcodes.movaf,
+		"01000000",
+		"00000000",
+		opcodes.mova,
+		"11111110",
+		opcodes.movaf,
+		"01000000",
+		"00000001",
+		opcodes.movfa,
+		"01000000",
+		"00000001",
+		opcodes.adda,
+		"00000001",
+		opcodes.movaf,
+		"01000000",
+		"00000001",
+		opcodes.movaf,
+		"00000000",
+		"00000001",
+		opcodes.movfa,
+		"01000000",
+		"00000000",
+		opcodes.addca,
+		"00000000",
+		opcodes.movaf,
+		"01000000",
+		"00000000",
+		opcodes.movaf,
+		"00000000",
+		"00000010",
+		opcodes.movfa,
+		"01000000",
+		"00000000",
+		opcodes.jane,
+		"00001111",
+		"00000000",
+		"00001010",
+		opcodes.movfa,
+		"01000000",
+		"00000000",
+		opcodes.movaf,
+		"00000000",
+		"00000010",
+		opcodes.movfa,
+		"01000000",
+		"00000001",
+		opcodes.movaf,
+		"00000000",
+		"00000001"
+	);
+
+
+
+
+
+
 	
 begin
 
@@ -210,7 +233,9 @@ begin
 	portc <= portc_buf;
 	portd <= portd_buf;
 	
-	porta_buf <= (others => flags.carry);
+	porta_buf <= register_a;
+	portd_buf <= (others => flags.carry);
+--	porta_buf <= (others => flags.carry);
 	
 	brain : process(cpu_clock, real_rst)
 		variable pc : integer range 0 to program'length:= 0;
@@ -250,6 +275,8 @@ begin
 						pc := pc + 1;
 						if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
 							flags.carry <= '1';
+						else
+							flags.carry <= '0';
 						end if;
 						
 						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
@@ -292,8 +319,8 @@ begin
 									portb_buf <= register_a;
 								when 2 =>
 									portc_buf <= register_a;
-								when 3 =>
-									portd_buf <= register_a;
+--								when 3 =>
+--									portd_buf <= register_a;
 								when others =>
 									null;
 							end case;
@@ -372,7 +399,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
+		variable counter : integer range 0 to 100000000/2048 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
