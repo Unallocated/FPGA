@@ -114,17 +114,18 @@ begin
 		variable wide_buffer_int : integer range 0 to (2**16) - 1 := 0;
 		variable narrow_buffer : std_logic_vector(7 downto 0);
 		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
+		variable delay : integer range 0 to 15 := 0;
 	begin
 		if(real_rst = '1') then
 			pc := 0;
 		elsif(rising_edge(cpu_clock)) then
 			if(pc < program'high) then
-				current_opcode := program(pc);
-				current_opcode_int := conv_integer(current_opcode);
-				
-				if(mem_we = "1") then
-					mem_we <= "0";
+				if(delay = 0) then
+					current_opcode := program(pc);
+					current_opcode_int := conv_integer(current_opcode);
 				end if;
+				
+				mem_we <= "0";
 				
 				case current_opcode is
 					when opcodes.noop =>
@@ -134,7 +135,7 @@ begin
 						wide_buffer(15 downto 8) := program(pc);
 						pc := pc + 1;
 						wide_buffer(7 downto 0) := program(pc);
-						pc := conv_integer(wide_buffer);
+						pc := conv_integer(wide_buffer) - 1;
 					when opcodes.porta =>
 						pc := pc + 1;
 						porta_buf <= program(pc);
@@ -172,61 +173,29 @@ begin
 						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
 						
 						
---					when opcodes.lsla =>
---						pc := pc + 1;
---						register_a <= conv_std_logic_vector(conv_integer(register_a) * (2**conv_integer(program(pc))),8);
 					when opcodes.lsla =>
 						pc := pc + 1;
 						register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
-						
-						
---					when opcodes.lsra =>
---						pc := pc + 1;
---						register_a <= conv_std_logic_vector(conv_integer(register_a) / (2**conv_integer(program(pc))),8);
 					when opcodes.lsra =>
 						pc := pc + 1;
 						register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
-					
-					
 					when opcodes.mula =>
 						pc := pc + 1;
 						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
-						
-						
---					when opcodes.lrla =>
---						pc := pc + 1;
---						narrow_buffer_int := conv_integer(program(pc)) mod 8;
---						
---						if(narrow_buffer_int /= 0) then
---							register_a <= register_a(7 - narrow_buffer_int downto 0) & 
---										register_a(7 downto 8 - narrow_buffer_int);
---						end if;
-
+					
 					when opcodes.lrla =>
 						pc := pc + 1;
 						register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
 					
-
---					when opcodes.lrra =>
---						pc := pc + 1;
---						narrow_buffer_int := conv_integer(program(pc)) mod 8;
---						
---						if(narrow_buffer_int /= 0) then
---							register_a <= register_a(narrow_buffer_int - 1 downto 0) &
---										register_a(7 downto narrow_buffer_int);
---						end if;
-
 					when opcodes.lrra =>
 						pc := pc + 1;
 						register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
 
-
-					
 					when others =>
 						null;
 				end case;
 				
-				if(current_opcode /= opcodes.jmp) then
+				if(delay = 0) then
 					pc := pc + 1;
 				end if;
 			end if;
