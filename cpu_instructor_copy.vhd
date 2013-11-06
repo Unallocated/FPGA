@@ -53,6 +53,9 @@ end cpu_instructor_copy;
 -- program positions added to the stack should be one greater than
 -- the location of the program counter at time of branch. 
 
+-- push stack into memory
+-- memory address pointers for 16,32, etc bits - tony
+-- locations in memory that are for 16, 32, etc bit math - martin
 
 architecture Behavioral of cpu_instructor_copy is
 
