@@ -34,11 +34,14 @@ open($fh, "<", $file);
 my @program = <$fh>;
 close($fh);
 
-my $vhdl = "constant ".PROGRAM_NAME." : ".PROGRAM_TYPE." := (\n";
+my $vhdl = "\tconstant ".PROGRAM_NAME." : ".PROGRAM_TYPE." := (\n";
 
 
 for($a = 0; $a <= $#program; $a++){
 	chomp($program[$a]);
+	if(length($program[$a]) == 0){
+		next;
+	}
 	$program[$a] =~ s/\s+//g;
 	my (@parts) = split(',', $program[$a]);
 	
@@ -48,11 +51,44 @@ for($a = 0; $a <= $#program; $a++){
 		exit(1);
 	}
 
-	$usedOpcodes
+	$usedOpcodes{$opcode}++;
 
-	for($a = 1; $a < 
-	print "$parts[0]\n";
+	$vhdl .= "\t\t".OPCODE_PREFIX."$opcode,\n";
+
+	if($#parts != $opcodes->{$opcode}[1]){
+		print STDERR "Error: Expected ".$opcodes->{$opcode}[1]." extra arguments at line ".($a+1).".  Found ".$#parts." arguments";
+		exit(1);
+	}
+
+
+
+	for($b = 1; $b <= $opcodes->{$opcode}[1]; $b++){
+		my $arg = $parts[$b];
+		
+		if($arg =~ /^\d{8}$/){
+			# do nothing
+		}elsif($arg =~ /^0x[a-fA-F0-9]{2}$/){
+			$arg =~ s/0x//g;
+			$arg = sprintf("%08b", hex($arg));
+		}else{
+			print STDERR "Error: Argument \"$arg\" at line ".($a+1)." is not valid\n";
+			exit(1);
+		}
+		$vhdl .= "\t\t\"$arg\",\n";
+	}
 }
+
+$vhdl =~ s/,\n$//g;
+$vhdl .= "\n\t);";
+
+print "Code: \n\n--------\n$vhdl\n-----\n";
+
+print "-- Used Opcodes:\n";
+foreach my $key (keys(%usedOpcodes)){
+        print "--   $key ($usedOpcodes{$key})\n";
+}
+
+
 =head
 for($a = 0; $a <= $#program; $a++){
 	my $opcode = $program[$a];
