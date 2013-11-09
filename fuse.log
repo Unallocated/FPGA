@@ -1,4 +1,4 @@
-Running: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_instructor_copy_beh.prj" "work.cpu_instructor_copy" 
+Running: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_instructor_copy_beh.prj" "cpu_instructor_copy" 
 ISim P.68d (signature 0xfbc00daa)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
@@ -7,8 +7,8 @@ Parsing VHDL file "/home/main/git/FPGA/ipcore_dir/memory.vhd" into library work
 Parsing VHDL file "/home/main/git/FPGA/cpu_instructor_copy.vhd" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 188512 KB
-Fuse CPU Usage: 3060 ms
+Fuse Memory Usage: 188572 KB
+Fuse CPU Usage: 3150 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package std_logic_arith
@@ -26,6 +26,6 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 18 VHDL Units
 Built simulation executable /home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe
-Fuse Memory Usage: 1269872 KB
-Fuse CPU Usage: 3660 ms
-GCC CPU Usage: 120 ms
+Fuse Memory Usage: 1269932 KB
+Fuse CPU Usage: 3720 ms
+GCC CPU Usage: 140 ms

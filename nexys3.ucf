@@ -146,6 +146,7 @@ NET "porta<7>"         LOC = "T11" | IOSTANDARD = "LVCMOS33";   #Bank = 2, Pin n
 
 ## Buttons
 NET "rst"         LOC = "B8"  | IOSTANDARD = "LVCMOS33";   #Bank = 0, Pin name = IO_L33P,                           Sch name = BTNS
+NET "rst" CLOCK_DEDICATED_ROUTE = FALSE;
 #NET "btn<1>"         LOC = "A8"  | IOSTANDARD = "LVCMOS33";   #Bank = 0, Pin name = IO_L33N,                           Sch name = BTNU
 #NET "btn<2>"         LOC = "C4"  | IOSTANDARD = "LVCMOS33";   #Bank = 0, Pin name = IO_L1N_VREF,                       Sch name = BTNL
 #NET "btn<3>"         LOC = "C9"  | IOSTANDARD = "LVCMOS33";   #Bank = 0, Pin name = IO_L34N_GCLK18,                    Sch name = BTND
