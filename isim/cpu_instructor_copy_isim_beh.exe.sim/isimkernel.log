@@ -2,9 +2,9 @@ Command line:
    cpu_instructor_copy_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  57896
+     -socket  37186
 
-Sat Nov  9 16:56:43 2013
+Sat Nov  9 15:01:54 2013
 
 
- Elaboration Time: 0.59 sec
+ Elaboration Time: 0.73 sec

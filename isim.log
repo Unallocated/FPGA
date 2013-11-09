@@ -1,6 +1,6 @@
 ISim log file
-Running: /home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/main/git/FPGA/cpu_instructor_copy_isim_beh.wdb 
-ISim P.68d (signature 0xfbc00daa)
+Running: /home/main/FPGA/cpu_instructor_copy_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/main/FPGA/cpu_instructor_copy_isim_beh.wdb 
+ISim P.49d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -12,9 +12,20 @@ Time resolution is 1 ps
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# run 1.00s
-Stopped at time : 16468954 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-ISim P.68d (signature 0xfbc00daa)
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+ISim P.49d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -23,435 +34,30 @@ This is a Lite version of ISim.
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
 # step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
+Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 417
 # step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
+Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
+Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
+Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 417
 # step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 425
+Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 421
 # step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
+Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 425
 # step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 425
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1005500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 425
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1005500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1007500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1008500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1011500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1012500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 425
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1005500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1 us : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1000500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1001 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1001500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 208
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 209
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1002 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-ISim P.68d (signature 0xfbc00daa)
+Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
+ISim P.49d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -467,125 +73,6 @@ Finished circuit initialization process.
 # run 1.00ns
 at 1005 ns(2): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_instructor_copy/cpu_memory/U0/native_mem_module/mem_module/).
 # run 1.00ns
-# step
-Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 238
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 245
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 246
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 247
-# step
-Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1007500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1007500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 238
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 249
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 250
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 251
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 253
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 264
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 410
-# step
-Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 168
-# step
-Stopped at time : 1008500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1008500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 329
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 330
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 331
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 332
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 174
-# step
-Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 169
-# step
-Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 329
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 334
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 335
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 336
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 337
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# run 1.00ns
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
@@ -594,339 +81,106 @@ Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd
 # run 1.00ns
 # run 1.00ns
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1013500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1013500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 238
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 235
 # step
-Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 239
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 242
 # step
-Stopped at time : 1022500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 243
 # step
-Stopped at time : 1022500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 244
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1014500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
+Stopped at time : 1014500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 238
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 239
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 235
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 240
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 246
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 241
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 247
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 243
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 248
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 250
 # step
-Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 176
-# run 1.00ns
-# run 1.00ns
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 261
 # step
-Stopped at time : 1025500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
 # step
-Stopped at time : 1025500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 407
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 165
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1015500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
+Stopped at time : 1015500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 196
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 197
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 193
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 194
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 368
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 372
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 373
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 205
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 374
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 206
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 174
+Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 407
 # step
-Stopped at time : 1026 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 169
+Stopped at time : 1016500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1026500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1016500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1026500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 193
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 194
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 377
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 326
 # step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 378
-# step
-Stopped at time : 1027 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1027500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1027500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 380
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 381
-# step
-Stopped at time : 1028 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1028500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1028500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 383
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 384
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 385
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 175
-# step
-Stopped at time : 1029 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 170
-# step
-Stopped at time : 1029500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1029500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 387
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 388
-# step
-Stopped at time : 1030 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1030500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1030500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 390
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 391
-# step
-Stopped at time : 1031 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1031500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1031500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 393
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 394
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 395
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 175
-# step
-Stopped at time : 1032 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 170
-# step
-Stopped at time : 1032500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1032500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 397
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 398
-# step
-Stopped at time : 1033 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-# step
-Stopped at time : 1033500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1033500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 417
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 191
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 195
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 200
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 202
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 367
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 400
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 401
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 402
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 403
-# step
-Stopped at time : 1034 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 409
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-ISim P.68d (signature 0xfbc00daa)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# step
-Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 424
-# step
-Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 428
-# step
-Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_instructor_copy.vhd" Line 420
+Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 327

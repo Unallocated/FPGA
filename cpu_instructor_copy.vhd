@@ -145,14 +145,22 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.jmp,x"00",x"03", --  0 -> 2
-		opcodes.mova,x"01", --  3 -> 4
-		opcodes.call,x"00",x"0c", --  5 -> 7
-		opcodes.movaf,x"00",x"00", --  8 -> 10
-		opcodes.ret, --  11 -> 11
-		opcodes.mova,x"ff", --  12 -> 13
-		opcodes.movaf,x"00",x"00", --  14 -> 16
-		opcodes.ret --  17 -> 17
+		opcodes.jmp,x"00",x"21", --  0 -> 2
+		opcodes.mova,x"00", --  3 -> 4
+		opcodes.movaf,x"00",x"00", --  5 -> 7
+		opcodes.adda,x"01", --  8 -> 9
+		opcodes.movaf,x"00",x"00", --  10 -> 12
+		opcodes.jane,x"ff",x"00",x"08", --  13 -> 16
+		opcodes.ret, --  17 -> 17
+		opcodes.mova,x"ff", --  18 -> 19
+		opcodes.suba,x"01", --  20 -> 21
+		opcodes.movaf,x"00",x"00", --  22 -> 24
+		opcodes.jane,x"00",x"00",x"14", --  25 -> 28
+		opcodes.call,x"00",x"03", --  29 -> 31
+		opcodes.ret, --  32 -> 32
+		opcodes.mova,x"01", --  33 -> 34
+		opcodes.call,x"00",x"12", --  35 -> 37
+		opcodes.movaf,x"00",x"00" --  38 -> 40
 
 
 	);
@@ -428,6 +436,7 @@ begin
 		end if;
 	end process;
 
+--	cpu_clock <= clk;
 	cpu_memory : memory
 	  PORT MAP (
 		 clka => cpu_clock,

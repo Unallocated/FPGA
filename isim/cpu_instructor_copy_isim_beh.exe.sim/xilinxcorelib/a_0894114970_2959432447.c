@@ -24,14 +24,14 @@
 extern char *STD_STANDARD;
 extern char *IEEE_P_2592010699;
 
-unsigned char ieee_p_2592010699_sub_3488546069778340532_503743352(char *, unsigned char , unsigned char );
-unsigned char ieee_p_2592010699_sub_3488768496604610246_503743352(char *, unsigned char , unsigned char );
-unsigned char ieee_p_2592010699_sub_374109322130769762_503743352(char *, unsigned char );
+unsigned char ieee_p_2592010699_sub_1605435078_503743352(char *, unsigned char , unsigned char );
+unsigned char ieee_p_2592010699_sub_1690584930_503743352(char *, unsigned char );
+unsigned char ieee_p_2592010699_sub_2545490612_503743352(char *, unsigned char , unsigned char );
 
 
-int xilinxcorelib_a_0894114970_2959432447_sub_10977479924507991001_1702280263(char *t1, int t2)
+int xilinxcorelib_a_0894114970_2959432447_sub_1430772697_1702280263(char *t1, int t2)
 {
-    char t3[128];
+    char t3[72];
     char t4[8];
     char t8[8];
     int t0;
@@ -47,13 +47,13 @@ int xilinxcorelib_a_0894114970_2959432447_sub_10977479924507991001_1702280263(ch
     int t15;
 
 LAB0:    t5 = (t3 + 4U);
-    t6 = ((STD_STANDARD) + 384);
-    t7 = (t5 + 88U);
+    t6 = ((STD_STANDARD) + 240);
+    t7 = (t5 + 52U);
     *((char **)t7) = t6;
-    t9 = (t5 + 56U);
+    t9 = (t5 + 36U);
     *((char **)t9) = t8;
     *((int *)t8) = 0;
-    t10 = (t5 + 80U);
+    t10 = (t5 + 48U);
     *((unsigned int *)t10) = 4U;
     t11 = (t4 + 4U);
     *((int *)t11) = t2;
@@ -62,18 +62,18 @@ LAB0:    t5 = (t3 + 4U);
         goto LAB2;
 
 LAB4:    t15 = (t2 - 1);
-    t6 = (t5 + 56U);
+    t6 = (t5 + 36U);
     t7 = *((char **)t6);
     t6 = (t7 + 0);
     *((int *)t6) = t15;
 
-LAB3:    t6 = (t5 + 56U);
+LAB3:    t6 = (t5 + 36U);
     t7 = *((char **)t6);
     t15 = *((int *)t7);
     t0 = t15;
 
 LAB1:    return t0;
-LAB2:    t13 = (t5 + 56U);
+LAB2:    t13 = (t5 + 36U);
     t14 = *((char **)t13);
     t13 = (t14 + 0);
     *((int *)t13) = 0;
@@ -82,9 +82,9 @@ LAB2:    t13 = (t5 + 56U);
 LAB5:;
 }
 
-unsigned char xilinxcorelib_a_0894114970_2959432447_sub_7454328198754670226_1702280263(char *t1, int t2)
+unsigned char xilinxcorelib_a_0894114970_2959432447_sub_4126348946_1702280263(char *t1, int t2)
 {
-    char t3[128];
+    char t3[72];
     char t4[8];
     char t8[8];
     unsigned char t0;
@@ -99,13 +99,13 @@ unsigned char xilinxcorelib_a_0894114970_2959432447_sub_7454328198754670226_1702
     char *t14;
 
 LAB0:    t5 = (t3 + 4U);
-    t6 = ((IEEE_P_2592010699) + 3312);
-    t7 = (t5 + 88U);
+    t6 = ((IEEE_P_2592010699) + 1892);
+    t7 = (t5 + 52U);
     *((char **)t7) = t6;
-    t9 = (t5 + 56U);
+    t9 = (t5 + 36U);
     *((char **)t9) = t8;
     xsi_type_set_default_value(t6, t8, 0);
-    t10 = (t5 + 80U);
+    t10 = (t5 + 48U);
     *((unsigned int *)t10) = 1U;
     t11 = (t4 + 4U);
     *((int *)t11) = t2;
@@ -113,18 +113,18 @@ LAB0:    t5 = (t3 + 4U);
     if (t12 != 0)
         goto LAB2;
 
-LAB4:    t6 = (t5 + 56U);
+LAB4:    t6 = (t5 + 36U);
     t7 = *((char **)t6);
     t6 = (t7 + 0);
     *((unsigned char *)t6) = (unsigned char)3;
 
-LAB3:    t6 = (t5 + 56U);
+LAB3:    t6 = (t5 + 36U);
     t7 = *((char **)t6);
     t12 = *((unsigned char *)t7);
     t0 = t12;
 
 LAB1:    return t0;
-LAB2:    t13 = (t5 + 56U);
+LAB2:    t13 = (t5 + 36U);
     t14 = *((char **)t13);
     t13 = (t14 + 0);
     *((unsigned char *)t13) = (unsigned char)2;
@@ -149,23 +149,23 @@ static void xilinxcorelib_a_0894114970_2959432447_p_0(char *t0)
     char *t12;
 
 LAB0:
-LAB3:    t1 = (t0 + 1616U);
+LAB3:    t1 = (t0 + 916U);
     t2 = *((char **)t1);
     t3 = *((unsigned char *)t2);
-    t1 = (t0 + 6552U);
+    t1 = (t0 + 3744U);
     t4 = *((char **)t1);
     t5 = *((unsigned char *)t4);
-    t6 = ieee_p_2592010699_sub_374109322130769762_503743352(IEEE_P_2592010699, t5);
-    t7 = ieee_p_2592010699_sub_3488546069778340532_503743352(IEEE_P_2592010699, t3, t6);
-    t1 = (t0 + 10536);
-    t8 = (t1 + 56U);
+    t6 = ieee_p_2592010699_sub_1690584930_503743352(IEEE_P_2592010699, t5);
+    t7 = ieee_p_2592010699_sub_2545490612_503743352(IEEE_P_2592010699, t3, t6);
+    t1 = (t0 + 5984);
+    t8 = (t1 + 32U);
     t9 = *((char **)t8);
-    t10 = (t9 + 56U);
+    t10 = (t9 + 32U);
     t11 = *((char **)t10);
     *((unsigned char *)t11) = t7;
     xsi_driver_first_trans_fast(t1);
 
-LAB2:    t12 = (t0 + 10360);
+LAB2:    t12 = (t0 + 5892);
     *((int *)t12) = 1;
 
 LAB1:    return;
@@ -195,31 +195,31 @@ static void xilinxcorelib_a_0894114970_2959432447_p_1(char *t0)
     char *t18;
 
 LAB0:
-LAB3:    t1 = (t0 + 6672U);
+LAB3:    t1 = (t0 + 3812U);
     t2 = *((char **)t1);
     t3 = *((unsigned char *)t2);
-    t1 = (t0 + 1776U);
+    t1 = (t0 + 1008U);
     t4 = *((char **)t1);
     t5 = *((unsigned char *)t4);
-    t6 = ieee_p_2592010699_sub_3488768496604610246_503743352(IEEE_P_2592010699, t3, t5);
-    t1 = (t0 + 6672U);
+    t6 = ieee_p_2592010699_sub_1605435078_503743352(IEEE_P_2592010699, t3, t5);
+    t1 = (t0 + 3812U);
     t7 = *((char **)t1);
     t8 = *((unsigned char *)t7);
-    t9 = ieee_p_2592010699_sub_374109322130769762_503743352(IEEE_P_2592010699, t8);
-    t1 = (t0 + 3856U);
+    t9 = ieee_p_2592010699_sub_1690584930_503743352(IEEE_P_2592010699, t8);
+    t1 = (t0 + 2204U);
     t10 = *((char **)t1);
     t11 = *((unsigned char *)t10);
-    t12 = ieee_p_2592010699_sub_3488768496604610246_503743352(IEEE_P_2592010699, t9, t11);
-    t13 = ieee_p_2592010699_sub_3488546069778340532_503743352(IEEE_P_2592010699, t6, t12);
-    t1 = (t0 + 10600);
-    t14 = (t1 + 56U);
+    t12 = ieee_p_2592010699_sub_1605435078_503743352(IEEE_P_2592010699, t9, t11);
+    t13 = ieee_p_2592010699_sub_2545490612_503743352(IEEE_P_2592010699, t6, t12);
+    t1 = (t0 + 6020);
+    t14 = (t1 + 32U);
     t15 = *((char **)t14);
-    t16 = (t15 + 56U);
+    t16 = (t15 + 32U);
     t17 = *((char **)t16);
     *((unsigned char *)t17) = t13;
     xsi_driver_first_trans_fast(t1);
 
-LAB2:    t18 = (t0 + 10376);
+LAB2:    t18 = (t0 + 5900);
     *((int *)t18) = 1;
 
 LAB1:    return;
@@ -242,22 +242,22 @@ static void xilinxcorelib_a_0894114970_2959432447_p_2(char *t0)
     char *t11;
 
 LAB0:
-LAB3:    t1 = (t0 + 1456U);
+LAB3:    t1 = (t0 + 824U);
     t2 = *((char **)t1);
     t3 = *((unsigned char *)t2);
-    t1 = (t0 + 6792U);
+    t1 = (t0 + 3880U);
     t4 = *((char **)t1);
     t5 = *((unsigned char *)t4);
-    t6 = ieee_p_2592010699_sub_3488768496604610246_503743352(IEEE_P_2592010699, t3, t5);
-    t1 = (t0 + 10664);
-    t7 = (t1 + 56U);
+    t6 = ieee_p_2592010699_sub_1605435078_503743352(IEEE_P_2592010699, t3, t5);
+    t1 = (t0 + 6056);
+    t7 = (t1 + 32U);
     t8 = *((char **)t7);
-    t9 = (t8 + 56U);
+    t9 = (t8 + 32U);
     t10 = *((char **)t9);
     *((unsigned char *)t10) = t6;
     xsi_driver_first_trans_fast(t1);
 
-LAB2:    t11 = (t0 + 10392);
+LAB2:    t11 = (t0 + 5908);
     *((int *)t11) = 1;
 
 LAB1:    return;
@@ -276,17 +276,17 @@ static void xilinxcorelib_a_0894114970_2959432447_p_3(char *t0)
     char *t7;
 
 LAB0:
-LAB3:    t1 = (t0 + 1936U);
+LAB3:    t1 = (t0 + 1100U);
     t2 = *((char **)t1);
-    t1 = (t0 + 10728);
-    t3 = (t1 + 56U);
+    t1 = (t0 + 6092);
+    t3 = (t1 + 32U);
     t4 = *((char **)t3);
-    t5 = (t4 + 56U);
+    t5 = (t4 + 32U);
     t6 = *((char **)t5);
     memcpy(t6, t2, 8U);
     xsi_driver_first_trans_fast_port(t1);
 
-LAB2:    t7 = (t0 + 10408);
+LAB2:    t7 = (t0 + 5916);
     *((int *)t7) = 1;
 
 LAB1:    return;
@@ -306,18 +306,18 @@ static void xilinxcorelib_a_0894114970_2959432447_p_4(char *t0)
     char *t8;
 
 LAB0:
-LAB3:    t1 = (t0 + 2256U);
+LAB3:    t1 = (t0 + 1284U);
     t2 = *((char **)t1);
     t3 = *((unsigned char *)t2);
-    t1 = (t0 + 10792);
-    t4 = (t1 + 56U);
+    t1 = (t0 + 6128);
+    t4 = (t1 + 32U);
     t5 = *((char **)t4);
-    t6 = (t5 + 56U);
+    t6 = (t5 + 32U);
     t7 = *((char **)t6);
     *((unsigned char *)t7) = t3;
     xsi_driver_first_trans_fast_port(t1);
 
-LAB2:    t8 = (t0 + 10424);
+LAB2:    t8 = (t0 + 5924);
     *((int *)t8) = 1;
 
 LAB1:    return;
@@ -337,18 +337,18 @@ static void xilinxcorelib_a_0894114970_2959432447_p_5(char *t0)
     char *t8;
 
 LAB0:
-LAB3:    t1 = (t0 + 2416U);
+LAB3:    t1 = (t0 + 1376U);
     t2 = *((char **)t1);
     t3 = *((unsigned char *)t2);
-    t1 = (t0 + 10856);
-    t4 = (t1 + 56U);
+    t1 = (t0 + 6164);
+    t4 = (t1 + 32U);
     t5 = *((char **)t4);
-    t6 = (t5 + 56U);
+    t6 = (t5 + 32U);
     t7 = *((char **)t6);
     *((unsigned char *)t7) = t3;
     xsi_driver_first_trans_fast_port(t1);
 
-LAB2:    t8 = (t0 + 10440);
+LAB2:    t8 = (t0 + 5932);
     *((int *)t8) = 1;
 
 LAB1:    return;
@@ -367,17 +367,17 @@ static void xilinxcorelib_a_0894114970_2959432447_p_6(char *t0)
     char *t7;
 
 LAB0:
-LAB3:    t1 = (t0 + 2896U);
+LAB3:    t1 = (t0 + 1652U);
     t2 = *((char **)t1);
-    t1 = (t0 + 10920);
-    t3 = (t1 + 56U);
+    t1 = (t0 + 6200);
+    t3 = (t1 + 32U);
     t4 = *((char **)t3);
-    t5 = (t4 + 56U);
+    t5 = (t4 + 32U);
     t6 = *((char **)t5);
     memcpy(t6, t2, 16U);
     xsi_driver_first_trans_fast_port(t1);
 
-LAB2:    t7 = (t0 + 10456);
+LAB2:    t7 = (t0 + 5940);
     *((int *)t7) = 1;
 
 LAB1:    return;
@@ -389,7 +389,7 @@ LAB4:    goto LAB2;
 extern void xilinxcorelib_a_0894114970_2959432447_init()
 {
 	static char *pe[] = {(void *)xilinxcorelib_a_0894114970_2959432447_p_0,(void *)xilinxcorelib_a_0894114970_2959432447_p_1,(void *)xilinxcorelib_a_0894114970_2959432447_p_2,(void *)xilinxcorelib_a_0894114970_2959432447_p_3,(void *)xilinxcorelib_a_0894114970_2959432447_p_4,(void *)xilinxcorelib_a_0894114970_2959432447_p_5,(void *)xilinxcorelib_a_0894114970_2959432447_p_6};
-	static char *se[] = {(void *)xilinxcorelib_a_0894114970_2959432447_sub_10977479924507991001_1702280263,(void *)xilinxcorelib_a_0894114970_2959432447_sub_7454328198754670226_1702280263};
+	static char *se[] = {(void *)xilinxcorelib_a_0894114970_2959432447_sub_1430772697_1702280263,(void *)xilinxcorelib_a_0894114970_2959432447_sub_4126348946_1702280263};
 	xsi_register_didat("xilinxcorelib_a_0894114970_2959432447", "isim/cpu_instructor_copy_isim_beh.exe.sim/xilinxcorelib/a_0894114970_2959432447.didat");
 	xsi_register_executes(pe);
 	xsi_register_subprogram_executes(se);

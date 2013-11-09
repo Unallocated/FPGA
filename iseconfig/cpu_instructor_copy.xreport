@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-11-08T20:20:25</DateModified>
+  <DateModified>2013-11-09T14:21:31</DateModified>
   <ModuleName>cpu_instructor_copy</ModuleName>
   <SummaryTimeStamp>2013-11-03T23:53:01</SummaryTimeStamp>
-  <SavedFilePath>/home/main/git/FPGA/iseconfig/cpu_instructor_copy.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/main/git/FPGA/</ImplementationReportsDirectory>
+  <SavedFilePath>/home/main/FPGA/iseconfig/cpu_instructor_copy.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/main/FPGA/</ImplementationReportsDirectory>
   <DateInitialized>2013-11-03T23:36:21</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
