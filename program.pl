@@ -43,6 +43,24 @@ addOpcode("janef", 15, 5);
 addOpcode("addca", 16, 2);
 addOpcode("call", 17, 3);
 addOpcode("ret", 18, 1);
+addOpcode("addaf", 19, 3);
+addOpcode("subaf", 20, 3);
+addOpcode("multaf", 21, 3);
+addOpcode("xora", 22, 2);
+addOpcode("ora", 23, 2);
+addOpcode("anda", 24, 2);
+addOpcode("nora", 25, 2);
+addOpcode("xnora", 26, 2);
+addOpcode("nanda", 27, 2);
+addOpcode("xoraf", 28, 3);
+addOpcode("oraf", 29, 3);
+addOpcode("andaf", 30, 3);
+addOpcode("noraf", 31, 3);
+addOpcode("xnoraf", 32, 3);
+addOpcode("nandaf", 33, 3);
+addOpcode("jagt", 34, 4);
+addOpcode("jagtf", 35, 5);
+
 
 open(FH, "<", $inputFile) or die ("Could not open input file '$inputFile'.  Details: $!");
 
@@ -112,10 +130,10 @@ foreach (@newLines){
 		$labels{$1} = $pc;
 	}elsif(/^def/){
 
-	}elsif(/^$/){
+	}elsif(/^[\s\t]*$/){
 
 	}else{
-		/^[\s\t]*([a-zA-Z0-9]+)[\s\t]*/;
+		/^[\s\t]*?([a-zA-Z0-9]+)[\s\t]*/;
 		if(! isValidOpcode($1)){
 			print "Error: Found an invalid opcode '$1' at line number '$lineNumber' near '$_'.\n";
 			exit(1);
