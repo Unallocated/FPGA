@@ -1,18 +1,18 @@
-Release 14.4 - xst P.49d (lin)
-Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+Release 14.6 - xst P.68d (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
@@ -113,10 +113,10 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "/home/main/FPGA/ipcore_dir/memory.vhd" into library work
+Parsing VHDL file "/home/main/git/FPGA/ipcore_dir/memory.vhd" into library work
 Parsing entity <memory>.
 Parsing architecture <memory_a> of entity <memory>.
-Parsing VHDL file "/home/main/FPGA/cpu_instructor_copy.vhd" into library work
+Parsing VHDL file "/home/main/git/FPGA/cpu_instructor_copy.vhd" into library work
 Parsing entity <cpu_instructor_copy>.
 Parsing architecture <Behavioral> of entity <cpu_instructor_copy>.
 
@@ -133,8 +133,8 @@ Elaborating entity <memory> (architecture <memory_a>) from library <work>.
 =========================================================================
 
 Synthesizing Unit <cpu_instructor_copy>.
-    Related source file is "/home/main/FPGA/cpu_instructor_copy.vhd".
-    Found 21-bit register for signal <clock_divider.counter>.
+    Related source file is "/home/main/git/FPGA/cpu_instructor_copy.vhd".
+    Found 23-bit register for signal <clock_divider.counter>.
     Found 6-bit register for signal <brain.pc>.
     Found 16-bit register for signal <brain.stack_pointer>.
     Found 1-bit register for signal <cpu_clock>.
@@ -147,66 +147,80 @@ Synthesizing Unit <cpu_instructor_copy>.
     Found 4-bit register for signal <brain.delay>.
     Found 1-bit register for signal <mem_we>.
     Found 8-bit register for signal <porta>.
+    Found 8-bit register for signal <portb>.
+    Found 8-bit register for signal <portc>.
     Found 16-bit register for signal <brain.wide_buffer>.
+    Found 8-bit register for signal <brain.narrow_buffer_int>.
     Found finite state machine <FSM_0> for signal <brain.delay>.
     -----------------------------------------------------------------------
     | States             | 9                                              |
-    | Transitions        | 152                                            |
-    | Inputs             | 9                                              |
+    | Transitions        | 213                                            |
+    | Inputs             | 11                                             |
     | Outputs            | 11                                             |
     | Clock              | cpu_clock (rising_edge)                        |
     | Power Up State     | 0000                                           |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 6-bit adder for signal <n0514> created at line 215.
-    Found 9-bit adder for signal <n0478> created at line 225.
-    Found 6-bit adder for signal <n0520> created at line 252.
-    Found 6-bit adder for signal <n0516> created at line 290.
-    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_98_OUT> created at line 300.
-    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_101_OUT> created at line 304.
-    Found 6-bit adder for signal <n0522> created at line 319.
-    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_118_OUT> created at line 321.
-    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_121_OUT> created at line 325.
-    Found 9-bit adder for signal <n0351> created at line 331.
-    Found 7-bit adder for signal <n0532[6:0]> created at line 344.
-    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_145_OUT> created at line 353.
-    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_150_OUT> created at line 364.
-    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_152_OUT> created at line 370.
-    Found 6-bit adder for signal <GND_6_o_GND_6_o_add_298_OUT> created at line 417.
-    Found 21-bit adder for signal <clock_divider.counter[20]_GND_6_o_add_328_OUT> created at line 435.
-    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_16_OUT<5:0>> created at line 213.
-    Found 8-bit subtractor for signal <GND_6_o_GND_6_o_sub_27_OUT<7:0>> created at line 228.
-    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_92_OUT<5:0>> created at line 293.
-    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_101_OUT<5:0>> created at line 302.
-    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_121_OUT<5:0>> created at line 323.
-    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_210_OUT<15:0>> created at line 384.
-    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_215_OUT<15:0>> created at line 394.
-    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_220_OUT<15:0>> created at line 404.
-    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_222_OUT<5:0>> created at line 408.
-    Found 8-bit shifter logical left for signal <register_a[7]_brain.pc[5]_shift_left_29_OUT> created at line 231
-    Found 8-bit shifter logical right for signal <register_a[7]_brain.pc[5]_shift_right_32_OUT> created at line 234
-    Found 8x8-bit multiplier for signal <n0312> created at line 237.
-    Found 8-bit shifter rotate left for signal <register_a[7]_brain.pc[5]_rotate_left_38_OUT> created at line 240
-    Found 8-bit shifter rotate right for signal <register_a[7]_brain.pc[5]_rotate_right_41_OUT> created at line 243
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_8_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_17_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_55_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_89_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_99_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_117_OUT>
-    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_119_OUT>
-    Found 6-bit comparator greater for signal <brain.pc[5]_PWR_6_o_LessThan_11_o> created at line 207
-    Found 9-bit comparator greater for signal <GND_6_o_BUS_0005_LessThan_22_o> created at line 219
-    Found 8-bit comparator equal for signal <n0047> created at line 297
-    Found 8-bit comparator equal for signal <n0055> created at line 318
+    Found 9-bit adder for signal <n0592> created at line 262.
+    Found 6-bit adder for signal <n0641> created at line 335.
+    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_105_OUT> created at line 337.
+    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_108_OUT> created at line 341.
+    Found 6-bit adder for signal <n0647> created at line 356.
+    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_125_OUT> created at line 358.
+    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_128_OUT> created at line 362.
+    Found 9-bit adder for signal <n0404> created at line 368.
+    Found 7-bit adder for signal <n0657[6:0]> created at line 381.
+    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_152_OUT> created at line 390.
+    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_157_OUT> created at line 401.
+    Found 16-bit adder for signal <brain.stack_pointer[15]_GND_6_o_add_159_OUT> created at line 407.
+    Found 8-bit adder for signal <register_a[7]_mem_data_out[7]_add_285_OUT> created at line 462.
+    Found 6-bit adder for signal <n0639> created at line 516.
+    Found 6-bit adder for signal <n0645> created at line 614.
+    Found 6-bit adder for signal <brain.pc[5]_GND_6_o_add_514_OUT> created at line 622.
+    Found 6-bit adder for signal <brain.current_opcode[7]_GND_6_o_add_538_OUT> created at line 630.
+    Found 23-bit adder for signal <clock_divider.counter[22]_GND_6_o_add_577_OUT> created at line 648.
+    Found 8-bit subtractor for signal <GND_6_o_GND_6_o_sub_25_OUT<7:0>> created at line 265.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_99_OUT<5:0>> created at line 330.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_108_OUT<5:0>> created at line 339.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_128_OUT<5:0>> created at line 360.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_165_OUT<5:0>> created at line 408.
+    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_217_OUT<15:0>> created at line 421.
+    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_222_OUT<15:0>> created at line 431.
+    Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_227_OUT<15:0>> created at line 441.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_229_OUT<5:0>> created at line 445.
+    Found 8-bit subtractor for signal <GND_6_o_GND_6_o_sub_308_OUT<7:0>> created at line 484.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_496_OUT<5:0>> created at line 604.
+    Found 6-bit subtractor for signal <GND_6_o_GND_6_o_sub_514_OUT<5:0>> created at line 620.
+    Found 8-bit shifter logical left for signal <register_a[7]_brain.pc[5]_shift_left_27_OUT> created at line 268
+    Found 8-bit shifter logical right for signal <register_a[7]_brain.pc[5]_shift_right_30_OUT> created at line 271
+    Found 8x8-bit multiplier for signal <n0365> created at line 274.
+    Found 8-bit shifter rotate left for signal <register_a[7]_brain.pc[5]_rotate_left_36_OUT> created at line 277
+    Found 8-bit shifter rotate right for signal <register_a[7]_brain.pc[5]_rotate_right_39_OUT> created at line 280
+    Found 8x8-bit multiplier for signal <n0506> created at line 498.
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_6_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_104_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_106_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_124_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_126_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_142_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_507_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_510_OUT>
+    Found 64x8-bit Read Only RAM for signal <brain.pc[5]_X_6_o_wide_mux_512_OUT>
+    Found 6-bit comparator greater for signal <brain.pc[5]_PWR_6_o_LessThan_9_o> created at line 244
+    Found 9-bit comparator greater for signal <GND_6_o_BUS_0005_LessThan_20_o> created at line 256
+    Found 8-bit comparator equal for signal <n0041> created at line 334
+    Found 8-bit comparator equal for signal <n0051> created at line 355
+    Found 8-bit comparator greater for signal <register_a[7]_brain.narrow_buffer_int[7]_LessThan_287_o> created at line 463
+    Found 8-bit comparator greater for signal <brain.pc[5]_register_a[7]_LessThan_491_o> created at line 603
+    Found 8-bit comparator greater for signal <mem_data_out[7]_register_a[7]_LessThan_509_o> created at line 619
     Summary:
-	inferred   7 RAM(s).
-	inferred   1 Multiplier(s).
-	inferred  25 Adder/Subtractor(s).
-	inferred 130 D-type flip-flop(s).
-	inferred   4 Comparator(s).
-	inferred  80 Multiplexer(s).
+	inferred   9 RAM(s).
+	inferred   2 Multiplier(s).
+	inferred  29 Adder/Subtractor(s).
+	inferred 156 D-type flip-flop(s).
+	inferred   7 Comparator(s).
+	inferred 108 Multiplexer(s).
 	inferred   4 Combinational logic shifter(s).
 	inferred   1 Finite State Machine(s).
 Unit <cpu_instructor_copy> synthesized.
@@ -215,45 +229,50 @@ Unit <cpu_instructor_copy> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 7
- 64x8-bit single-port Read Only RAM                    : 7
-# Multipliers                                          : 1
- 8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 25
+# RAMs                                                 : 9
+ 64x8-bit single-port Read Only RAM                    : 9
+# Multipliers                                          : 2
+ 8x8-bit multiplier                                    : 2
+# Adders/Subtractors                                   : 29
  16-bit adder                                          : 2
  16-bit addsub                                         : 1
  16-bit subtractor                                     : 3
- 21-bit adder                                          : 1
- 6-bit adder                                           : 9
- 6-bit subtractor                                      : 5
+ 23-bit adder                                          : 1
+ 6-bit adder                                           : 10
+ 6-bit subtractor                                      : 7
  7-bit adder                                           : 1
+ 8-bit adder                                           : 1
  8-bit subtractor                                      : 1
  9-bit adder                                           : 2
-# Registers                                            : 14
+# Registers                                            : 17
  1-bit register                                        : 3
  16-bit register                                       : 4
- 21-bit register                                       : 1
+ 23-bit register                                       : 1
  4-bit register                                        : 1
  6-bit register                                        : 1
- 8-bit register                                        : 4
-# Comparators                                          : 4
+ 8-bit register                                        : 7
+# Comparators                                          : 7
  6-bit comparator greater                              : 1
  8-bit comparator equal                                : 2
+ 8-bit comparator greater                              : 3
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 80
- 1-bit 2-to-1 multiplexer                              : 11
- 16-bit 2-to-1 multiplexer                             : 14
- 4-bit 2-to-1 multiplexer                              : 6
- 6-bit 2-to-1 multiplexer                              : 32
- 8-bit 2-to-1 multiplexer                              : 17
+# Multiplexers                                         : 108
+ 1-bit 2-to-1 multiplexer                              : 15
+ 16-bit 2-to-1 multiplexer                             : 18
+ 4-bit 2-to-1 multiplexer                              : 5
+ 6-bit 2-to-1 multiplexer                              : 29
+ 8-bit 2-to-1 multiplexer                              : 41
 # Logic shifters                                       : 4
  8-bit shifter logical left                            : 1
  8-bit shifter logical right                           : 1
  8-bit shifter rotate left                             : 1
  8-bit shifter rotate right                            : 1
 # FSMs                                                 : 1
+# Xors                                                 : 3
+ 8-bit xor2                                            : 3
 
 =========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 *                       Advanced HDL Synthesis                          *
@@ -264,7 +283,7 @@ Loading core <memory> for timing and area information for instance <cpu_memory>.
 
 Synthesizing (advanced) Unit <cpu_instructor_copy>.
 The following registers are absorbed into counter <clock_divider.counter>: 1 register on signal <clock_divider.counter>.
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_8_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_6_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
@@ -275,69 +294,91 @@ INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_8_OUT> wi
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_17_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_142_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <n0514>         |          |
+    |     addrA          | connected to signal <n0639>         |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_55_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_507_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <n0520>         |          |
+    |     addrA          | connected to signal <n0645>         |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_89_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_512_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <n0516>         |          |
+    |     addrA          | connected to signal <brain.pc[5]_GND_6_o_add_514_OUT> |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_117_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_510_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <n0522>         |          |
+    |     addrA          | connected to signal <n0657[6:0]<5:0>> |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_99_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_104_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <brain.pc[5]_GND_6_o_add_98_OUT> |          |
+    |     addrA          | connected to signal <n0641>         |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_119_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_124_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 64-word x 8-bit                     |          |
     |     weA            | connected to signal <GND>           | high     |
-    |     addrA          | connected to signal <brain.pc[5]_GND_6_o_add_118_OUT> |          |
+    |     addrA          | connected to signal <n0647>         |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_106_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 64-word x 8-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <brain.pc[5]_GND_6_o_add_105_OUT> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_brain.pc[5]_X_6_o_wide_mux_126_OUT> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 64-word x 8-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <brain.pc[5]_GND_6_o_add_125_OUT> |          |
     |     diA            | connected to signal <GND>           |          |
     |     doA            | connected to internal node          |          |
     -----------------------------------------------------------------------
@@ -347,40 +388,43 @@ Unit <cpu_instructor_copy> synthesized (advanced).
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 7
- 64x8-bit single-port distributed Read Only RAM        : 7
-# Multipliers                                          : 1
- 8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 24
+# RAMs                                                 : 9
+ 64x8-bit single-port distributed Read Only RAM        : 9
+# Multipliers                                          : 2
+ 8x8-bit multiplier                                    : 2
+# Adders/Subtractors                                   : 28
  16-bit adder                                          : 2
  16-bit addsub                                         : 1
  16-bit subtractor                                     : 3
- 6-bit adder                                           : 9
- 6-bit subtractor                                      : 5
+ 6-bit adder                                           : 10
+ 6-bit subtractor                                      : 7
  7-bit adder                                           : 1
- 8-bit adder                                           : 1
+ 8-bit adder                                           : 2
  8-bit subtractor                                      : 1
  9-bit adder                                           : 1
 # Counters                                             : 1
- 21-bit up counter                                     : 1
-# Registers                                            : 109
- Flip-Flops                                            : 109
-# Comparators                                          : 4
+ 23-bit up counter                                     : 1
+# Registers                                            : 133
+ Flip-Flops                                            : 133
+# Comparators                                          : 7
  6-bit comparator greater                              : 1
  8-bit comparator equal                                : 2
+ 8-bit comparator greater                              : 3
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 80
- 1-bit 2-to-1 multiplexer                              : 11
- 16-bit 2-to-1 multiplexer                             : 14
- 4-bit 2-to-1 multiplexer                              : 6
- 6-bit 2-to-1 multiplexer                              : 32
- 8-bit 2-to-1 multiplexer                              : 17
+# Multiplexers                                         : 108
+ 1-bit 2-to-1 multiplexer                              : 15
+ 16-bit 2-to-1 multiplexer                             : 18
+ 4-bit 2-to-1 multiplexer                              : 5
+ 6-bit 2-to-1 multiplexer                              : 29
+ 8-bit 2-to-1 multiplexer                              : 41
 # Logic shifters                                       : 4
  8-bit shifter logical left                            : 1
  8-bit shifter logical right                           : 1
  8-bit shifter rotate left                             : 1
  8-bit shifter rotate right                            : 1
 # FSMs                                                 : 1
+# Xors                                                 : 3
+ 8-bit xor2                                            : 3
 
 =========================================================================
 
@@ -411,16 +455,15 @@ INFO:Xst:2261 - The FF/Latch <fsmfake0_3> in Unit <cpu_instructor_copy> is equiv
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block cpu_instructor_copy, actual ratio is 7.
+Found area constraint ratio of 100 (+ 5) on block cpu_instructor_copy, actual ratio is 10.
 FlipFlop brain.pc_0 has been replicated 2 time(s)
 FlipFlop brain.pc_1 has been replicated 2 time(s)
-FlipFlop brain.pc_2 has been replicated 3 time(s)
-FlipFlop brain.pc_3 has been replicated 2 time(s)
+FlipFlop brain.pc_2 has been replicated 1 time(s)
+FlipFlop brain.pc_3 has been replicated 1 time(s)
 FlipFlop brain.pc_4 has been replicated 1 time(s)
-FlipFlop fsmfake0_0 has been replicated 1 time(s)
-FlipFlop fsmfake0_1 has been replicated 2 time(s)
-FlipFlop fsmfake0_2 has been replicated 2 time(s)
-FlipFlop fsmfake0_3 has been replicated 2 time(s)
+FlipFlop fsmfake0_1 has been replicated 1 time(s)
+FlipFlop fsmfake0_2 has been replicated 1 time(s)
+FlipFlop fsmfake0_3 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -428,8 +471,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 147
- Flip-Flops                                            : 147
+# Registers                                            : 166
+ Flip-Flops                                            : 166
 
 =========================================================================
 
@@ -452,23 +495,23 @@ Top Level Output File Name         : cpu_instructor_copy.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 943
+# BELS                             : 1163
 #      GND                         : 2
 #      INV                         : 51
-#      LUT1                        : 53
-#      LUT2                        : 54
-#      LUT3                        : 35
-#      LUT4                        : 44
-#      LUT5                        : 112
-#      LUT6                        : 315
-#      MUXCY                       : 123
-#      MUXF7                       : 21
+#      LUT1                        : 55
+#      LUT2                        : 63
+#      LUT3                        : 57
+#      LUT4                        : 76
+#      LUT5                        : 168
+#      LUT6                        : 382
+#      MUXCY                       : 132
+#      MUXF7                       : 34
 #      VCC                         : 2
-#      XORCY                       : 131
-# FlipFlops/Latches                : 149
-#      FDC                         : 21
-#      FDCE                        : 32
-#      FDE                         : 95
+#      XORCY                       : 141
+# FlipFlops/Latches                : 168
+#      FDC                         : 23
+#      FDCE                        : 29
+#      FDE                         : 115
 #      FDPE                        : 1
 # RAMS                             : 32
 #      RAMB16BWER                  : 32
@@ -478,8 +521,8 @@ Primitive and Black Box Usage:
 # IO Buffers                       : 33
 #      IBUF                        : 1
 #      OBUF                        : 32
-# DSPs                             : 1
-#      DSP48A1                     : 1
+# DSPs                             : 2
+#      DSP48A1                     : 2
 
 Device utilization summary:
 ---------------------------
@@ -488,16 +531,16 @@ Selected Device : 6slx16csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             149  out of  18224     0%  
- Number of Slice LUTs:                  664  out of   9112     7%  
-    Number used as Logic:               664  out of   9112     7%  
+ Number of Slice Registers:             168  out of  18224     0%  
+ Number of Slice LUTs:                  852  out of   9112     9%  
+    Number used as Logic:               852  out of   9112     9%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    692
-   Number with an unused Flip Flop:     543  out of    692    78%  
-   Number with an unused LUT:            28  out of    692     4%  
-   Number of fully used LUT-FF pairs:   121  out of    692    17%  
-   Number of unique control sets:        15
+ Number of LUT Flip Flop pairs used:    904
+   Number with an unused Flip Flop:     736  out of    904    81%  
+   Number with an unused LUT:            52  out of    904     5%  
+   Number of fully used LUT-FF pairs:   116  out of    904    12%  
+   Number of unique control sets:        18
 
 IO Utilization: 
  Number of IOs:                          34
@@ -507,7 +550,7 @@ Specific Feature Utilization:
  Number of Block RAM/FIFO:               32  out of     32   100%  
     Number using Block RAM only:         32
  Number of BUFG/BUFGCTRLs:                2  out of     16    12%  
- Number of DSP48A1s:                      1  out of     32     3%  
+ Number of DSP48A1s:                      2  out of     32     6%  
 
 ---------------------------
 Partition Resource Summary:
@@ -530,8 +573,8 @@ Clock Information:
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                                                                                                                | Load  |
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
-clk                                | BUFGP                                                                                                                                | 22    |
-cpu_clock                          | BUFG                                                                                                                                 | 160   |
+clk                                | BUFGP                                                                                                                                | 24    |
+cpu_clock                          | BUFG                                                                                                                                 | 178   |
 cpu_memory/N1                      | NONE(cpu_memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[31].ram.r/s6_init.ram/SP.SIMPLE_PRIM18.ram)| 32    |
 -----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -544,9 +587,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 9.116ns (Maximum Frequency: 109.697MHz)
-   Minimum input arrival time before clock: 5.978ns
-   Maximum output required time after clock: 4.323ns
+   Minimum period: 11.535ns (Maximum Frequency: 86.693MHz)
+   Minimum input arrival time before clock: 6.634ns
+   Maximum output required time after clock: 3.732ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -555,61 +598,66 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 3.679ns (frequency: 271.817MHz)
-  Total number of paths / destination ports: 253 / 23
+  Clock period: 3.562ns (frequency: 280.745MHz)
+  Total number of paths / destination ports: 300 / 25
 -------------------------------------------------------------------------
-Delay:               3.679ns (Levels of Logic = 2)
-  Source:            clock_divider.counter_7 (FF)
+Delay:               3.562ns (Levels of Logic = 2)
+  Source:            clock_divider.counter_1 (FF)
   Destination:       cpu_clock (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: clock_divider.counter_7 to cpu_clock
+  Data Path: clock_divider.counter_1 to cpu_clock
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              2   0.447   0.981  clock_divider.counter_7 (clock_divider.counter_7)
-     LUT6:I0->O            1   0.203   0.944  GND_6_o_clock_divider.counter[20]_equal_328_o<20>2 (GND_6_o_clock_divider.counter[20]_equal_328_o<20>1)
-     LUT6:I0->O            1   0.203   0.579  GND_6_o_clock_divider.counter[20]_equal_328_o<20>4 (GND_6_o_clock_divider.counter[20]_equal_328_o)
+     FDC:C->Q              2   0.447   0.981  clock_divider.counter_1 (clock_divider.counter_1)
+     LUT6:I0->O            1   0.203   0.827  GND_6_o_clock_divider.counter[22]_equal_577_o<22>1 (GND_6_o_clock_divider.counter[22]_equal_577_o<22>)
+     LUT4:I0->O            1   0.203   0.579  GND_6_o_clock_divider.counter[22]_equal_577_o<22>5 (GND_6_o_clock_divider.counter[22]_equal_577_o)
      FDCE:CE                   0.322          cpu_clock
     ----------------------------------------
-    Total                      3.679ns (1.175ns logic, 2.504ns route)
-                                       (31.9% logic, 68.1% route)
+    Total                      3.562ns (1.175ns logic, 2.387ns route)
+                                       (33.0% logic, 67.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'cpu_clock'
-  Clock period: 9.116ns (frequency: 109.697MHz)
-  Total number of paths / destination ports: 169277 / 893
+  Clock period: 11.535ns (frequency: 86.693MHz)
+  Total number of paths / destination ports: 817744 / 936
 -------------------------------------------------------------------------
-Delay:               9.116ns (Levels of Logic = 8)
+Delay:               11.535ns (Levels of Logic = 13)
   Source:            brain.pc_2_1 (FF)
-  Destination:       brain.pc_5 (FF)
+  Destination:       Mmult_n0365 (DSP)
   Source Clock:      cpu_clock rising
   Destination Clock: cpu_clock rising
 
-  Data Path: brain.pc_2_1 to brain.pc_5
+  Data Path: brain.pc_2_1 to Mmult_n0365
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            10   0.447   1.085  brain.pc_2_1 (brain.pc_2_1)
-     LUT5:I2->O            9   0.205   1.058  Madd_n0514_xor<4>11 (Madd_brain.pc[5]_GND_6_o_add_101_OUT_lut<4>)
-     LUT6:I3->O           31   0.205   1.382  Mram_brain.pc[5]_X_6_o_wide_mux_17_OUT111 (brain.pc[5]_X_6_o_wide_mux_17_OUT<1>1)
-     LUT6:I4->O            4   0.203   0.684  n004781 (n00478)
-     LUT6:I5->O            3   0.205   0.651  n004783 (n0047)
-     LUT6:I5->O            1   0.205   0.684  Mmux_n0539309 (Mmux_n0539308)
-     LUT6:I4->O            1   0.203   0.580  Mmux_n05393010 (Mmux_n0539309)
-     LUT6:I5->O            1   0.205   0.808  Mmux_n05393014 (Madd_GND_6_o_GND_6_o_add_298_OUT_lut<5>)
-     LUT6:I3->O            1   0.205   0.000  Mmux_GND_6_o_GND_6_o_mux_299_OUT61 (GND_6_o_GND_6_o_mux_299_OUT<5>)
-     FDCE:D                    0.102          brain.pc_5
+     FDCE:C->Q            11   0.447   1.130  brain.pc_2_1 (brain.pc_2_1)
+     LUT4:I0->O            8   0.203   1.050  Madd_n0639_xor<3>11 (Madd_brain.pc[5]_GND_6_o_add_108_OUT_lut<3>)
+     LUT6:I2->O           49   0.203   1.534  Mram_brain.pc[5]_X_6_o_wide_mux_142_OUT12 (brain.pc[5]_X_6_o_wide_mux_142_OUT<0>1)
+     LUT2:I1->O            1   0.205   0.000  Madd_n0592_lut<0>1 (Madd_n0592_lut<0>1)
+     MUXCY:S->O            1   0.172   0.000  Madd_n0592_cy<0> (Madd_n0592_cy<0>)
+     XORCY:CI->O           7   0.180   0.774  Madd_n0592_xor<1> (Madd_n0404_Madd_lut<1>)
+     LUT3:I2->O            2   0.205   0.617  register_a[7]_BUS_0040_mux_144_OUT<2>11 (register_a[7]_BUS_0040_mux_144_OUT<2>_bdd0)
+     LUT6:I5->O            2   0.205   0.617  register_a[7]_BUS_0040_mux_144_OUT<6>1 (register_a[7]_BUS_0040_mux_144_OUT<6>)
+     LUT5:I4->O            1   0.205   0.580  Mmux__n0994_A_812_SW2_F (N287)
+     LUT6:I5->O            2   0.205   0.864  Mmux__n0994_A_2_f7_5_SW2 (N249)
+     LUT6:I2->O            1   0.203   0.000  Mmux__n0994_rs_lut<6> (Mmux__n0994_rs_lut<6>)
+     MUXCY:S->O            0   0.172   0.000  Mmux__n0994_rs_cy<6> (Mmux__n0994_rs_cy<6>)
+     XORCY:CI->O           1   0.180   0.580  Mmux__n0994_rs_xor<7> (_n0994<7>)
+     LUT5:I4->O            3   0.205   0.650  Mmux__n100081 (_n1000<7>)
+     DSP48A1:B7                0.149          Mmult_n0365
     ----------------------------------------
-    Total                      9.116ns (2.185ns logic, 6.931ns route)
-                                       (24.0% logic, 76.0% route)
+    Total                     11.535ns (3.139ns logic, 8.396ns route)
+                                       (27.2% logic, 72.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 22 / 22
+  Total number of paths / destination ports: 24 / 24
 -------------------------------------------------------------------------
-Offset:              3.252ns (Levels of Logic = 1)
+Offset:              3.258ns (Levels of Logic = 1)
   Source:            rst (PAD)
   Destination:       cpu_clock (FF)
   Destination Clock: clk rising
@@ -618,51 +666,52 @@ Offset:              3.252ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            58   1.222   1.600  rst_IBUF (rst_IBUF)
+     IBUF:I->O            59   1.222   1.606  rst_IBUF (rst_IBUF)
      FDCE:CLR                  0.430          cpu_clock
     ----------------------------------------
-    Total                      3.252ns (1.652ns logic, 1.600ns route)
-                                       (50.8% logic, 49.2% route)
+    Total                      3.258ns (1.652ns logic, 1.606ns route)
+                                       (50.7% logic, 49.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'cpu_clock'
-  Total number of paths / destination ports: 126 / 126
+  Total number of paths / destination ports: 144 / 144
 -------------------------------------------------------------------------
-Offset:              5.978ns (Levels of Logic = 3)
+Offset:              6.634ns (Levels of Logic = 4)
   Source:            rst (PAD)
-  Destination:       brain.wide_buffer_0 (FF)
+  Destination:       portb_buf_0 (FF)
   Destination Clock: cpu_clock rising
 
-  Data Path: rst to brain.wide_buffer_0
+  Data Path: rst to portb_buf_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            58   1.222   1.945  rst_IBUF (rst_IBUF)
-     LUT5:I0->O            5   0.203   1.079  _n1273_inv41 (brain.delay_FSM_FFd1-In2)
-     LUT6:I0->O           16   0.203   1.004  _n1632_inv3 (_n1632_inv)
-     FDE:CE                    0.322          brain.wide_buffer_0
+     IBUF:I->O            59   1.222   1.854  rst_IBUF (rst_IBUF)
+     LUT5:I1->O            1   0.203   0.944  _n1893_inv11 (_n1893_inv11)
+     LUT6:I0->O            3   0.203   0.879  _n1893_inv15 (_n1893_inv1)
+     LUT3:I0->O            8   0.205   0.802  _n1955_inv1 (_n1955_inv)
+     FDE:CE                    0.322          portc_buf_0
     ----------------------------------------
-    Total                      5.978ns (1.950ns logic, 4.028ns route)
-                                       (32.6% logic, 67.4% route)
+    Total                      6.634ns (2.155ns logic, 4.479ns route)
+                                       (32.5% logic, 67.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'cpu_clock'
   Total number of paths / destination ports: 32 / 32
 -------------------------------------------------------------------------
-Offset:              4.323ns (Levels of Logic = 1)
-  Source:            mem_addr_13 (FF)
-  Destination:       portb<5> (PAD)
+Offset:              3.732ns (Levels of Logic = 1)
+  Source:            mem_data_in_7 (FF)
+  Destination:       portd<7> (PAD)
   Source Clock:      cpu_clock rising
 
-  Data Path: mem_addr_13 to portb<5>
+  Data Path: mem_data_in_7 to portd<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             33   0.447   1.305  mem_addr_13 (mem_addr_13)
-     OBUF:I->O                 2.571          portb_5_OBUF (portb<5>)
+     FDE:C->Q              5   0.447   0.714  mem_data_in_7 (mem_data_in_7)
+     OBUF:I->O                 2.571          portd_7_OBUF (portd<7>)
     ----------------------------------------
-    Total                      4.323ns (3.018ns logic, 1.305ns route)
-                                       (69.8% logic, 30.2% route)
+    Total                      3.732ns (3.018ns logic, 0.714ns route)
+                                       (80.9% logic, 19.1% route)
 
 =========================================================================
 
@@ -674,7 +723,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.679|         |         |         |
+clk            |    3.562|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock cpu_clock
@@ -682,21 +731,21 @@ Clock to Setup on destination clock cpu_clock
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-cpu_clock      |    9.116|         |         |         |
+cpu_clock      |   11.535|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 23.00 secs
-Total CPU time to Xst completion: 22.77 secs
+Total REAL time to Xst completion: 18.00 secs
+Total CPU time to Xst completion: 18.47 secs
  
 --> 
 
 
-Total memory usage is 133564 kilobytes
+Total memory usage is 500680 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)
-Number of infos    :   12 (   0 filtered)
+Number of infos    :   15 (   0 filtered)
 

@@ -24,3 +24,4 @@ start:
 	mova 0x01
 	call test
 	movaf PORTA
+	ret

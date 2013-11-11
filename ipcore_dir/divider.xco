@@ -1,0 +1,70 @@
+##############################################################
+#
+# Xilinx Core Generator version 14.6
+# Date: Sun Nov 10 17:32:08 2013
+#
+##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:div_gen:4.0
+#
+##############################################################
+#
+# BEGIN Project Options
+SET addpads = false
+SET asysymbol = true
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = false
+SET designentry = VHDL
+SET device = xc6slx16
+SET devicefamily = spartan6
+SET flowvendor = Other
+SET formalverification = false
+SET foundationsym = false
+SET implementationfiletype = Ngc
+SET package = csg324
+SET removerpms = false
+SET simulationfiles = Behavioral
+SET speedgrade = -3
+SET verilogsim = false
+SET vhdlsim = true
+# END Project Options
+# BEGIN Select
+SELECT Divider_Generator xilinx.com:ip:div_gen:4.0
+# END Select
+# BEGIN Parameters
+CSET aclken=true
+CSET algorithm_type=High_Radix
+CSET aresetn=false
+CSET clocks_per_division=1
+CSET component_name=divider
+CSET divide_by_zero_detect=false
+CSET dividend_and_quotient_width=8
+CSET dividend_has_tlast=false
+CSET dividend_has_tuser=false
+CSET dividend_tuser_width=1
+CSET divisor_has_tlast=false
+CSET divisor_has_tuser=false
+CSET divisor_tuser_width=1
+CSET divisor_width=8
+CSET flowcontrol=NonBlocking
+CSET fractional_width=8
+CSET latency=3
+CSET latency_configuration=Manual
+CSET operand_sign=Signed
+CSET optimizegoal=Performance
+CSET outtlastbehv=Null
+CSET outtready=false
+CSET remainder_type=Fractional
+# END Parameters
+# BEGIN Extra information
+MISC pkg_timestamp=2012-11-05T14:51:55Z
+# END Extra information
+GENERATE
+# CRC: b80ad960
