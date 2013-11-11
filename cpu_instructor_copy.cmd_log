@@ -1497,3 +1497,8 @@ ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p x
 map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o cpu_instructor_copy_map.ncd cpu_instructor_copy.ngd cpu_instructor_copy.pcf 
 par -w -intstyle ise -ol high -mt 4 cpu_instructor_copy_map.ncd cpu_instructor_copy.ncd cpu_instructor_copy.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml cpu_instructor_copy.twx cpu_instructor_copy.ncd -o cpu_instructor_copy.twr cpu_instructor_copy.pcf -ucf nexys3.ucf 
+xst -intstyle ise -ifn "/home/main/git/FPGA/cpu_instructor_copy.xst" -ofn "/home/main/git/FPGA/cpu_instructor_copy.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 cpu_instructor_copy.ngc cpu_instructor_copy.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o cpu_instructor_copy_map.ncd cpu_instructor_copy.ngd cpu_instructor_copy.pcf 
+par -w -intstyle ise -ol high -mt 4 cpu_instructor_copy_map.ncd cpu_instructor_copy.ncd cpu_instructor_copy.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml cpu_instructor_copy.twx cpu_instructor_copy.ncd -o cpu_instructor_copy.twr cpu_instructor_copy.pcf -ucf nexys3.ucf 

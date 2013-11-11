@@ -1,6 +1,6 @@
 ISim log file
-Running: /home/main/FPGA/cpu_instructor_copy_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/main/FPGA/cpu_instructor_copy_isim_beh.wdb 
-ISim P.49d (signature 0xfbc00daa)
+Running: /home/main/git/FPGA/cpu_memory_test_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/main/git/FPGA/cpu_memory_test_isim_beh.wdb 
+ISim P.68d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -11,21 +11,290 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# isim force add /cpu_memory_test/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 280
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 281
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# restart
 # run 1.00ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
 # run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-ISim P.49d (signature 0xfbc00daa)
+# isim force add /cpu_memory_test/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# step
+Stopped at time : 2 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 2 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 2 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 2 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 2500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 2500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 2500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 2500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 239
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 663
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 664
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 3 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 3500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 3500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 3500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 3500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 241
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 242
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 663
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 664
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 4 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 4500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 4500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 4500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 4500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 272
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 273
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 274
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 275
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 276
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 278
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 663
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 207
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 209
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 202
+# step
+Stopped at time : 5 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 204
+# step
+Stopped at time : 5500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 5500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 5500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 5500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 280
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 281
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 284
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 294
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 297
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 663
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 664
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 53
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 54
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 55
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 56
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 60
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 61
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 62
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 6 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 6500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 6500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 6500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 6500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 686
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 7 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 241
+# restart
+ISim P.68d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -33,31 +302,971 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
-# run 1.00ns
+# isim force add /cpu_memory_test/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
 # run 1.00ns
 # run 1.00ns
 # step
-Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
 # step
-Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
+Stopped at time : 1002500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
 # step
-Stopped at time : 1009500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
+Stopped at time : 1002500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
 # step
-Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 417
+Stopped at time : 1002500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
 # step
-Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 421
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
 # step
-Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 425
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
 # step
-Stopped at time : 1010 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-ISim P.49d (signature 0xfbc00daa)
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 272
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 273
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 274
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 275
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 276
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 278
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 207
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 209
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 202
+# step
+Stopped at time : 1003 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 204
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1003500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 280
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 53
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 54
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 55
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 56
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 60
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 61
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 62
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1004 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1004500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1004500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1004500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1005 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+at 1005 ns(3): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_memory_test/Inst_memory_wrapper/cpu_memory/U0/native_mem_module/mem_module/).
+Stopped at time : 1005500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1005500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1005500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1005500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1006 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1006500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1006500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1006500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1007 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1007500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1007500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1007500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1007500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1008 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1008500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1008500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1008500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1008500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 284
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 285
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 286
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 296
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 299
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 668
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1009 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1009500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1009500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1009500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 241
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 242
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 668
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1010 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1010500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1010500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1010500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 272
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 273
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 274
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 275
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 276
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 278
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 207
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 209
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 202
+# step
+Stopped at time : 1011 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 204
+# step
+Stopped at time : 1011500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1011500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1011500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1011500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 280
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 53
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 54
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 55
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 56
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 60
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 61
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 62
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1012 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1012500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1012500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1012500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1012500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1013 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1013500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1013500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1013500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1013500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1014 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1014500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1014500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1014500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1014500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1015 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1015500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1015500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1015500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1015500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1016 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1016500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1016500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1016500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1016500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 271
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 282
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 283
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 284
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 285
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 286
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 288
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 299
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 668
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1017 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1017500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1017500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1017500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1017500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 229
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 230
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 304
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 305
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 306
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 307
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 207
+# step
+Stopped at time : 1018 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 202
+# step
+Stopped at time : 1018500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1018500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1018500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1018500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 309
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 53
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 54
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 58
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 60
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 61
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 62
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1019 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1019500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1019500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1019500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1019500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 311
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 312
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1020 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1020500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1020500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1020500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1020500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 311
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 312
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1021 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1021500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1021500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1021500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1021500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 311
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 312
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 64
+# step
+Stopped at time : 1022 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1022500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1022500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1022500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1022500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 311
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 312
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 667
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 52
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 66
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 67
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 70
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 39
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 206
+# step
+Stopped at time : 1023 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 201
+# step
+Stopped at time : 1023500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1023500 ps : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1023500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 40
+# step
+Stopped at time : 1023500 ps : File "/home/main/git/FPGA/memory_wrapper.vhd" Line 47
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 690
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 224
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 228
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 233
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 235
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 303
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 311
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 312
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 313
+# step
+Stopped at time : 1024 ns : File "/home/main/git/FPGA/cpu_memory_test.vhd" Line 314
+ISim P.68d (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -65,13 +1274,13 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# isim force add /cpu_instructor_copy/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# isim force add /cpu_memory_test/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
-at 1005 ns(2): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_instructor_copy/cpu_memory/U0/native_mem_module/mem_module/).
+at 1005 ns(3): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_memory_test/Inst_memory_wrapper/cpu_memory/U0/native_mem_module/mem_module/).
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
@@ -80,107 +1289,23 @@ at 1005 ns(2): Note: Block Memory Generator CORE Generator module is using a beh
 # run 1.00ns
 # run 1.00ns
 # run 1.00ns
-# step
-Stopped at time : 1013500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1013500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 235
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 242
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 243
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 244
-# step
-Stopped at time : 1014 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
-# step
-Stopped at time : 1014500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1014500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 235
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 246
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 247
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 248
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 250
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 261
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 407
-# step
-Stopped at time : 1015 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 165
-# step
-Stopped at time : 1015500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1015500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 193
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 194
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 205
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 206
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 406
-# step
-Stopped at time : 1016 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 407
-# step
-Stopped at time : 1016500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1016500 ps : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 429
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 188
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 192
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 193
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 194
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 197
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 199
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 326
-# step
-Stopped at time : 1017 ns : File "/home/main/FPGA/cpu_instructor_copy.vhd" Line 327
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+ISim P.68d (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# isim force add /cpu_memory_test/clk 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+# run 1.00ns
+at 1005 ns(3): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_memory_test/Inst_memory_wrapper/cpu_memory/U0/native_mem_module/mem_module/).
+# run 1.00ns

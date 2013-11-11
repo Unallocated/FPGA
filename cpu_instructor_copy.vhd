@@ -634,22 +634,22 @@ begin
 		end if;
 	end process;
 
-	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
-	begin
-		if(real_rst = '1') then
-			counter := 0;
-			cpu_clock <= '0';
-		elsif(rising_edge(clk)) then
-			if(counter = 0) then
-				cpu_clock <= not cpu_clock;
-			end if;
-			
-			counter := counter + 1;
-		end if;
-	end process;
+--	clock_divider : process(clk, real_rst)
+--		variable counter : integer range 0 to 100000000/16 := 0;
+--	begin
+--		if(real_rst = '1') then
+--			counter := 0;
+--			cpu_clock <= '0';
+--		elsif(rising_edge(clk)) then
+--			if(counter = 0) then
+--				cpu_clock <= not cpu_clock;
+--			end if;
+--			
+--			counter := counter + 1;
+--		end if;
+--	end process;
 
---	cpu_clock <= clk;
+	cpu_clock <= clk;
 	cpu_memory : memory
 	  PORT MAP (
 		 clka => cpu_clock,

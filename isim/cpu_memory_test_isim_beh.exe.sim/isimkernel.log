@@ -1,0 +1,10 @@
+Command line:
+   cpu_memory_test_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  39144
+
+Mon Nov 11 12:02:18 2013
+
+
+ Elaboration Time: 0.51 sec
