@@ -186,8 +186,9 @@ architecture Behavioral of cpu_memory_test is
 		opcodes.mova,x"ff", --  3 -> 4
 		opcodes.movaf,x"40",x"00", --  5 -> 7
 		opcodes.mova,x"0f", --  8 -> 9
-		opcodes.movaf,x"00",x"00", --  10 -> 12
-		opcodes.movfa,x"40",x"00", --  13 -> 15
+		opcodes.movaf,x"40",x"01", --  10 -> 12
+		opcodes.movaf,x"00",x"00", --  13 -> 15
+		opcodes.movfa,x"40",x"00", --  16 -> 18
 		opcodes.movaf,x"00",x"00"
 	);
 
@@ -278,7 +279,9 @@ begin
 							delay := 2;
 						elsif(delay = 2) then
 							delay := 1;
+							mem_we <= "1";
 						elsif(delay = 1) then
+							mem_we <= "1";
 							mem_start <= '0';
 							if(mem_done = '1') then
 								mem_we <= "0";
@@ -307,7 +310,9 @@ begin
 							delay := 2;
 						elsif(delay = 2) then
 							delay := 1;
+							mem_we <= "0";
 						else
+							mem_we <= "0";
 							mem_start <= '0';
 							if(mem_done = '1') then
 								pc := pc + 2;
@@ -672,22 +677,22 @@ begin
 		end if;
 	end process;
 
---	clock_divider : process(clk, real_rst)
---		variable counter : integer range 0 to 100000000/4 := 0;
---	begin
---		if(real_rst = '1') then
---			counter := 0;
---			cpu_clock <= '0';
---		elsif(rising_edge(clk)) then
---			if(counter = 0) then
---				cpu_clock <= not cpu_clock;
---			end if;
---			
---			counter := counter + 1;
---		end if;
---	end process;
+	clock_divider : process(clk, real_rst)
+		variable counter : integer range 0 to 100000000/50000000 := 0;
+	begin
+		if(real_rst = '1') then
+			counter := 0;
+			cpu_clock <= '0';
+		elsif(rising_edge(clk)) then
+			if(counter = 0) then
+				cpu_clock <= not cpu_clock;
+			end if;
+			
+			counter := counter + 1;
+		end if;
+	end process;
 
-	cpu_clock <= clk;
+--	cpu_clock <= clk;
 
 	Inst_memory_wrapper: memory_wrapper PORT MAP(
 		clk => cpu_clock,

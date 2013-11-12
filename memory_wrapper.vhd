@@ -34,10 +34,10 @@ architecture Behavioral of memory_wrapper is
 	signal last_start : std_logic := '0';
 	signal ram_we : std_logic_vector(0 downto 0) := (others => '0');
 	
-	constant cycles_per_operation : integer := 3;
+	constant cycles_per_operation : integer := 2;
 begin
 	done <= done_buffer;
-	ram_clk <= clk and en;
+	ram_clk <= clk and (en or start);
 	
 	--ram_we <= (others => '1') when we = '1' else (others => '0');
 
@@ -64,6 +64,7 @@ begin
 				delay := delay - 1;
 			elsif(delay = 0) then
 				done_buffer <= '1';
+				ram_we <= (others => '0');
 				en <= '0';
 			end if;
 			

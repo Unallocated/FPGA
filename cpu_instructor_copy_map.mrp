@@ -1,4 +1,4 @@
-Release 14.6 Map P.68d (lin64)
+Release 14.4 Map P.49d (lin)
 Xilinx Mapping Report File for Design 'cpu_instructor_copy'
 
 Design Information
@@ -11,7 +11,7 @@ Target Device  : xc6slx16
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Mon Nov 11 10:25:43 2013
+Mapped Date    : Mon Nov 11 13:17:11 2013
 
 Design Summary
 --------------
@@ -83,9 +83,9 @@ Specific Feature Utilization:
 
 Average Fanout of Non-Clock Nets:                5.04
 
-Peak Memory Usage:  929 MB
-Total REAL time to MAP completion:  25 secs 
-Total CPU time to MAP completion (all processors):   30 secs 
+Peak Memory Usage:  265 MB
+Total REAL time to MAP completion:  41 secs 
+Total CPU time to MAP completion (all processors):   51 secs 
 
 Table of Contents
 -----------------
