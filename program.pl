@@ -68,6 +68,7 @@ my @lines;
 while(<FH>){
 	chomp;
 	s/\s{2,}/ /;
+	s///g;
 	push(@lines, $_);
 }
 close(FH);
