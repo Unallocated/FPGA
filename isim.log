@@ -1309,3 +1309,4 @@ Finished circuit initialization process.
 # run 1.00ns
 at 1005 ns(3): Note: Block Memory Generator CORE Generator module is using a behavioral model FOR simulation which will not precisely model memory collision behavior. (/cpu_memory_test/Inst_memory_wrapper/cpu_memory/U0/native_mem_module/mem_module/).
 # run 1.00ns
+# exit 0
