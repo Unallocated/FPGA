@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------
-Release 14.6 Trace  (lin64)
-Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Release 14.4 Trace  (lin)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 3 -n
-3 -fastpaths -xml cpu_instructor_copy.twx cpu_instructor_copy.ncd -o
+/opt/Xilinx/14.4/ISE_DS/ISE/bin/lin/unwrapped/trce -intstyle ise -v 3 -s 3 -n 3
+-fastpaths -xml cpu_instructor_copy.twx cpu_instructor_copy.ncd -o
 cpu_instructor_copy.twr cpu_instructor_copy.pcf -ucf nexys3.ucf
 
 Design file:              cpu_instructor_copy.ncd
 Physical constraint file: cpu_instructor_copy.pcf
-Device,package,speed:     xc6slx16,csg324,C,-3 (PRODUCTION 1.23 2013-06-08)
+Device,package,speed:     xc6slx16,csg324,C,-3 (PRODUCTION 1.23 2012-12-04)
 Report level:             verbose report
 
 Environment Variable      Effect 
@@ -630,14 +630,14 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Mon Nov 11 10:26:30 2013 
+Analysis completed Mon Nov 11 13:18:27 2013 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 414 MB
+Peak Memory Usage: 151 MB
 
 
 
