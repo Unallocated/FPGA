@@ -1,15 +1,14 @@
-Running: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_memory_test_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_memory_test_beh.prj" "work.cpu_memory_test" 
+Running: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_instructor_copy_beh.prj" "work.cpu_instructor_copy" 
 ISim P.68d (signature 0xfbc00daa)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
 Parsing VHDL file "/home/main/git/FPGA/ipcore_dir/memory.vhd" into library work
-Parsing VHDL file "/home/main/git/FPGA/memory_wrapper.vhd" into library work
-Parsing VHDL file "/home/main/git/FPGA/cpu_memory_test.vhd" into library work
+Parsing VHDL file "/home/main/git/FPGA/cpu_instructor_copy.vhd" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 188640 KB
-Fuse CPU Usage: 2740 ms
+Fuse Memory Usage: 188660 KB
+Fuse CPU Usage: 3460 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package std_logic_arith
@@ -22,12 +21,11 @@ Compiling architecture softecc_output_reg_stage_behavioral of entity BLK_MEM_GEN
 Compiling architecture mem_module_behavioral of entity BLK_MEM_GEN_V7_3_mem_module [\BLK_MEM_GEN_V7_3_mem_module("bl...]
 Compiling architecture behavioral of entity BLK_MEM_GEN_V7_3 [\BLK_MEM_GEN_V7_3("blk_mem_gen_v...]
 Compiling architecture memory_a of entity memory [memory_default]
-Compiling architecture behavioral of entity memory_wrapper [memory_wrapper_default]
-Compiling architecture behavioral of entity cpu_memory_test
+Compiling architecture behavioral of entity cpu_instructor_copy
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 20 VHDL Units
-Built simulation executable /home/main/git/FPGA/cpu_memory_test_isim_beh.exe
-Fuse Memory Usage: 1270000 KB
-Fuse CPU Usage: 3330 ms
-GCC CPU Usage: 110 ms
+Compiled 18 VHDL Units
+Built simulation executable /home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe
+Fuse Memory Usage: 1270020 KB
+Fuse CPU Usage: 4160 ms
+GCC CPU Usage: 360 ms

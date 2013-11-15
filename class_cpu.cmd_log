@@ -190,3 +190,16 @@ map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -re
 par -w -intstyle ise -ol high -mt 4 class_cpu_map.ncd class_cpu.ncd class_cpu.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml class_cpu.twx class_cpu.ncd -o class_cpu.twr class_cpu.pcf -ucf nexys3.ucf 
 bitgen -intstyle ise -f class_cpu.ut class_cpu.ncd 
+xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
+xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 class_cpu.ngc class_cpu.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o class_cpu_map.ncd class_cpu.ngd class_cpu.pcf 
+par -w -intstyle ise -ol high -mt 4 class_cpu_map.ncd class_cpu.ncd class_cpu.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml class_cpu.twx class_cpu.ncd -o class_cpu.twr class_cpu.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f class_cpu.ut class_cpu.ncd 
+xst -intstyle ise -ifn "/home/main/git/FPGA/class_cpu.xst" -ofn "/home/main/git/FPGA/class_cpu.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys3.ucf -p xc6slx16-csg324-3 class_cpu.ngc class_cpu.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o class_cpu_map.ncd class_cpu.ngd class_cpu.pcf 
+par -w -intstyle ise -ol high -mt 4 class_cpu_map.ncd class_cpu.ncd class_cpu.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml class_cpu.twx class_cpu.ncd -o class_cpu.twr class_cpu.pcf -ucf nexys3.ucf 
+bitgen -intstyle ise -f class_cpu.ut class_cpu.ncd 

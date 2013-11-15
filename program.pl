@@ -60,7 +60,8 @@ addOpcode("xnoraf", 32, 3);
 addOpcode("nandaf", 33, 3);
 addOpcode("jagt", 34, 4);
 addOpcode("jagtf", 35, 5);
-
+addOpcode("pusha", 36, 1);
+addOpcode("popa", 37, 1);
 
 open(FH, "<", $inputFile) or die ("Could not open input file '$inputFile'.  Details: $!");
 
