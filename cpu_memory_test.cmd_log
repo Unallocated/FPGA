@@ -5,3 +5,5 @@ par -w -intstyle ise -ol high -mt 4 cpu_memory_test_map.ncd cpu_memory_test.ncd 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml cpu_memory_test.twx cpu_memory_test.ncd -o cpu_memory_test.twr cpu_memory_test.pcf 
 bitgen -intstyle ise -f cpu_memory_test.ut cpu_memory_test.ncd 
 xst -intstyle ise -ifn "/home/main/git/FPGA/cpu_memory_test.xst" -ofn "/home/main/git/FPGA/cpu_memory_test.syr" 
+xst -intstyle ise -ifn "/home/main/FPGA/cpu_memory_test.xst" -ofn "/home/main/FPGA/cpu_memory_test.syr" 
+xst -intstyle ise -ifn "/home/main/FPGA/cpu_memory_test.xst" -ofn "/home/main/FPGA/cpu_memory_test.syr" 

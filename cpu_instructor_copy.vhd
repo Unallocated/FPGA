@@ -131,9 +131,10 @@ architecture Behavioral of cpu_instructor_copy is
 		nandaf: opcode;   -- nand register_a with the value in memory address (3 byte instr)
 		jagt  : opcode;   -- jump if register_a is greater than the next byte (4 btye instr)
 		jagtf : opcode;   -- jump if register_a is greater than the value in memory location (5 byte instr)
-		pusha : opcode;   -- push register_a to the stack (1 byte instr)
-		popa  : opcode;   -- pop register_a from the stack (1 byte instr)
-		
+		push : opcode;   -- push register_a to the stack (1 byte instr)
+		pop  : opcode;   -- pop register_a from the stack (1 byte instr)
+--		pushfl: opcode;   -- push flags to the stack (1 byte instr)
+--		popfl : opcode;   -- pop the flags from the stack (1 byte instr) 
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -173,8 +174,10 @@ architecture Behavioral of cpu_instructor_copy is
 		nandaf=> "00100001",
 		jagt  => "00100010",
 		jagtf => "00100011",
-		pusha => "00100100",
-		popa  => "00100101"
+		push => "00100100",
+		pop  => "00100101"
+--		pushfl=> "00100110",
+--		popfl => "00100111"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -182,14 +185,16 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.jmp,x"00",x"03", --  0 -> 2
-		opcodes.mova,x"cc", --  3 -> 4
-		opcodes.movaf,x"00",x"00", --  5 -> 7
-		opcodes.pusha, --  8 -> 8
-		opcodes.mova,x"ff", --  9 -> 10
-		opcodes.movaf,x"00",x"00", --  11 -> 13
-		opcodes.popa, --  14 -> 14
-		opcodes.movaf,x"00",x"00", --  15 -> 17
+		opcodes.call, x"00",x"03",
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"00",
+		opcodes.push, x"00",
+		opcodes.call, x"00",x"13",
+		opcodes.pop,  x"00",
+		opcodes.movaf,x"00",x"00",
+		opcodes.ret,  
+		opcodes.mova, x"7e",
+		opcodes.movaf,x"00",x"00",
 		opcodes.ret
 	);
 
@@ -290,12 +295,12 @@ begin
 							case wide_buffer_int is
 								when 0 =>
 									porta_buf <= register_a;
---								when 1 =>
---									portb_buf <= register_a;
---								when 2 =>
---									portc_buf <= register_a;
---								when 3 =>
---									portd_buf <= register_a;
+								when 1 =>
+									portb_buf <= register_a;
+								when 2 =>
+									portc_buf <= register_a;
+								when 3 =>
+									portd_buf <= register_a;
 								when others =>
 									null;
 							end case;
@@ -596,11 +601,18 @@ begin
 								pc := pc + 4;
 							end if;
 						end if;
-					when opcodes.pusha =>
+					when opcodes.push =>
 						if(delay = 0) then
 							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
-							mem_data_in <= register_a;
-							
+							case conv_integer(program(pc + 1)) is
+								when 0 =>
+									mem_data_in <= register_a;
+								when 1 =>
+									mem_data_in(0) <= flags.carry;
+									mem_data_in(7 downto 1) <= (others => '0');
+								when others =>
+									mem_data_in <= (others => '0');
+							end case;
 							delay := 2;
 						elsif(delay = 2) then
 							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
@@ -609,21 +621,57 @@ begin
 						else
 							mem_we <= "0";
 							stack_pointer := stack_pointer + 1;
+							pc := pc + 1;
 							delay := 0;
 						end if;				
-					when opcodes.popa =>
+					when opcodes.pop =>
 						if(delay = 0) then
 							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
-							
 							delay := 2;
 						elsif(delay = 2) then
 							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
 							delay := 1;
 						else
 							stack_pointer := stack_pointer - 1;
-							register_a <= mem_data_out;
+							
+							case conv_integer(program(pc + 1)) is
+								when 0 =>
+									register_a <= mem_data_out;
+								when 1 =>
+									flags.carry <= mem_data_out(0);
+								when others => 
+									null;
+							end case;
+							
 							delay := 0;
-						end if;				
+						end if;
+--					when opcodes.pushfl =>
+--						if(delay = 0) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+--							mem_data_in(0) <= flags.carry;
+--							mem_data_in(7 downto 1) <= (others => '0');
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+--							mem_we <= "1";
+--							delay := 1;
+--						else
+--							mem_we <= "0";
+--							stack_pointer := stack_pointer + 1;
+--							delay := 0;
+--						end if;
+--					when opcodes.popfl =>
+--						if(delay = 0) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							delay := 1;
+--						else
+--							stack_pointer := stack_pointer - 1;
+--							flags.carry <= mem_data_out(0);
+--							delay := 0;
+--						end if;
 					when others =>
 						null;
 				end case;
