@@ -60,8 +60,15 @@ addOpcode("xnoraf", 32, 3);
 addOpcode("nandaf", 33, 3);
 addOpcode("jagt", 34, 4);
 addOpcode("jagtf", 35, 5);
-addOpcode("pusha", 36, 1);
-addOpcode("popa", 37, 1);
+addOpcode("push", 36, 2);
+addOpcode("pop", 37, 2);
+
+my $largestOpcode = 0;
+foreach (keys(%{$opcodes})){
+	if(length($_) > $largestOpcode){
+		$largestOpcode = length($_);
+	}
+}
 
 open(FH, "<", $inputFile) or die ("Could not open input file '$inputFile'.  Details: $!");
 
@@ -70,6 +77,7 @@ while(<FH>){
 	chomp;
 	s/\s{2,}/ /;
 	s///g;
+	s/[\s\t]*[(--)|(;)].+//g;
 	push(@lines, $_);
 }
 close(FH);
@@ -77,6 +85,39 @@ close(FH);
 my %variables;
 
 my $lineNumber = 1;
+my $pos = -1;
+
+my @incedLines;
+
+foreach(@lines){
+	$pos++;
+	if(/^inc (\w+\.inc)$/){
+		print "Including file $1\n";
+		if(! -f $1){
+			print "Error: Include file '$1' does not exist.\n";
+			exit(1);
+		}elsif(! -r $1){
+			print "Error: Could not read include file '$1'.\n";
+			exit(1);
+		}
+
+		open(IN, "<", $1) or die ("Could not open include file '$1'.  Details: $!");
+		my @incLines = <IN>;
+		chomp(@incLines);
+		push(@incedLines, @incLines);
+	}else{
+		push(@incedLines, $_);
+	}
+}
+
+#print "\n------- ELABORATED LINES -------\n";
+#foreach (@incedLines){
+#	print "$_\n";
+#}
+#print "------- END ELABORATED LINES --------\n\n";
+
+@lines = @incedLines;
+
 foreach(@lines){
 	if(/^def/){
 		my ($varName, $address) = /^def\s(.+?)\s(.+?)$/;
@@ -84,22 +125,30 @@ foreach(@lines){
 			print "Error: Invalid variable name '$varName' at line $lineNumber near instruction '$_'\n";
 			exit(1);
 		}
-
-		if($address !~ /^0x[a-fA-F0-9]{4}$/ && $address !~ /^[0-1]{16}$/){
-			print "Error: Invalid memory location '$address' at line $lineNumber near instruction '$_'\n";
+		
+		if(exists($variables{$varName})){
+			print "Error: Redefinition of variable '$varName' at line $lineNumber.\n";
 			exit(1);
 		}
 
+		if($address !~ /^0x[a-fA-F0-9]{2}$/ && $address !~ /^0x[a-fA-F0-9]{4}$/ && $address !~ /^[0-1]{16}$/){
+			print "Error: Invalid memory location '$address' at line $lineNumber near instruction '$_'\n";
+			exit(1);
+		}
+		
 		if($address =~ /^0x[a-fA-F0-9]{4}$/){
 			$address =~ /^0x([a-fA-F0-9]{2})([a-fA-F0-9]{2})/;
 			$variables{$varName} = sprintf("%08b %08b", hex($1), hex($2));
+		}else{
+			$address =~ /^0x([a-fA-F0-9]{2})/;
+			$variables{$varName} = sprintf("%08b",hex($1));
 		}
 
 	}
 	$lineNumber++;
 }
 
-print Dumper \%variables;
+#print Dumper \%variables;
 
 $lineNumber = 1;
 my @newLines;
@@ -168,6 +217,7 @@ foreach (@newLines){
 $lineNumber = 0;
 my $print;
 my $pos = 0;
+print Dumper @newLines2;
 foreach(@newLines2){
 	$lineNumber++;
 	if(/^$/){
@@ -187,7 +237,8 @@ foreach(@newLines2){
 	}
 	my $orig = $pos;
 	#my $line = "opcodes.$opcode,";
-	$print .= "\t\topcodes.$opcode,";
+	#$print .= "\t\topcodes.$opcode,";
+	$print .= sprintf("\t\topcodes.%-${largestOpcode}s",$opcode.","); 
 	$pos++;
 	for($a = 0; $a <= $#parts; $a++){
 		my $arg = $parts[$a];
@@ -201,17 +252,22 @@ foreach(@newLines2){
 		}
 		$pos++;
 	}
-	$print .= " --  $orig -> ".($pos-1)."\n";
+	$print .= "\n";
+	#$print .= " --  $orig -> ".($pos-1)."\n";
 	#print "$line\n";
 }
 
-$print =~ s/, (-- \d+ -> \d+\n)$/$1/;
+#$print =~ s/, (-- \d+ -> \d+\n)$/$1/;
+$print =~ s/[\r\n]+$//;
+$print =~ s/,[\s\t\r\n]+$//;
 
+print "\n--- COPY AND PASTE INTO VHD FILE ---\n";
 print "\tconstant program : program_type := (\n";
 print "$print\n";
 print "\t);\n";
+print "--- END OF COPY AND PASTE SECTION ---\n";
 
-print Dumper \%labels;
+#print Dumper \%labels;
 
 sub getBinary {
 	my $_ = shift;
