@@ -76,7 +76,7 @@ my @lines;
 while(<FH>){
 	chomp;
 	s/\s{2,}/ /;
-	s///g;
+	s/\r+//g;
 	s/[\s\t]*[(--)|(;)].+//g;
 	push(@lines, $_);
 }
