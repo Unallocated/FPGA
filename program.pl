@@ -3,6 +3,7 @@
 use strict;
 
 use Data::Dumper;
+use File::Temp;
 
 sub usage {
 	print "Usage: $0 <inputAssemblyFile>\n\n";
@@ -266,6 +267,18 @@ print "\tconstant program : program_type := (\n";
 print "$print\n";
 print "\t);\n";
 print "--- END OF COPY AND PASTE SECTION ---\n";
+
+if($^O =~ /win/i){
+	my $fh = File::Temp->new();
+	print $fh "\r\n--- COPY AND PASTE INTO VHD FILE ---\r\n";
+	print $fh "\tconstant program : program_type := (\r\n";
+	$print =~ s/\n+/\r\n/g;
+	print $fh "$print\r\n";
+	print $fh "\t);\r\n";
+	print $fh "--- END OF COPY AND PASTE SECTION ---\r\n";
+	close($fh);
+	system("notepad ".$fh->filename);
+}
 
 #print Dumper \%labels;
 
