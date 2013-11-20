@@ -61,8 +61,8 @@ addOpcode("xnoraf", 32, 3);
 addOpcode("nandaf", 33, 3);
 addOpcode("jagt", 34, 4);
 addOpcode("jagtf", 35, 5);
-addOpcode("push", 36, 2);
-addOpcode("pop", 37, 2);
+addOpcode("push", 36, 1);
+addOpcode("pop", 37, 1);
 
 my $largestOpcode = 0;
 foreach (keys(%{$opcodes})){
@@ -218,7 +218,7 @@ foreach (@newLines){
 $lineNumber = 0;
 my $print;
 my $pos = 0;
-print Dumper @newLines2;
+
 foreach(@newLines2){
 	$lineNumber++;
 	if(/^$/){

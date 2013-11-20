@@ -24,8 +24,9 @@ end class_cpu;
 -- 5 8-bit io registers
 
 -- shift with carry instruction
--- push and pop for reg_a
--- push and pop for flags
+-- 26th -> addca, flags, division (ipcore)
+-- functions/procedure (lumping like logic)
+-- serial at some point
 
 architecture Behavioral of class_cpu is
 
@@ -74,6 +75,9 @@ architecture Behavioral of class_cpu is
 		jane  : opcode;   -- jump if register a does not equal the next byte (4 byte instr)
 		janef : opcode;   -- jump if register a does not equal the value in memory address (5 byte instr)
 		call  : opcode;   -- call function in location x (3 byte instr)
+		ret   : opcode;   -- return from function call (1 byte instr)
+		push  : opcode;   -- pushes register_a onto the stack (1 byte instr)
+		pop   : opcode;   -- pops register_a from the stack (1 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -93,7 +97,10 @@ architecture Behavioral of class_cpu is
 		janez => "00001101",
 		jane  => "00001110",
 		janef => "00001111",
-		call  => "00010001"
+		call  => "00010001",
+		ret   => "00010010",
+		push  => "00100100",
+		pop   => "00100101"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -101,8 +108,12 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		--opcodes.jmp,x"00",x"03", --  0 -> 2
-		opcodes.mova,x"ff", --  3 -> 4
+		opcodes.jmp,  x"00",x"03",
+		opcodes.mova, x"ff",
+		opcodes.push, 
+		opcodes.mova, x"55",
+		opcodes.movaf,x"00",x"00",
+		opcodes.pop,  
 		opcodes.movaf,x"00",x"00"
 	);
 		
@@ -127,8 +138,7 @@ begin
 		variable delay : integer range 0 to 15 := 0;
 		variable stack_pointer : integer := stack_origin;
 	begin
-		porta_buf <= conv_std_logic_vector(pc, 8);
-		
+--		porta_buf <= conv_std_logic_vector(pc, 8);
 		if(real_rst = '1') then
 			pc := 0;
 			stack_pointer := stack_origin;
@@ -171,8 +181,8 @@ begin
 							mem_we <= "0";
 							
 							case wide_buffer_int is
---								when 0 =>
---									porta_buf <= register_a;
+								when 0 =>
+									porta_buf <= register_a;
 								when 1 =>
 									portb_buf <= register_a;
 								when 2 =>
@@ -262,7 +272,7 @@ begin
 							
 					when opcodes.call =>
 						if(delay = 0) then
-							wide_buffer := conv_std_logic_vector(pc, 16);
+							wide_buffer := conv_std_logic_vector(pc + 3, 16);
 							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
 							mem_data_in <= wide_buffer(15 downto 8);
 							delay := 5;
@@ -287,7 +297,59 @@ begin
 							pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
 							delay := 0;
 						end if;
+					when opcodes.ret =>
+						if(delay = 0) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+							mem_we <= "0";
+							delay := 5;
+						elsif(delay = 5) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+							delay := 4;
+						elsif(delay = 4) then
+							wide_buffer(7 downto 0) := mem_data_out;
+							delay := 3;
+						elsif(delay = 3) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+							delay := 2;
+						elsif(delay = 2) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+							delay := 1;
+						elsif(delay = 1) then
+							wide_buffer(15 downto 8) := mem_data_out;
+							pc := conv_integer(wide_buffer) - 1;
+							stack_pointer := stack_pointer - 2;
+							delay := 0;
+						end if;
 					
+					when opcodes.push =>
+						if(delay = 0) then
+							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+							mem_data_in <= register_a;
+							delay := 2;
+						elsif(delay = 2) then
+							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+							mem_we <= "1";
+							delay := 1;
+						elsif(delay = 1) then
+							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+							mem_we <= "0";
+							stack_pointer := stack_pointer + 1;
+							delay := 0;
+						end if;
+					when opcodes.pop =>
+						if(delay = 0) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+							mem_we <= "0";
+							delay := 2;
+						elsif(delay = 2) then
+							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+							delay := 1;
+						elsif(delay = 1) then
+							register_a <= mem_data_out;
+							stack_pointer := stack_pointer - 1;
+							delay := 0;
+						end if;
+							
 					when others =>
 						null;
 				end case;
@@ -300,7 +362,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/64 := 0;
+		variable counter : integer range 0 to 100000000/16 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
