@@ -63,6 +63,7 @@ addOpcode("jagt", 34, 4);
 addOpcode("jagtf", 35, 5);
 addOpcode("push", 36, 1);
 addOpcode("pop", 37, 1);
+addOpcode("diva", 38, 2);
 
 my $largestOpcode = 0;
 foreach (keys(%{$opcodes})){
