@@ -21,28 +21,8 @@
 
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="nexys3_clock.xise"/>
 
-  <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_ASY" xil_pn:name="nexys3_clock.asy" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_VHO" xil_pn:name="nexys3_clock.vho" xil_pn:origination="imported"/>
-  </files>
+  <files xmlns="http://www.xilinx.com/XMLSchema"/>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1381774149" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-3569863625088893217" xil_pn:start_ts="1381774149">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1381774149" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="3019406581206214638" xil_pn:start_ts="1381774149">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1381774149" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1381774149">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1381774149" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-2110105759194651359" xil_pn:start_ts="1381774149">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-  </transforms>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
 
 </generated_project>
