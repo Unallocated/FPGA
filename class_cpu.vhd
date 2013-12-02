@@ -9,11 +9,11 @@ use UNISIM.vcomponents.all;
 
 entity class_cpu is
     Port ( clk : in  STD_LOGIC;
-              rst : in  STD_LOGIC;
-              porta : inout  STD_LOGIC_VECTOR (7 downto 0);
-              portb : inout  STD_LOGIC_VECTOR (7 downto 0);
-              portc : inout  STD_LOGIC_VECTOR (7 downto 0);
-              portd : inout  STD_LOGIC_VECTOR (7 downto 0));
+           rst : in  STD_LOGIC;
+           porta : inout  STD_LOGIC_VECTOR (7 downto 0);
+           portb : inout  STD_LOGIC_VECTOR (7 downto 0);
+           portc : inout  STD_LOGIC_VECTOR (7 downto 0);
+           portd : inout  STD_LOGIC_VECTOR (7 downto 0));
 end class_cpu;
 --
 -- add, sub, mult, divide
@@ -33,6 +33,7 @@ end class_cpu;
 
 architecture Behavioral of class_cpu is
 
+	-- Xilinx divider IP core.  Divides 8-bit unsigned numbers
 	component cpu_divider
 		port (
 		clk: in std_logic;
@@ -44,6 +45,7 @@ architecture Behavioral of class_cpu is
 		fractional: out std_logic_vector(7 downto 0));
 	end component;
 
+	-- The CPU currently uses on die RAM.  8 bit data across 65535 addresses (64KB)
 	COMPONENT memory
 	  PORT (
 		 clka : IN STD_LOGIC;
@@ -54,37 +56,50 @@ architecture Behavioral of class_cpu is
 	  );
 	END COMPONENT;
 	
+	-- We do not run the cpu at the FPGA base clock since 100/50Mhz is wayyy to fast for 
+	-- troubleshooting.  Check the clock_divider process at the bottom for info.
 	signal cpu_clock : std_logic := '0';
+	
+	-- Needed since the Mojo has an active low reset while the Nexys3 has an active
+	-- high reset.  This signal is what all components will use for reset.
+	-- For the Mojo, it will be set to ' not rst'.  
+	-- For the Nexys3 it will be set to ' rst' (no inversion is required.)
 	signal real_rst : std_logic;
 	
---	signal porta_buf : std_logic_vector(7 downto 0);
---	signal portb_buf : std_logic_vector(7 downto 0);
---	signal portc_buf : std_logic_vector(7 downto 0);
---	signal portd_buf : std_logic_vector(7 downto 0);
-	
+	-- Currently the only general purpose register.
 	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
 	
+	-- Signals for accessing the memory
 	signal mem_we : std_logic_vector(0 downto 0) := (others => '0');
 	signal mem_addr : std_logic_vector(15 downto 0) := (others => '0');
 	signal mem_data_in : std_logic_vector(7 downto 0) := (others => '0');
 	signal mem_data_out : std_logic_vector(7 downto 0);
 	
+	-- Signals for interacting with the divider
 	signal divider_ce : std_logic := '0';
 	signal divider_divisor : std_logic_vector(7 downto 0);
 	signal divider_dividend : std_logic_vector(7 downto 0);
 	signal divider_quotient : std_logic_vector(7 downto 0);
 	signal divider_fractional : std_logic_vector(7 downto 0);
 	
+	-- Flags type (currently just a carry bit)
+	-- It is a record for ease of extension later on
 	type flags_type is record
 		carry : std_logic;
 	end record;
 	
+	-- Actual register that will hold the carry bit
 	signal flags : flags_type := (
 		carry => '0'
 	);
 	
+	-- All opcodes are just 8 bit vectors.  This makes it easier
+	-- to define a signal as an opcode.  Much faster than having to
+	-- write out std_logic_vector(7 downto 0) for each opcode!
 	subtype opcode is std_logic_vector(7 downto 0);
 	
+	-- Holds all of the opcodes for the CPU.  This is just the
+	-- skeleton.  The definitions are below.
 	type opcodes_type is record
 		noop  : opcode;   -- do nothing
 		mova  : opcode;   -- move next opcode to register a (2 byte instr)
@@ -116,6 +131,10 @@ architecture Behavioral of class_cpu is
 		xnora : opcode;   -- xnora register_a with the next byte (2 byte instr)
 	end record;
 	
+	-- Available opcodes.  Each opcode needs a unique value
+	-- assigned to it.  For the most part it's just a one-up number.
+	-- Numbers out of order are because the assembler script was 
+	-- written before some of the opcodes.
 	constant opcodes : opcodes_type := (
 		noop  => "00000000",
 		mova  => "00000001",
@@ -147,10 +166,15 @@ architecture Behavioral of class_cpu is
 		moda  => "00100111"
 	);
 	
+	-- Defines where the stack starts at in memory.
 	constant stack_origin : integer := conv_integer(x"8000");
 	
+	-- The program is just an array of opcodes.  Set the type to
+	-- be an unbounded array of opcodes.  The bound will be defined
+	-- once the program is defined.
 	type program_type is array(natural range <>) of opcode;
 	
+	-- The actual program that will be run by the CPU
 	constant program : program_type := (
 		opcodes.mova, x"ff",
 		opcodes.movaf,x"00",x"05",
@@ -158,36 +182,61 @@ architecture Behavioral of class_cpu is
 		opcodes.movaf,x"00",x"00",
 		opcodes.jmp,  x"00",x"05"
 	);
-		
+	
+	-- Each port on the CPU is bi-directional.  This means that a tri-state
+	-- buffer is required to set the pins of each port to input or output.
+	-- The portx_output signal is for sending data from the FPGA to the pins
+	-- The portx_input signal is for reading data from the pins to the FPGA
+	-- The portx_direction is for setting the pins to be outputs or inputs.  (0 = output, 1 = input)
+	-- All ports default to outputs and all pins are set to output a zero.
+	
+	-- Tri-state buffer signals for port a
 	signal porta_output : std_logic_vector(portb'range) := (others => '0');
 	signal porta_input : std_logic_vector(portb'range) := (others => '0');
 	signal porta_direction : std_logic_vector(porta'range) := (others => '0');
 	
+	-- Tri-state buffer signals for port b
 	signal portb_output : std_logic_vector(portb'range) := (others => '0');
 	signal portb_input : std_logic_vector(portb'range) := (others => '0');
 	signal portb_direction : std_logic_vector(porta'range) := (others => '0');
 	
+	-- Tri-state buffer signals for port c
 	signal portc_output : std_logic_vector(portc'range) := (others => '0');
 	signal portc_input : std_logic_vector(portc'range) := (others => '0');
 	signal portc_direction : std_logic_vector(portc'range) := (others => '0');
 	
+	-- Tri-state buffer signals for port d
 	signal portd_output : std_logic_vector(portd'range) := (others => '0');
 	signal portd_input : std_logic_vector(portd'range) := (others => '0');
 	signal portd_direction : std_logic_vector(portd'range) := (others => '0');
 	
 begin
+	-- The next 4 generate statements set up each pin of each port to connect to
+	-- a tri-state buffer.  This allows each pin to be controlled independantly.
+	-- Only the first generate statement will be commented.  The rest work the same way!
 
+	-- Generate statements need a name
 	BUF_GEN_PORTA:
+	-- This is the same as a for loop in C 'for(int i = 0; i <= 7; i++)'
 	for i in porta'range generate
+		-- Create an instance of IOBUF for each pin in the port
+		-- IOBUF comes from 'Library UNISIM; use UNISIM.vcomponents.all;'
 		IOBUF_inst : IOBUF
+			-- IOBUF allows for some generic definitions.  These are just defaults.
 			generic map (
 			   DRIVE => 12,
 			   IOSTANDARD => "LVCMOS33",
 			   SLEW => "SLOW")
 			port map (
+			   -- Buffer that will hold the value the FPGA wants to output to the pin
 			   O => porta_output(i),     -- Buffer output
+			   -- The actual inout port in the component (pins on the FPGA)
 			   IO => porta(i),   -- Buffer inout port (connect directly to top-level port)
+			   -- Buffer that will hold the value coming in from outside of the FPGA.
+			   -- In the event that the pin is in output mode, this will be the value 
+			   -- in the porta_output(i) buffer.
 			   I => porta_input(i),     -- Buffer input
+			   -- Buffer that determines the direction of this pin
 			   T => porta_direction(i)      -- 3-state enable input, high=input, low=output 
 			);
 	end generate BUF_GEN_PORTA;
@@ -200,10 +249,10 @@ begin
 			   IOSTANDARD => "LVCMOS33",
 			   SLEW => "SLOW")
 			port map (
-			   O => portb_output(i),     -- Buffer output
-			   IO => portb(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portb_input(i),     -- Buffer input
-			   T => portb_direction(i)      -- 3-state enable input, high=input, low=output 
+			   O => portb_output(i),
+			   IO => portb(i),
+			   I => portb_input(i),
+			   T => portb_direction(i)
 			);
 	end generate BUF_GEN_PORTB;
 	
@@ -215,10 +264,10 @@ begin
 			   IOSTANDARD => "LVCMOS33",
 			   SLEW => "SLOW")
 			port map (
-			   O => portc_output(i),     -- Buffer output
-			   IO => portc(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portc_input(i),     -- Buffer input
-			   T => portc_direction(i)      -- 3-state enable input, high=input, low=output 
+			   O => portc_output(i),
+			   IO => portc(i),
+			   I => portc_input(i),
+			   T => portc_direction(i)
 			);
 	end generate BUF_GEN_PORTC;
 	
@@ -230,24 +279,21 @@ begin
 			   IOSTANDARD => "LVCMOS33",
 			   SLEW => "SLOW")
 			port map (
-			   O => portd_output(i),     -- Buffer output
-			   IO => portd(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portd_input(i),     -- Buffer input
-			   T => portd_direction(i)      -- 3-state enable input, high=input, low=output 
+			   O => portd_output(i),
+			   IO => portd(i),
+			   I => portd_input(i),
+			   T => portd_direction(i)
 			);
 	end generate BUF_GEN_PORTD;
 
+	-- Sets the actual reset value.  Needed since the Mojo uses an active low
+	-- and the Nexys3 uses an active high.  Mojo would use 'real_rst <= not rst'.
+	-- All components in this project assume active high resets!
 	real_rst <= rst;
 	
---	porta <= porta_buf;
---	portb <= portb_buf;
---	portc <= portc_buf;
---	portd <= portd_buf;
-	
 	brain : process(cpu_clock, real_rst)
-		variable pc : integer := 0;
+		variable pc : integer range 0 to program'high + 1 := 0;
 		variable current_opcode : opcode;
-		variable current_opcode_int : integer range 0 to 255;
 		variable wide_buffer : std_logic_vector(15 downto 0);
 		variable wide_buffer_int : integer range 0 to (2**16) - 1 := 0;
 		variable narrow_buffer : std_logic_vector(7 downto 0);
@@ -255,7 +301,7 @@ begin
 		variable delay : integer range 0 to 31 := 0;
 		variable stack_pointer : integer := stack_origin;
 	begin
---		porta_buf <= conv_std_logic_vector(pc, 8);
+	
 		if(real_rst = '1') then
 			pc := 0;
 			stack_pointer := stack_origin;
@@ -263,30 +309,22 @@ begin
 			if(pc <= program'high) then
 				if(delay = 0) then
 					current_opcode := program(pc);
-					current_opcode_int := conv_integer(current_opcode);
 				end if;
-				
---				mem_we <= "0";
 				
 				case current_opcode is
 					when opcodes.noop =>
 						null;
 					when opcodes.jmp =>
-						pc := pc + 1;
-						wide_buffer(15 downto 8) := program(pc);
-						pc := pc + 1;
-						wide_buffer(7 downto 0) := program(pc);
-						pc := conv_integer(wide_buffer) - 1;
+						pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
 					when opcodes.mova =>
 						pc := pc + 1;
 						register_a <= program(pc);
+						
 					when opcodes.movaf =>
 						if(delay = 0) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_data_in <= register_a;
 							
-							wide_buffer_int := conv_integer(program(pc + 1) & program(pc + 2));
-							pc := pc + 2;
 							delay := 2;
 						elsif(delay = 2) then
 							mem_we <= "1";
@@ -294,7 +332,7 @@ begin
 						else
 							mem_we <= "0";
 							
-							case wide_buffer_int is
+							case conv_integer(program(pc + 1) & program(pc + 2)) is
 								when 0 =>
 									porta_input <= register_a;
 								when 1 =>
@@ -315,38 +353,60 @@ begin
 									null;
 							end case;
 							
+							pc := pc + 2;
 							delay := 0;
 						end if;
-					when opcodes.adda =>
-						pc := pc + 1;
-						if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
-							flags.carry <= '1';
-						else
-							flags.carry <= '0';
-						end if;
-						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
-					when opcodes.suba =>
-						pc := pc + 1;
-						register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
 						
-						
-					when opcodes.lsla =>
+					-- adda, suba, mula
+					when opcodes.adda | opcodes.suba | opcodes.mula | opcodes.addca =>
 						pc := pc + 1;
-						register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
-					when opcodes.lsra =>
-						pc := pc + 1;
-						register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
-					when opcodes.mula =>
-						pc := pc + 1;
-						register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
+						case current_opcode is
+							when opcodes.adda =>
+								if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
+									flags.carry <= '1';
+								else
+									flags.carry <= '0';
+								end if;
+								register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
+							when opcodes.suba =>
+								register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(program(pc)), 8);
+							when opcodes.mula =>
+								register_a <= conv_std_logic_vector(conv_integer(register_a) * conv_integer(program(pc)),8);
+							when opcodes.addca =>
+								if(flags.carry = '1') then
+									if(conv_integer(program(pc)) + 1 + conv_integer(register_a) > 255) then
+										flags.carry <= '1';
+									else
+										flags.carry <= '0';
+									end if;
+									register_a <= conv_std_logic_vector(conv_integer(program(pc)) + 1 + conv_integer(register_a), 8);
+								else
+									if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
+										flags.carry <= '1';
+									else
+										flags.carry <= '0';
+									end if;
+									register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
+								end if;
+							when others => 
+								null;
+						end case;
 					
-					when opcodes.lrla =>
+					-- lsla, lsra, lrla, lrra
+					when opcodes.lsla | opcodes.lsra | opcodes.lrla | opcodes.lrra =>
 						pc := pc + 1;
-						register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
-					
-					when opcodes.lrra =>
-						pc := pc + 1;
-						register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
+						case current_opcode is
+							when opcodes.lsla =>
+								register_a <= std_logic_vector(unsigned(register_a) sll conv_integer(program(pc)));
+							when opcodes.lsra =>
+								register_a <= std_logic_vector(unsigned(register_a) srl conv_integer(program(pc)));
+							when opcodes.lrla =>
+								register_a <= std_logic_vector(unsigned(register_a) rol conv_integer(program(pc)));
+							when opcodes.lrra =>
+								register_a <= std_logic_vector(unsigned(register_a) ror conv_integer(program(pc)));
+							when others =>
+								null;
+						end case;
 					
 					when opcodes.movfa =>
 						if(delay = 0) then
@@ -495,7 +555,9 @@ begin
 							stack_pointer := stack_pointer - 1;
 							delay := 0;
 						end if;
-					when opcodes.diva =>
+						
+					-- diva, moda
+					when opcodes.diva | opcodes.moda =>
 						if(delay = 0) then
 							divider_dividend <= register_a;
 							divider_divisor <= program(pc + 1);
@@ -506,59 +568,36 @@ begin
 						elsif(delay > 1) then
 							delay := delay - 1;
 						elsif(delay = 1) then
-							register_a <= divider_quotient;
+							case current_opcode is
+								when opcodes.diva =>
+									register_a <= divider_quotient;
+								when opcodes.moda =>
+									register_a <= divider_fractional;
+								when others =>
+									null;
+							end case;
 							divider_ce <= '0';
 							pc := pc + 1;
 							delay := 0;
 						end if;
-					when opcodes.addca =>
+					
+					-- xora, ora, anda, nora, xnora
+					when opcodes.xora | opcodes.ora | opcodes.anda | opcodes.nora | opcodes.xnora =>
 						pc := pc + 1;
-						if(flags.carry = '1') then
-							if(conv_integer(program(pc)) + 1 + conv_integer(register_a) > 255) then
-								flags.carry <= '1';
-							else
-								flags.carry <= '0';
-							end if;
-							register_a <= conv_std_logic_vector(conv_integer(program(pc)) + 1 + conv_integer(register_a), 8);
-						else
-							if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
-								flags.carry <= '1';
-							else
-								flags.carry <= '0';
-							end if;
-							register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
-						end if;
-					when opcodes.moda =>
-						if(delay = 0) then
-							divider_dividend <= register_a;
-							divider_divisor <= program(pc + 1);
-							delay := 21;
-						elsif(delay = 21) then
-							divider_ce <= '1';
-							delay := 20	;
-						elsif(delay > 1) then
-							delay := delay - 1;
-						elsif(delay = 1) then
-							register_a <= divider_fractional;
-							divider_ce <= '0';
-							pc := pc + 1;
-							delay := 0;
-						end if;
-					when opcodes.xora =>
-						register_a <= program(pc + 1) xor register_a;
-						pc := pc + 1;
-					when opcodes.ora =>
-						register_a <= program(pc + 1) or register_a;
-						pc := pc + 1;
-					when opcodes.anda =>
-						register_a <= program(pc + 1) and register_a;
-						pc := pc + 1;
-					when opcodes.nora =>
-						register_a <= program(pc + 1) nor register_a;
-						pc := pc + 1;
-					when opcodes.xnora =>
-						register_a <= program(pc + 1) xnor register_a;
-						pc := pc + 1;
+						case current_opcode is 
+							when opcodes.xora =>
+								register_a <= program(pc) xor register_a;
+							when opcodes.ora =>
+								register_a <= program(pc) or register_a;
+							when opcodes.anda =>
+								register_a <= program(pc) and register_a;
+							when opcodes.nora =>
+								register_a <= program(pc) nor register_a;
+							when opcodes.xnora =>
+								register_a <= program(pc) xnor register_a;
+							when others =>
+								null;
+						end case;
 					when others =>
 						null;
 				end case;
