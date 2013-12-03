@@ -162,6 +162,7 @@ architecture Behavioral of cpu_instructor_copy is
 		push : opcode;   -- push register_a to the stack (1 byte instr)
 		pop  : opcode;   -- pop register_a from the stack (1 byte instr)
 		diva  : opcode;   -- divide regiter_a by the next byte (2 byte instr)
+		divaf : opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -203,7 +204,8 @@ architecture Behavioral of cpu_instructor_copy is
 		jagtf => "00100011",
 		push  => "00100100",
 		pop   => "00100101",
-		diva  => "00100110"
+		diva  => "00100110",
+		divaf => "00100111"
 	);
 	
 	signal stack_origin : integer := conv_integer(x"8000");
@@ -211,13 +213,18 @@ architecture Behavioral of cpu_instructor_copy is
 --	type program_type is array(0 to 511) of opcode;
 	type program_type is array(natural range <>) of opcode;
 	constant program : program_type := (
+		opcodes.mova, x"09",
+		opcodes.movaf,x"40", x"00",
 		opcodes.mova, x"80",
-		opcodes.diva, x"02",
-		opcodes.movaf,x"00",x"00",
-		opcodes.diva, x"02",
-		opcodes.movaf,x"00",x"00",
-		opcodes.diva, x"03",
-		opcodes.movaf,x"00",x"00"
+		opcodes.divaf,x"40", x"00",
+		opcodes.movaf,x"00", x"00",
+		opcodes.noop
+--		opcodes.diva, x"02",
+--		opcodes.movaf,x"00",x"00",
+--		opcodes.diva, x"02",
+--		opcodes.movaf,x"00",x"00",
+--		opcodes.diva, x"03",
+--		opcodes.movaf,x"00",x"00"
 	);
 
 	signal programmed : std_logic := '1';
@@ -443,7 +450,7 @@ begin
 							register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(program(pc)), 8);
 						end if;
 					
-					when opcodes.xoraf =>
+					when opcodes.xoraf | opcodes.oraf | opcodes.andaf | opcodes.noraf | opcodes.xnoraf | opcodes.nandaf =>
 						if(delay = 0) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_we <= "0";
@@ -455,77 +462,23 @@ begin
 						else
 							pc := pc + 2;
 							delay := 0;
-							register_a <= register_a xor mem_data_out;
-						end if;
-					when opcodes.oraf =>
-						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
-						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
-						else
-							pc := pc + 2;
-							delay := 0;
-							register_a <= register_a or mem_data_out;
-						end if;
-					when opcodes.andaf =>
-						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
-						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
-						else
-							pc := pc + 2;
-							delay := 0;
-							register_a <= register_a and mem_data_out;
-						end if;
-					when opcodes.noraf =>
-						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
-						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
-						else
-							pc := pc + 2;
-							delay := 0;
-							register_a <= register_a nor mem_data_out;
-						end if;
-					when opcodes.xnoraf =>
-						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
-						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
-						else
-							pc := pc + 2;
-							delay := 0;
-							register_a <= register_a xnor mem_data_out;
-						end if;
-					when opcodes.nandaf =>
-						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
-						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
-						else
-							pc := pc + 2;
-							delay := 0;
-							register_a <= register_a nand mem_data_out;
+							case current_opcode is 
+								when opcodes.xoraf =>
+									register_a <= register_a xor mem_data_out;
+								when opcodes.oraf => 
+									register_a <= register_a or mem_data_out;
+								when opcodes.andaf => 
+									register_a <= register_a and mem_data_out;
+								when opcodes.noraf => 
+									register_a <= register_a nor mem_data_out;
+								when opcodes.xnoraf => 
+									register_a <= register_a xnor mem_data_out;
+								when opcodes.nandaf => 
+									register_a <= register_a nand mem_data_out;
+								when others => 
+									null;
+							end case;
+								
 						end if;
 					when opcodes.jagt =>
 						if(conv_integer(register_a) > conv_integer(program(pc + 1))) then
@@ -651,6 +604,30 @@ begin
 									null;
 							end case;
 						end if;
+					when opcodes.divaf =>
+						if(delay = 0) then
+							mem_addr <= program(pc + 1) & program(pc + 2);
+							mem_we <= "0";
+							delay := 32;
+						elsif(delay = 32) then
+							mem_addr <= program(pc + 1) & program(pc + 2);
+							delay := 31;
+						elsif(delay = 31) then
+							pc := pc + 2;
+						
+							dividend_data(7 downto 0) <= register_a;
+							divisor_data(7 downto 0) <= mem_data_out;
+							delay := 30;
+						elsif(delay = 30) then
+							en <= '1';
+							delay := 29;
+						elsif(delay < 30 and delay > 1) then
+							delay := delay - 1;
+						elsif(delay = 1) then
+							register_a <= data_out(7 downto 0);
+							delay := 0;
+							en <= '0';
+						end if;
 					when opcodes.diva =>
 						if(delay = 0) then
 							dividend_data(7 downto 0) <= register_a;
@@ -667,6 +644,7 @@ begin
 								en <= '0';
 								pc := pc + 1;
 						end if;
+					
 					when others =>
 						null;
 				end case;
@@ -686,7 +664,7 @@ begin
 			counter := 0;
 			cpu_clock <= '0';
 		elsif(rising_edge(clk)) then
-			if(counter = 100000000/128) then
+			if(counter = 10) then
 				cpu_clock <= not cpu_clock;
 				counter := 0;
 			end if;
