@@ -1,2 +1,0 @@
-vhdl work "ipcore_dir/memory.vhd"
-vhdl work "memory_wrapper.vhd"

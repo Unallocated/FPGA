@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_instructor_copy_beh.prj" "work.cpu_instructor_copy" 
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/main-local/Documents/GitHub/FPGA/divider_test_isim_beh.exe" -prj "C:/Users/main-local/Documents/GitHub/FPGA/divider_test_beh.prj" "work.divider_test" 

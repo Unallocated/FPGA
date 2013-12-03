@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-10-23T22:14:28</DateModified>
-  <ModuleName>cpu_instructor_copy</ModuleName>
-  <SummaryTimeStamp>2013-10-22T21:29:19</SummaryTimeStamp>
-  <SavedFilePath>/home/main/git/FPGA/iseconfig/class_cpu.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/main/git/FPGA</ImplementationReportsDirectory>
+  <DateModified>2013-12-02T21:01:14</DateModified>
+  <ModuleName>class_cpu</ModuleName>
+  <SummaryTimeStamp>2013-12-02T21:00:01</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/main-local/Documents/GitHub/FPGA/iseconfig/class_cpu.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/main-local/Documents/GitHub/FPGA\</ImplementationReportsDirectory>
   <DateInitialized>2013-10-23T22:14:28</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

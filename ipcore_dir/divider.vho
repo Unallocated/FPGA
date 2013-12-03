@@ -1,66 +1,68 @@
 --------------------------------------------------------------------------------
---    This file is owned and controlled by Xilinx and must be used solely     --
---    for design, simulation, implementation and creation of design files     --
---    limited to Xilinx devices or technologies. Use with non-Xilinx          --
---    devices or technologies is expressly prohibited and immediately         --
---    terminates your license.                                                --
+--     (c) Copyright 1995 - 2010 Xilinx, Inc. All rights reserved.            --
 --                                                                            --
---    XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" SOLELY    --
---    FOR USE IN DEVELOPING PROGRAMS AND SOLUTIONS FOR XILINX DEVICES.  BY    --
---    PROVIDING THIS DESIGN, CODE, OR INFORMATION AS ONE POSSIBLE             --
---    IMPLEMENTATION OF THIS FEATURE, APPLICATION OR STANDARD, XILINX IS      --
---    MAKING NO REPRESENTATION THAT THIS IMPLEMENTATION IS FREE FROM ANY      --
---    CLAIMS OF INFRINGEMENT, AND YOU ARE RESPONSIBLE FOR OBTAINING ANY       --
---    RIGHTS YOU MAY REQUIRE FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY       --
---    DISCLAIMS ANY WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE   --
---    IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR          --
---    REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF         --
---    INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A   --
---    PARTICULAR PURPOSE.                                                     --
+--     This file contains confidential and proprietary information            --
+--     of Xilinx, Inc. and is protected under U.S. and                        --
+--     international copyright and other intellectual property                --
+--     laws.                                                                  --
 --                                                                            --
---    Xilinx products are not intended for use in life support appliances,    --
---    devices, or systems.  Use in such applications are expressly            --
---    prohibited.                                                             --
+--     DISCLAIMER                                                             --
+--     This disclaimer is not a license and does not grant any                --
+--     rights to the materials distributed herewith. Except as                --
+--     otherwise provided in a valid license issued to you by                 --
+--     Xilinx, and to the maximum extent permitted by applicable              --
+--     law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND                --
+--     WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES            --
+--     AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING              --
+--     BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-                 --
+--     INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and               --
+--     (2) Xilinx shall not be liable (whether in contract or tort,           --
+--     including negligence, or under any other theory of                     --
+--     liability) for any loss or damage of any kind or nature                --
+--     related to, arising under or in connection with these                  --
+--     materials, including for any direct, or any indirect,                  --
+--     special, incidental, or consequential loss or damage                   --
+--     (including loss of data, profits, goodwill, or any type of             --
+--     loss or damage suffered as a result of any action brought              --
+--     by a third party) even if such damage or loss was                      --
+--     reasonably foreseeable or Xilinx had been advised of the               --
+--     possibility of the same.                                               --
 --                                                                            --
---    (c) Copyright 1995-2013 Xilinx, Inc.                                    --
---    All rights reserved.                                                    --
+--     CRITICAL APPLICATIONS                                                  --
+--     Xilinx products are not designed or intended to be fail-               --
+--     safe, or for use in any application requiring fail-safe                --
+--     performance, such as life-support or safety devices or                 --
+--     systems, Class III medical devices, nuclear facilities,                --
+--     applications related to the deployment of airbags, or any              --
+--     other applications that could lead to death, personal                  --
+--     injury, or severe property or environmental damage                     --
+--     (individually and collectively, "Critical                              --
+--     Applications"). Customer assumes the sole risk and                     --
+--     liability of any use of Xilinx products in Critical                    --
+--     Applications, subject only to applicable laws and                      --
+--     regulations governing limitations on product liability.                --
+--                                                                            --
+--     THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS               --
+--     PART OF THIS FILE AT ALL TIMES.                                        --
 --------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
---    Generated from core with identifier: xilinx.com:ip:div_gen:4.0          --
---                                                                            --
---    This core provides division using one of two algorithms. The Radix-2    --
---    algorithm provides a fabric solution suitable for smaller operand       --
---    division, and High Radix algorithm provides a solution based upon       --
---    XtremeDSP slices and so is well suited to larger operands (that is      --
---    above about 16 bits wide).                                              --
---------------------------------------------------------------------------------
+--  Generated from component ID: xilinx.com:ip:div_gen:3.0
 
--- Interfaces:
---    M_AXIS_DOUT
---    aclk_intf
---    aresetn_intf
---    aclken_intf
---    S_AXIS_DIVISOR
---    S_AXIS_DIVIDEND
 
 -- The following code must appear in the VHDL architecture header:
 
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-COMPONENT divider
-  PORT (
-    aclk : IN STD_LOGIC;
-    aclken : IN STD_LOGIC;
-    s_axis_divisor_tvalid : IN STD_LOGIC;
-    s_axis_divisor_tready : OUT STD_LOGIC;
-    s_axis_divisor_tdata : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    s_axis_dividend_tvalid : IN STD_LOGIC;
-    s_axis_dividend_tready : OUT STD_LOGIC;
-    s_axis_dividend_tdata : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    m_axis_dout_tvalid : OUT STD_LOGIC;
-    m_axis_dout_tdata : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
-  );
-END COMPONENT;
+component divider
+	port (
+	clk: in std_logic;
+	ce: in std_logic;
+	rfd: out std_logic;
+	dividend: in std_logic_vector(7 downto 0);
+	divisor: in std_logic_vector(7 downto 0);
+	quotient: out std_logic_vector(7 downto 0);
+	fractional: out std_logic_vector(7 downto 0));
+end component;
+
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 
 -- The following code must appear in the VHDL architecture
@@ -68,18 +70,14 @@ END COMPONENT;
 
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : divider
-  PORT MAP (
-    aclk => aclk,
-    aclken => aclken,
-    s_axis_divisor_tvalid => s_axis_divisor_tvalid,
-    s_axis_divisor_tready => s_axis_divisor_tready,
-    s_axis_divisor_tdata => s_axis_divisor_tdata,
-    s_axis_dividend_tvalid => s_axis_dividend_tvalid,
-    s_axis_dividend_tready => s_axis_dividend_tready,
-    s_axis_dividend_tdata => s_axis_dividend_tdata,
-    m_axis_dout_tvalid => m_axis_dout_tvalid,
-    m_axis_dout_tdata => m_axis_dout_tdata
-  );
+		port map (
+			clk => clk,
+			ce => ce,
+			rfd => rfd,
+			dividend => dividend,
+			divisor => divisor,
+			quotient => quotient,
+			fractional => fractional);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------
 
 -- You must compile the wrapper file divider.vhd when simulating

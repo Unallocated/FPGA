@@ -1,31 +1,13 @@
-Running: /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe" -prj "/home/main/git/FPGA/cpu_instructor_copy_beh.prj" "work.cpu_instructor_copy" 
-ISim P.68d (signature 0xfbc00daa)
+Running: C:\Xilinx\14.6\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o C:/Users/main-local/Documents/GitHub/FPGA/divider_test_isim_beh.exe -prj C:/Users/main-local/Documents/GitHub/FPGA/divider_test_beh.prj work.divider_test 
+ISim P.68d (signature 0x8ef4fb42)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
-Parsing VHDL file "/home/main/git/FPGA/ipcore_dir/memory.vhd" into library work
-Parsing VHDL file "/home/main/git/FPGA/cpu_instructor_copy.vhd" into library work
-Starting static elaboration
-Completed static elaboration
-Fuse Memory Usage: 188660 KB
-Fuse CPU Usage: 3460 ms
-Compiling package standard
-Compiling package std_logic_1164
-Compiling package std_logic_arith
-Compiling package std_logic_unsigned
-Compiling package numeric_std
-Compiling package textio
-Compiling package std_logic_textio
-Compiling architecture output_stage_behavioral of entity BLK_MEM_GEN_V7_3_output_stage [\BLK_MEM_GEN_V7_3_output_stage("...]
-Compiling architecture softecc_output_reg_stage_behavioral of entity BLK_MEM_GEN_V7_3_softecc_output_reg_stage [\BLK_MEM_GEN_V7_3_softecc_output...]
-Compiling architecture mem_module_behavioral of entity BLK_MEM_GEN_V7_3_mem_module [\BLK_MEM_GEN_V7_3_mem_module("bl...]
-Compiling architecture behavioral of entity BLK_MEM_GEN_V7_3 [\BLK_MEM_GEN_V7_3("blk_mem_gen_v...]
-Compiling architecture memory_a of entity memory [memory_default]
-Compiling architecture behavioral of entity cpu_instructor_copy
-Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
-Compiled 18 VHDL Units
-Built simulation executable /home/main/git/FPGA/cpu_instructor_copy_isim_beh.exe
-Fuse Memory Usage: 1270020 KB
-Fuse CPU Usage: 4160 ms
-GCC CPU Usage: 360 ms
+Parsing VHDL file "C:/Users/main-local/Documents/GitHub/FPGA/ipcore_dir/divider.vhd" into library work
+Parsing VHDL file "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" into library work
+ERROR:HDLCompiler:69 - "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 34: <data> is not declared.
+ERROR:HDLCompiler:192 - "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 34: Actual of formal out port quotient cannot be an expression
+ERROR:HDLCompiler:69 - "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 35: <frac> is not declared.
+ERROR:HDLCompiler:192 - "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 35: Actual of formal out port fractional cannot be an expression
+ERROR:HDLCompiler:854 - "C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 8: Unit <behavioral> ignored due to previous errors.
+VHDL file C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd ignored due to errors

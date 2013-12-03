@@ -71,7 +71,7 @@ architecture Behavioral of cpu_instructor_copy is
 	  );
 	END COMPONENT;
 	
-	component asdf
+	component divider
 		port (
 		clk: in std_logic;
 		ce: in std_logic;
@@ -206,7 +206,7 @@ architecture Behavioral of cpu_instructor_copy is
 		diva  => "00100110"
 	);
 	
-	constant stack_origin : integer := conv_integer(x"8000");
+	signal stack_origin : integer := conv_integer(x"8000");
 	
 --	type program_type is array(0 to 511) of opcode;
 	type program_type is array(natural range <>) of opcode;
@@ -220,16 +220,13 @@ architecture Behavioral of cpu_instructor_copy is
 		opcodes.movaf,x"00",x"00"
 	);
 
---	signal program : program_type;
 	signal programmed : std_logic := '1';
 	 
-
-	
 begin
 
 	
 
-	real_rst <= not rst;
+	real_rst <= rst;
 	
 	porta <= porta_buf;
 	portb <= portb_buf;
@@ -658,19 +655,17 @@ begin
 						if(delay = 0) then
 							dividend_data(7 downto 0) <= register_a;
 							divisor_data(7 downto 0) <= program(pc + 1);
-							delay := 20;
-						elsif(delay = 20) then
+							delay := 30;
+						elsif(delay = 30) then
 							en <= '1';
-							delay := 19;
-						elsif(delay < 20 and delay > 1) then
+							delay := 29;
+						elsif(delay < 30 and delay > 1) then
 							delay := delay - 1;
 						elsif(delay = 1) then
---							if(data_valid = '1') then
 								register_a <= data_out(7 downto 0);
 								delay := 0;
 								en <= '0';
 								pc := pc + 1;
---							end if;
 						end if;
 					when others =>
 						null;
@@ -685,14 +680,15 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/128 := 0;
+		variable counter : integer := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
 			cpu_clock <= '0';
 		elsif(rising_edge(clk)) then
-			if(counter = 0) then
+			if(counter = 100000000/128) then
 				cpu_clock <= not cpu_clock;
+				counter := 0;
 			end if;
 			
 			counter := counter + 1;
@@ -709,7 +705,7 @@ begin
 		 douta => mem_data_out
 	  );
 	  
-	your_instance_name : asdf
+	your_instance_name : divider
 		port map (
 			clk => cpu_clock,
 			ce => en,

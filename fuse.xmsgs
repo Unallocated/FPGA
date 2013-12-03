@@ -5,5 +5,20 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="error" file="HDLCompiler" num="69" delta="unknown" >"C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 34: &lt;<arg fmt="%s" index="1">data</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="unknown" >"C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 34: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">quotient</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="unknown" >"C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 35: &lt;<arg fmt="%s" index="1">frac</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="unknown" >"C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 35: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">fractional</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="854" delta="unknown" >"C:/Users/main-local/Documents/GitHub/FPGA/divider_test.vhd" Line 8: Unit &lt;<arg fmt="%s" index="1">behavioral</arg>&gt; ignored due to previous errors.
+</msg>
+
 </messages>
 
