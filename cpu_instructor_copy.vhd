@@ -14,6 +14,8 @@ entity cpu_instructor_copy is
            portb : inout  STD_LOGIC_VECTOR (7 downto 0);
            portc : inout  STD_LOGIC_VECTOR (7 downto 0);
            portd : inout  STD_LOGIC_VECTOR (7 downto 0);
+--           serial_out : out STD_LOGIC;
+           serial_in : in STD_LOGIC;
            prog_clk : in STD_LOGIC;
            prog_data : in STD_LOGIC);
 end cpu_instructor_copy;
@@ -85,13 +87,34 @@ architecture Behavioral of cpu_instructor_copy is
 		fractional: out std_logic_vector(7 downto 0));
 	end component;
 	
+	COMPONENT rx_fifo
+	  PORT (
+	    rst : IN STD_LOGIC;
+	    wr_clk : IN STD_LOGIC;
+	    rd_clk : IN STD_LOGIC;
+	    din : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+	    wr_en : IN STD_LOGIC;
+	    rd_en : IN STD_LOGIC;
+	    dout : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	    full : OUT STD_LOGIC;
+	    wr_ack : OUT STD_LOGIC;
+	    empty : OUT STD_LOGIC;
+	    rd_data_count : OUT STD_LOGIC_VECTOR(5 DOWNTO 0)
+	  );
+	END COMPONENT;
+	
+	COMPONENT serial_rx
+	PORT(
+		clk : IN std_logic;
+		rst : IN std_logic;
+		rx : IN std_logic;          
+		new_data : OUT std_logic;
+		data : OUT std_logic_vector(7 downto 0)
+		);
+	END COMPONENT;
+	
 	signal cpu_clock : std_logic := '0';
 	signal real_rst : std_logic;
-	
---	signal porta_buf : std_logic_vector(7 downto 0);
---	signal portb_buf : std_logic_vector(7 downto 0);
---	signal portc_buf : std_logic_vector(7 downto 0);
---	signal portd_buf : std_logic_vector(7 downto 0);
 	
 	type flags_type is record
 		carry : std_logic;
@@ -107,15 +130,6 @@ architecture Behavioral of cpu_instructor_copy is
 	signal mem_addr : std_logic_vector(15 downto 0) := (others => '0');
 	signal mem_data_in : std_logic_vector(7 downto 0) := (others => '0');
 	signal mem_data_out : std_logic_vector(7 downto 0);
-	
---	signal divide_en : std_logic := '0';
---	signal divide_rdy : std_logic_vector(1 downto 0) := (others => '0');
---	signal divide_divisor_rdy : std_logic := '0';
---	signal divide_divisor_data_in : std_logic_vector(7 downto 0) := (others => '0');
---	signal divide_dividend_rdy : std_logic := '0';
---	signal divide_dividend_data_in : std_logic_vector(7 downto 0) := (others => '0');
---	signal divide_done : std_logic := '0';
---	signal divide_data_out : std_logic_vector(15 downto 0) := (others => '0');
 	
 	signal en : std_logic := '0';
 	signal divisor_data : std_logic_vector(7 downto 0) := (others => '0');
@@ -168,6 +182,7 @@ architecture Behavioral of cpu_instructor_copy is
 		divaf : opcode;
 		tris  : opcode;
 		addcaf: opcode;
+		rdser : opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -212,7 +227,8 @@ architecture Behavioral of cpu_instructor_copy is
 		diva  => "00100110",
 		divaf => "00100111",
 		tris  => "00101000",
-		addcaf=> "00101001"
+		addcaf=> "00101001",
+		rdser => "00101010"
 	);
 	
 	signal stack_origin : integer := conv_integer(x"8000");
@@ -221,54 +237,10 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.jmp,  x"00",x"03",
-		opcodes.call, x"00",x"09",
-		opcodes.jmp,  x"00",x"81",
-		opcodes.mova, x"ff",
-		opcodes.movaf,x"30",x"00",
-		opcodes.mova, x"03",
-		opcodes.movaf,x"30",x"01",
-		opcodes.mova, x"08",
-		opcodes.movaf,x"30",x"02",
-		opcodes.mova, x"44",
-		opcodes.movaf,x"30",x"03",
-		opcodes.call, x"00",x"6e",
-		opcodes.movfa,x"20",x"00",
-		opcodes.movaf,x"00",x"00",
-		opcodes.movfa,x"20",x"01",
-		opcodes.movaf,x"00",x"01",
-		opcodes.ret,  
-		opcodes.movfa,x"30",x"03",
-		opcodes.addcaf,x"30",x"06",
-		opcodes.movaf,x"20",x"03",
-		opcodes.movfa,x"30",x"02",
-		opcodes.addcaf,x"30",x"05",
-		opcodes.movaf,x"20",x"02",
-		opcodes.movfa,x"30",x"01",
-		opcodes.addcaf,x"30",x"04",
-		opcodes.movaf,x"20",x"01",
-		opcodes.movfa,x"30",x"00",
-		opcodes.addcaf,x"30",x"03",
-		opcodes.movaf,x"20",x"00",
-		opcodes.ret,  
-		opcodes.movfa,x"30",x"02",
-		opcodes.addcaf,x"30",x"05",
-		opcodes.movaf,x"20",x"02",
-		opcodes.movfa,x"30",x"01",
-		opcodes.addcaf,x"30",x"04",
-		opcodes.movaf,x"20",x"01",
-		opcodes.movfa,x"30",x"00",
-		opcodes.addcaf,x"30",x"03",
-		opcodes.movaf,x"20",x"00",
-		opcodes.ret,  
-		opcodes.movfa,x"30",x"01",
-		opcodes.addcaf,x"30",x"03",
-		opcodes.movaf,x"20",x"01",
-		opcodes.movfa,x"30",x"00",
-		opcodes.addcaf,x"30",x"02",
-		opcodes.movaf,x"20",x"00",
-		opcodes.ret,  
-		opcodes.noop
+		opcodes.noop,
+		opcodes.rdser,
+		opcodes.movaf, x"00", x"00",
+		opcodes.jmp, x"00", x"00"
 	);
 
 	signal programmed : std_logic := '1';
@@ -288,6 +260,20 @@ architecture Behavioral of cpu_instructor_copy is
 	signal portd_output : std_logic_vector(portd'range) := (others => '0');
 	signal portd_input : std_logic_vector(portd'range) := (others => '0');
 	signal portd_direction : std_logic_vector(portd'range) := (others => '0');
+	
+	signal rx_wr_clk : std_logic := '0';
+	signal rx_wr_ack : std_logic := '0';
+	signal rx_rd_clk : std_logic := '0';
+	signal rx_din : std_logic_vector(7 downto 0);
+	signal rx_wr_en : std_logic := '0';
+	signal rx_rd_en : std_logic := '0';
+	signal rx_dout : std_logic_vector(7 downto 0);
+	signal rx_full : std_logic;
+	signal rx_empty : std_logic;
+	signal rx_data_count : std_logic_vector(5 downto 0);
+	
+	signal rx_data : std_logic_vector(7 downto 0);
+	signal rx_new_data : std_logic;
 	 
 begin
 
@@ -353,11 +339,6 @@ begin
 
 	real_rst <= rst;
 	
---	porta <= porta_buf;
---	portb <= portb_buf;
---	portc <= portc_buf;
---	portd <= portd_buf;
-	
 --	programmer : process(prog_clk)
 --		constant start_flag : std_logic_vector(7 downto 0) := "01111110";
 --		
@@ -401,13 +382,8 @@ begin
 		variable current_opcode_int : integer range 0 to 255;
 		variable delay : integer range 0 to 63 := 0;
 		variable wide_buffer : std_logic_vector(15 downto 0);
---		variable wide_buffer_int : integer range 0 to (2**16) - 1 := 0;
 		variable narrow_buffer : std_logic_vector(7 downto 0);
-		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
 		variable stack_pointer : integer range 0 to (2**mem_addr'length) - 1 := stack_origin;
-		
---		attribute S : string;
---		attribute S of current_opcode : variable is "YES";
 		
 		
 	begin
@@ -418,21 +394,12 @@ begin
 			current_opcode_int := 0;
 			delay := 0;
 			wide_buffer := (others => '0');
---			wide_buffer_int := 0;
 			narrow_buffer := (others => '0');
-			narrow_buffer_int := 0;
 			stack_pointer := stack_origin;
-			
---			porta_buf <= (others => '0');
---			portb_buf <= (others => '0');
---			portc_buf <= (others => '0');
---			portd_buf <= (others => '0');
 			
 			dividend_data <= (others => '0');
 			divisor_data <= (others => '0');
 		elsif(programmed = '1' and rising_edge(cpu_clock)) then
-			
-			
 			if(pc <= program'high) then
 				if(delay = 0) then
 					current_opcode := program(pc);
@@ -493,7 +460,6 @@ begin
 						if(delay = 0) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_data_in <= register_a;
---							wide_buffer_int := conv_integer(program(pc + 1) & program(pc + 2));
 							
 							delay := 2;
 						elsif(delay = 2) then
@@ -605,7 +571,6 @@ begin
 						elsif(delay = 2) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
 						else
 							pc := pc + 2;
 							delay := 0;
@@ -641,7 +606,6 @@ begin
 						elsif(delay = 2) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							delay := 1;
-							narrow_buffer_int := conv_integer(register_a);
 						else
 							delay := 0;
 							if(conv_integer(register_a) > conv_integer(mem_data_out)) then
@@ -812,21 +776,27 @@ begin
 								en <= '0';
 								pc := pc + 1;
 						end if;
---					when opcodes.tris =>
---						narrow_buffer_int := conv_integer(program(pc + 1));
---						case narrow_buffer_int is
---							when 0 =>
---								porta_direction <= register_a;
---							when 1 =>
---								portb_direction <= register_a;
---							when 2 =>
---								portc_direction <= register_a;
---							when 3 =>
---								portd_direction <= register_a;
---							when others => 
---								null;
---						end case; 
---						pc := pc + 1;
+					when opcodes.rdser =>
+						if(delay = 0) then
+--							porta_input <= "00001111";
+							if(rx_empty = '1') then
+								delay := 1;
+							else
+								rx_rd_en <= '1';
+								delay := 2;
+							end if;
+						elsif(delay = 1) then
+							if(rx_empty = '0') then
+								delay := 2;
+							end if;
+--							porta_input <= "11110000";
+						elsif(delay = 2) then
+							rx_rd_en <= '0';
+--							porta_input <= "11111111";
+							register_a <= rx_dout;
+							delay := 0;
+						end if;
+								
 					when others =>
 						null;
 				end case;
@@ -834,28 +804,59 @@ begin
 				if(delay = 0) then 
 					pc := pc + 1;
 				end if;
+			
+				
 				
 			end if;
 		end if;
 	end process;
+	
+	rx_serial_proc : process(clk, real_rst)
+		variable last_new_data_value : std_logic := '0';
+		variable state : std_logic_vector(1 downto 0) := "00";
+	begin
+		if(real_rst = '1') then
+			state := "00";
+		elsif(rising_edge(clk)) then
+			case state is 
+				when "00" =>
+					if(last_new_data_value /= rx_new_data) then
+						last_new_data_value := rx_new_data;
+						
+						if(rx_new_data = '1') then
+							rx_din <= rx_data;
+							state := "01";
+						end if;
+					end if;
+				when "01" =>
+					rx_wr_en <= '1';
+					state := "10";
+				when "10" =>
+					rx_wr_en <= '0';
+					state := "00";
+				when others => 
+					null;
+			end case;
+		end if;
+	end process;
 
---	clock_divider : process(clk, real_rst)
---		variable counter : integer := 0;
---	begin
---		if(real_rst = '1') then
---			counter := 0;
---			cpu_clock <= '0';
---		elsif(rising_edge(clk)) then
---			if(counter = 100000000/4096) then
---				cpu_clock <= not cpu_clock;
---				counter := 0;
---			end if;
---			
---			counter := counter + 1;
---		end if;
---	end process;
+	clock_divider : process(clk, real_rst)
+		variable counter : integer := 0;
+	begin
+		if(real_rst = '1') then
+			counter := 0;
+			cpu_clock <= '0';
+		elsif(rising_edge(clk)) then
+			if(counter = 100000000/16) then
+				cpu_clock <= not cpu_clock;
+				counter := 0;
+			end if;
+			
+			counter := counter + 1;
+		end if;
+	end process;
 
-	cpu_clock <= clk;
+--	cpu_clock <= clk;
 	cpu_memory : memory
 	  PORT MAP (
 		 clka => cpu_clock,
@@ -874,6 +875,29 @@ begin
 			divisor => divisor_data,
 			quotient => data_out,
 			fractional => open);
+			
+	serial_in_fifo : rx_fifo
+	  PORT MAP (
+	    rst => real_rst,
+	    wr_clk => clk,
+	    rd_clk => cpu_clock,
+	    din => rx_din,
+	    wr_en => rx_wr_en,
+	    rd_en => rx_rd_en,
+	    dout => rx_dout,
+	    full => rx_full,
+	    wr_ack => rx_wr_ack,
+	    empty => rx_empty,
+	    rd_data_count => rx_data_count
+	  );
+	  
+	  serial_rx_comp : serial_rx PORT MAP(
+		clk => clk,
+		rst => real_rst,
+		rx => serial_in,
+		new_data => rx_new_data,
+		data => rx_data
+	);
 
 end Behavioral;
 
