@@ -30,6 +30,17 @@ end class_cpu;
 
 architecture Behavioral of class_cpu is
 
+	component cpu_divider
+		port (
+		clk: in std_logic;
+		ce: in std_logic;
+		rfd: out std_logic;
+		dividend: in std_logic_vector(7 downto 0);
+		divisor: in std_logic_vector(7 downto 0);
+		quotient: out std_logic_vector(7 downto 0);
+		fractional: out std_logic_vector(7 downto 0));
+	end component;
+
 	COMPONENT memory
 	  PORT (
 		 clka : IN STD_LOGIC;
@@ -55,6 +66,12 @@ architecture Behavioral of class_cpu is
 	signal mem_data_in : std_logic_vector(7 downto 0) := (others => '0');
 	signal mem_data_out : std_logic_vector(7 downto 0);
 	
+	signal divider_ce : std_logic := '0';
+	signal divider_divisor : std_logic_vector(7 downto 0);
+	signal divider_dividend : std_logic_vector(7 downto 0);
+	signal divider_quotient : std_logic_vector(7 downto 0);
+	signal divider_fractional : std_logic_vector(7 downto 0);
+	
 	subtype opcode is std_logic_vector(7 downto 0);
 	
 	type opcodes_type is record
@@ -78,6 +95,7 @@ architecture Behavioral of class_cpu is
 		ret   : opcode;   -- return from function call (1 byte instr)
 		push  : opcode;   -- pushes register_a onto the stack (1 byte instr)
 		pop   : opcode;   -- pops register_a from the stack (1 byte instr)
+		diva  : opcode;   -- divide register_a by the next byte (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -100,7 +118,8 @@ architecture Behavioral of class_cpu is
 		call  => "00010001",
 		ret   => "00010010",
 		push  => "00100100",
-		pop   => "00100101"
+		pop   => "00100101",
+		diva  => "00100110"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -108,12 +127,8 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.jmp,  x"00",x"03",
-		opcodes.mova, x"ff",
-		opcodes.push, 
-		opcodes.mova, x"55",
-		opcodes.movaf,x"00",x"00",
-		opcodes.pop,  
+		opcodes.mova, x"80",
+		opcodes.diva, x"02",
 		opcodes.movaf,x"00",x"00"
 	);
 		
@@ -135,7 +150,7 @@ begin
 		variable wide_buffer_int : integer range 0 to (2**16) - 1 := 0;
 		variable narrow_buffer : std_logic_vector(7 downto 0);
 		variable narrow_buffer_int : integer range 0 to (2**8) - 1 := 0;
-		variable delay : integer range 0 to 15 := 0;
+		variable delay : integer range 0 to 31 := 0;
 		variable stack_pointer : integer := stack_origin;
 	begin
 --		porta_buf <= conv_std_logic_vector(pc, 8);
@@ -349,7 +364,23 @@ begin
 							stack_pointer := stack_pointer - 1;
 							delay := 0;
 						end if;
-							
+					when opcodes.diva =>
+						if(delay = 0) then
+							divider_dividend <= register_a;
+							divider_divisor <= program(pc + 1);
+							delay := 29;
+						elsif(delay = 29) then
+							divider_ce <= '1';
+							delay := 28;
+						elsif(delay > 1) then
+							delay := delay - 1;
+						elsif(delay = 1) then
+							register_a <= divider_quotient;
+							divider_ce <= '0';
+							pc := pc + 1;
+							delay := 0;
+						end if;
+					
 					when others =>
 						null;
 				end case;
@@ -375,6 +406,16 @@ begin
 			counter := counter + 1;
 		end if;
 	end process;
+	
+	my_divider : cpu_divider
+		port map (
+			clk => cpu_clock,
+			ce => divider_ce,
+			rfd => open,
+			dividend => divider_dividend,
+			divisor => divider_divisor,
+			quotient => divider_quotient,
+			fractional => divider_fractional);
 
 	cpu_memory : memory
 	  PORT MAP (
