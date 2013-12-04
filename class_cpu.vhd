@@ -72,6 +72,14 @@ architecture Behavioral of class_cpu is
 	signal divider_quotient : std_logic_vector(7 downto 0);
 	signal divider_fractional : std_logic_vector(7 downto 0);
 	
+	type flags_type is record
+		carry : std_logic;
+	end record;
+	
+	signal flags : flags_type := (
+		carry => '0'
+	);
+	
 	subtype opcode is std_logic_vector(7 downto 0);
 	
 	type opcodes_type is record
@@ -96,6 +104,8 @@ architecture Behavioral of class_cpu is
 		push  : opcode;   -- pushes register_a onto the stack (1 byte instr)
 		pop   : opcode;   -- pops register_a from the stack (1 byte instr)
 		diva  : opcode;   -- divide register_a by the next byte (2 byte instr)
+		addca : opcode;   -- add next byte to register_a including the carry bit (2 byte instr)
+		moda  : opcode;   -- register_a mod the next byte (2 byte instr) 
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -115,11 +125,13 @@ architecture Behavioral of class_cpu is
 		janez => "00001101",
 		jane  => "00001110",
 		janef => "00001111",
+		addca => "00010000",
 		call  => "00010001",
 		ret   => "00010010",
 		push  => "00100100",
 		pop   => "00100101",
-		diva  => "00100110"
+		diva  => "00100110",
+		moda  => "00100111"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -127,8 +139,10 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.mova, x"80",
-		opcodes.diva, x"02",
+		opcodes.mova, x"fe",
+		opcodes.adda, x"08",
+		opcodes.movaf,x"00",x"00",
+		opcodes.addca,x"04",
 		opcodes.movaf,x"00",x"00"
 	);
 		
@@ -212,6 +226,11 @@ begin
 						end if;
 					when opcodes.adda =>
 						pc := pc + 1;
+						if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
+							flags.carry <= '1';
+						else
+							flags.carry <= '0';
+						end if;
 						register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
 					when opcodes.suba =>
 						pc := pc + 1;
@@ -380,7 +399,39 @@ begin
 							pc := pc + 1;
 							delay := 0;
 						end if;
-					
+					when opcodes.addca =>
+						pc := pc + 1;
+						if(flags.carry = '1') then
+							if(conv_integer(program(pc)) + 1 + conv_integer(register_a) > 255) then
+								flags.carry <= '1';
+							else
+								flags.carry <= '0';
+							end if;
+							register_a <= conv_std_logic_vector(conv_integer(program(pc)) + 1 + conv_integer(register_a), 8);
+						else
+							if(conv_integer(program(pc)) + conv_integer(register_a) > 255) then
+								flags.carry <= '1';
+							else
+								flags.carry <= '0';
+							end if;
+							register_a <= conv_std_logic_vector(conv_integer(program(pc)) + conv_integer(register_a), 8);
+						end if;
+					when opcodes.moda =>
+						if(delay = 0) then
+							divider_dividend <= register_a;
+							divider_divisor <= program(pc + 1);
+							delay := 29;
+						elsif(delay = 29) then
+							divider_ce <= '1';
+							delay := 28;
+						elsif(delay > 1) then
+							delay := delay - 1;
+						elsif(delay = 1) then
+							register_a <= divider_fractional;
+							divider_ce <= '0';
+							pc := pc + 1;
+							delay := 0;
+						end if;
 					when others =>
 						null;
 				end case;
