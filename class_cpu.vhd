@@ -54,10 +54,10 @@ architecture Behavioral of class_cpu is
 	signal cpu_clock : std_logic := '0';
 	signal real_rst : std_logic;
 	
-	signal porta_buf : std_logic_vector(7 downto 0);
-	signal portb_buf : std_logic_vector(7 downto 0);
-	signal portc_buf : std_logic_vector(7 downto 0);
-	signal portd_buf : std_logic_vector(7 downto 0);
+	signal porta_buf : std_logic_vector(7 downto 0) := (others => '0');
+	signal portb_buf : std_logic_vector(7 downto 0) := (others => '1');
+	signal portc_buf : std_logic_vector(7 downto 0) := (others => '1');
+	signal portd_buf : std_logic_vector(7 downto 0) := (others => '1');
 	
 	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
 	
@@ -106,6 +106,8 @@ architecture Behavioral of class_cpu is
 		diva  : opcode;   -- divide register_a by the next byte (2 byte instr)
 		addca : opcode;   -- add next byte to register_a including the carry bit (2 byte instr)
 		moda  : opcode;   -- register_a mod the next byte (2 byte instr) 
+		tris  : opcode;   -- set the direction of the register defined by the next bye (2 byte instr)
+		read  : opcode;   -- read from the port specified by the next byte (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -131,7 +133,9 @@ architecture Behavioral of class_cpu is
 		push  => "00100100",
 		pop   => "00100101",
 		diva  => "00100110",
-		moda  => "00100111"
+		moda  => "00100111",
+		tris  => "00101000",
+		read  => "00101001"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -139,19 +143,29 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.mova, x"fe",
-		opcodes.adda, x"08",
-		opcodes.movaf,x"00",x"00",
-		opcodes.addca,x"04",
-		opcodes.movaf,x"00",x"00"
+		opcodes.mova, x"00",
+		opcodes.tris, x"00",
+		opcodes.movfa, x"00",x"00",
+		opcodes.movaf, x"00",x"01",
+		opcodes.noop
 	);
 		
+	signal porta_direction : std_logic_vector(porta'range) := (others => '0');
 	
 begin
 
 	real_rst <= rst;
 	
-	porta <= porta_buf;
+	porta(0) <= porta_buf(0) when porta_direction(0) = '1' else 'Z';
+	porta(1) <= porta_buf(1) when porta_direction(1) = '1' else 'Z';
+	porta(2) <= porta_buf(2) when porta_direction(2) = '1' else 'Z';
+	porta(3) <= porta_buf(3) when porta_direction(3) = '1' else 'Z';
+	porta(4) <= porta_buf(4) when porta_direction(4) = '1' else 'Z';
+	porta(5) <= porta_buf(5) when porta_direction(5) = '1' else 'Z';
+	porta(6) <= porta_buf(6) when porta_direction(6) = '1' else 'Z';
+	porta(7) <= porta_buf(7) when porta_direction(7) = '1' else 'Z';
+	
+--	porta <= porta_buf;
 	portb <= portb_buf;
 	portc <= portc_buf;
 	portd <= portd_buf;
@@ -189,9 +203,6 @@ begin
 						pc := pc + 1;
 						wide_buffer(7 downto 0) := program(pc);
 						pc := conv_integer(wide_buffer) - 1;
-					when opcodes.porta =>
-						pc := pc + 1;
-						porta_buf <= program(pc);
 					when opcodes.mova =>
 						pc := pc + 1;
 						register_a <= program(pc);
@@ -260,14 +271,26 @@ begin
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_we <= "0";
 							
-							pc := pc + 2;
 							delay := 2;
 						elsif(delay = 2) then
 							delay := 1;
+							narrow_buffer_int := conv_integer(program(pc + 1) & program(pc + 2));
 						else
-							register_a <= mem_data_out;
+							case narrow_buffer_int is
+								when 0 =>
+									register_a <= porta;
+								when 1 =>
+									register_a <= portb;
+								when 2 =>
+									register_a <= portc;
+								when 3 =>
+									register_a <= portd;
+								when others =>
+									register_a <= mem_data_out;
+							end case;
 							
 							delay := 0;
+							pc := pc + 2;
 						end if;
 					
 					when opcodes.janez =>
@@ -432,6 +455,16 @@ begin
 							pc := pc + 1;
 							delay := 0;
 						end if;
+					when opcodes.tris =>
+						narrow_buffer_int := conv_integer(program(pc + 1));
+						case narrow_buffer_int is
+							when 0 =>
+								porta_direction <= register_a;
+							when others => 
+								null;
+						end case; 
+						pc := pc + 1;
+					
 					when others =>
 						null;
 				end case;
@@ -443,20 +476,21 @@ begin
 		end if;
 	end process;
 
-	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
-	begin
-		if(real_rst = '1') then
-			counter := 0;
-			cpu_clock <= '0';
-		elsif(rising_edge(clk)) then
-			if(counter = 0) then
-				cpu_clock <= not cpu_clock;
-			end if;
-			
-			counter := counter + 1;
-		end if;
-	end process;
+--	clock_divider : process(clk, real_rst)
+--		variable counter : integer range 0 to 100000000/16 := 0;
+--	begin
+--		if(real_rst = '1') then
+--			counter := 0;
+--			cpu_clock <= '0';
+--		elsif(rising_edge(clk)) then
+--			if(counter = 0) then
+--				cpu_clock <= not cpu_clock;
+--			end if;
+--			
+--			counter := counter + 1;
+--		end if;
+--	end process;
+	cpu_clock <= clk;
 	
 	my_divider : cpu_divider
 		port map (
