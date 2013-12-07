@@ -4,6 +4,9 @@ use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
 use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
 use IEEE.NUMERIC_STD.all;
 
+Library UNISIM;
+use UNISIM.vcomponents.all;
+
 entity cpu_instructor_copy is
     Port ( clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
@@ -85,10 +88,10 @@ architecture Behavioral of cpu_instructor_copy is
 	signal cpu_clock : std_logic := '0';
 	signal real_rst : std_logic;
 	
-	signal porta_buf : std_logic_vector(7 downto 0);
-	signal portb_buf : std_logic_vector(7 downto 0);
-	signal portc_buf : std_logic_vector(7 downto 0);
-	signal portd_buf : std_logic_vector(7 downto 0);
+--	signal porta_buf : std_logic_vector(7 downto 0);
+--	signal portb_buf : std_logic_vector(7 downto 0);
+--	signal portc_buf : std_logic_vector(7 downto 0);
+--	signal portd_buf : std_logic_vector(7 downto 0);
 	
 	type flags_type is record
 		carry : std_logic;
@@ -163,6 +166,7 @@ architecture Behavioral of cpu_instructor_copy is
 		pop  : opcode;   -- pop register_a from the stack (1 byte instr)
 		diva  : opcode;   -- divide regiter_a by the next byte (2 byte instr)
 		divaf : opcode;
+		tris  : opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -205,7 +209,8 @@ architecture Behavioral of cpu_instructor_copy is
 		push  => "00100100",
 		pop   => "00100101",
 		diva  => "00100110",
-		divaf => "00100111"
+		divaf => "00100111",
+		tris  => "00101000"
 	);
 	
 	signal stack_origin : integer := conv_integer(x"8000");
@@ -213,32 +218,102 @@ architecture Behavioral of cpu_instructor_copy is
 --	type program_type is array(0 to 511) of opcode;
 	type program_type is array(natural range <>) of opcode;
 	constant program : program_type := (
-		opcodes.mova, x"09",
-		opcodes.movaf,x"40", x"00",
-		opcodes.mova, x"80",
-		opcodes.divaf,x"40", x"00",
-		opcodes.movaf,x"00", x"00",
-		opcodes.noop
---		opcodes.diva, x"02",
---		opcodes.movaf,x"00",x"00",
---		opcodes.diva, x"02",
---		opcodes.movaf,x"00",x"00",
---		opcodes.diva, x"03",
---		opcodes.movaf,x"00",x"00"
+		opcodes.mova, x"00",
+		opcodes.tris, x"01",
+		opcodes.mova, x"FF",
+		opcodes.tris, x"00",
+		opcodes.movfa, x"00",x"01",
+		opcodes.movaf, x"00",x"00",
+		opcodes.noop,
+		opcodes.jmp, x"00", x"08"
 	);
 
 	signal programmed : std_logic := '1';
+	
+	signal porta_output : std_logic_vector(portb'range) := (others => '0');
+	signal porta_input : std_logic_vector(portb'range) := (others => '0');
+	signal porta_direction : std_logic_vector(porta'range) := (others => '0');
+	
+	signal portb_output : std_logic_vector(portb'range) := (others => '0');
+	signal portb_input : std_logic_vector(portb'range) := (others => '0');
+	signal portb_direction : std_logic_vector(porta'range) := (others => '0');
+	
+	signal portc_output : std_logic_vector(portc'range) := (others => '0');
+	signal portc_input : std_logic_vector(portc'range) := (others => '0');
+	signal portc_direction : std_logic_vector(portc'range) := (others => '0');
+	
+	signal portd_output : std_logic_vector(portd'range) := (others => '0');
+	signal portd_input : std_logic_vector(portd'range) := (others => '0');
+	signal portd_direction : std_logic_vector(portd'range) := (others => '0');
 	 
 begin
 
+	BUF_GEN_PORTA:
+	for i in porta'range generate
+		IOBUF_inst : IOBUF
+			generic map (
+			   DRIVE => 12,
+			   IOSTANDARD => "LVCMOS33",
+			   SLEW => "SLOW")
+			port map (
+			   O => porta_output(i),     -- Buffer output
+			   IO => porta(i),   -- Buffer inout port (connect directly to top-level port)
+			   I => porta_input(i),     -- Buffer input
+			   T => not porta_direction(i)      -- 3-state enable input, high=input, low=output 
+			);
+	end generate BUF_GEN_PORTA;
 	
+	BUF_GEN_PORTB:
+	for i in portb'range generate
+		IOBUF_inst : IOBUF
+			generic map (
+			   DRIVE => 12,
+			   IOSTANDARD => "LVCMOS33",
+			   SLEW => "SLOW")
+			port map (
+			   O => portb_output(i),     -- Buffer output
+			   IO => portb(i),   -- Buffer inout port (connect directly to top-level port)
+			   I => portb_input(i),     -- Buffer input
+			   T => not portb_direction(i)      -- 3-state enable input, high=input, low=output 
+			);
+	end generate BUF_GEN_PORTB;
+	
+	BUF_GEN_PORTC:
+	for i in portc'range generate
+		IOBUF_inst : IOBUF
+			generic map (
+			   DRIVE => 12,
+			   IOSTANDARD => "LVCMOS33",
+			   SLEW => "SLOW")
+			port map (
+			   O => portc_output(i),     -- Buffer output
+			   IO => portc(i),   -- Buffer inout port (connect directly to top-level port)
+			   I => portc_input(i),     -- Buffer input
+			   T => not portc_direction(i)      -- 3-state enable input, high=input, low=output 
+			);
+	end generate BUF_GEN_PORTC;
+	
+	BUF_GEN_PORTD:
+	for i in portd'range generate
+		IOBUF_inst : IOBUF
+			generic map (
+			   DRIVE => 12,
+			   IOSTANDARD => "LVCMOS33",
+			   SLEW => "SLOW")
+			port map (
+			   O => portd_output(i),     -- Buffer output
+			   IO => portd(i),   -- Buffer inout port (connect directly to top-level port)
+			   I => portd_input(i),     -- Buffer input
+			   T => not portd_direction(i)      -- 3-state enable input, high=input, low=output 
+			);
+	end generate BUF_GEN_PORTD;
 
 	real_rst <= rst;
 	
-	porta <= porta_buf;
-	portb <= portb_buf;
-	portc <= portc_buf;
-	portd <= portd_buf;
+--	porta <= porta_buf;
+--	portb <= portb_buf;
+--	portc <= portc_buf;
+--	portd <= portd_buf;
 	
 --	programmer : process(prog_clk)
 --		constant start_flag : std_logic_vector(7 downto 0) := "01111110";
@@ -305,10 +380,10 @@ begin
 			narrow_buffer_int := 0;
 			stack_pointer := stack_origin;
 			
-			porta_buf <= (others => '0');
-			portb_buf <= (others => '0');
-			portc_buf <= (others => '0');
-			portd_buf <= (others => '0');
+--			porta_buf <= (others => '0');
+--			portb_buf <= (others => '0');
+--			portc_buf <= (others => '0');
+--			portd_buf <= (others => '0');
 			
 			dividend_data <= (others => '0');
 			divisor_data <= (others => '0');
@@ -387,13 +462,13 @@ begin
 							
 							case conv_integer(program(pc + 1) & program(pc + 2)) is
 								when 0 =>
-									porta_buf <= register_a;
+									porta_input <= register_a;
 								when 1 =>
-									portb_buf <= register_a;
+									portb_input <= register_a;
 								when 2 =>
-									portc_buf <= register_a;
+									portc_input <= register_a;
 								when 3 =>
-									portd_buf <= register_a;
+									portd_input <= register_a;
 								when others =>
 									null;
 							end case;
@@ -409,12 +484,25 @@ begin
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							delay := 1;
 						else
-							pc := pc + 2;
+							
 							delay := 0;
 							
 							case current_opcode is
 								when opcodes.movfa =>
-									register_a <= mem_data_out;
+									case conv_integer(program(pc + 1) & program(pc + 2)) is
+										when 0 =>
+											register_a <= porta_output;
+										when 1 =>
+											register_a <= portb_output;
+										when 2 =>
+											register_a <= portc_output;
+										when 3 =>
+											register_a <= portd_output;
+										when others =>
+											register_a <= mem_data_out;
+									end case;
+									
+									pc := pc + 2;
 								when opcodes.janef =>
 									if(register_a /= mem_data_out) then
 										pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
@@ -644,7 +732,21 @@ begin
 								en <= '0';
 								pc := pc + 1;
 						end if;
-					
+					when opcodes.tris =>
+						narrow_buffer_int := conv_integer(program(pc + 1));
+						case narrow_buffer_int is
+							when 0 =>
+								porta_direction <= register_a;
+							when 1 =>
+								portb_direction <= register_a;
+							when 2 =>
+								portc_direction <= register_a;
+							when 3 =>
+								portd_direction <= register_a;
+							when others => 
+								null;
+						end case; 
+						pc := pc + 1;
 					when others =>
 						null;
 				end case;
