@@ -3,8 +3,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
 use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
 use IEEE.NUMERIC_STD.all;
-Library UNISIM;
-use UNISIM.vcomponents.all;
 
 entity class_cpu is
     Port ( clk : in  STD_LOGIC;
@@ -29,9 +27,6 @@ end class_cpu;
 -- 26th -> addca, flags, division (ipcore)
 -- functions/procedure (lumping like logic)
 -- serial at some point
-
-
-
 
 architecture Behavioral of class_cpu is
 
@@ -59,10 +54,10 @@ architecture Behavioral of class_cpu is
 	signal cpu_clock : std_logic := '0';
 	signal real_rst : std_logic;
 	
---	signal porta_buf : std_logic_vector(7 downto 0) := (others => '0');
---	signal portb_buf : std_logic_vector(7 downto 0) := (others => '1');
---	signal portc_buf : std_logic_vector(7 downto 0) := (others => '1');
---	signal portd_buf : std_logic_vector(7 downto 0) := (others => '1');
+	signal porta_buf : std_logic_vector(7 downto 0);
+	signal portb_buf : std_logic_vector(7 downto 0);
+	signal portc_buf : std_logic_vector(7 downto 0);
+	signal portd_buf : std_logic_vector(7 downto 0);
 	
 	signal register_a : std_logic_vector(7 downto 0) := (others => '0');
 	
@@ -111,8 +106,6 @@ architecture Behavioral of class_cpu is
 		diva  : opcode;   -- divide register_a by the next byte (2 byte instr)
 		addca : opcode;   -- add next byte to register_a including the carry bit (2 byte instr)
 		moda  : opcode;   -- register_a mod the next byte (2 byte instr) 
-		tris  : opcode;   -- set the direction of the register defined by the next bye (2 byte instr)
-		read  : opcode;   -- read from the port specified by the next byte (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -138,9 +131,7 @@ architecture Behavioral of class_cpu is
 		push  => "00100100",
 		pop   => "00100101",
 		diva  => "00100110",
-		moda  => "00100111",
-		tris  => "00101000",
-		read  => "00101001"
+		moda  => "00100111"
 	);
 	
 	constant stack_origin : integer := conv_integer(x"8000");
@@ -148,108 +139,22 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.mova, x"00",
-		opcodes.tris, x"01",
-		opcodes.movfa, x"00",x"01",
-		opcodes.tris, x"0"
-		opcodes.movaf, x"00",x"00",
-		opcodes.noop,
-		opcodes.jmp, x"00", x"04"
+		opcodes.mova, x"fe",
+		opcodes.adda, x"08",
+		opcodes.movaf,x"00",x"00",
+		opcodes.addca,x"04",
+		opcodes.movaf,x"00",x"00"
 	);
-	
-	signal porta_output : std_logic_vector(portb'range) := (others => '0');
-	signal porta_input : std_logic_vector(portb'range) := (others => '0');
-	signal porta_direction : std_logic_vector(porta'range) := (others => '0');
-	
-	signal portb_output : std_logic_vector(portb'range) := (others => '0');
-	signal portb_input : std_logic_vector(portb'range) := (others => '0');
-	signal portb_direction : std_logic_vector(porta'range) := (others => '0');
-	
-	signal portc_output : std_logic_vector(portb'range) := (others => '0');
-	signal portc_input : std_logic_vector(portb'range) := (others => '0');
-	signal portc_direction : std_logic_vector(porta'range) := (others => '0');
-	
-	signal portd_output : std_logic_vector(portb'range) := (others => '0');
-	signal portd_input : std_logic_vector(portb'range) := (others => '0');
-	signal portd_direction : std_logic_vector(porta'range) := (others => '0');
+		
 	
 begin
 
 	real_rst <= rst;
 	
-	BUF_GEN_PORTA:
-	for i in porta'range generate
-		IOBUF_inst : IOBUF
-			generic map (
-			   DRIVE => 12,
-			   IOSTANDARD => "LVCMOS33",
-			   SLEW => "SLOW")
-			port map (
-			   O => porta_output(i),     -- Buffer output
-			   IO => porta(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => porta_input(i),     -- Buffer input
-			   T => not porta_direction(i)      -- 3-state enable input, high=input, low=output 
-			);
-	end generate BUF_GEN_PORTA;
-	
-	BUF_GEN_PORTB:
-	for i in portb'range generate
-		IOBUF_inst : IOBUF
-			generic map (
-			   DRIVE => 12,
-			   IOSTANDARD => "LVCMOS33",
-			   SLEW => "SLOW")
-			port map (
-			   O => portb_output(i),     -- Buffer output
-			   IO => portb(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portb_input(i),     -- Buffer input
-			   T => not portb_direction(i)      -- 3-state enable input, high=input, low=output 
-			);
-	end generate BUF_GEN_PORTB;
-	
-	BUF_GEN_PORTC:
-	for i in portc'range generate
-		IOBUF_inst : IOBUF
-			generic map (
-			   DRIVE => 12,
-			   IOSTANDARD => "LVCMOS33",
-			   SLEW => "SLOW")
-			port map (
-			   O => portc_output(i),     -- Buffer output
-			   IO => portc(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portc_input(i),     -- Buffer input
-			   T => not portc_direction(i)      -- 3-state enable input, high=input, low=output 
-			);
-	end generate BUF_GEN_PORTC;
-	
-	BUF_GEN_PORTD:
-	for i in portd'range generate
-		IOBUF_inst : IOBUF
-			generic map (
-			   DRIVE => 12,
-			   IOSTANDARD => "LVCMOS33",
-			   SLEW => "SLOW")
-			port map (
-			   O => portd_output(i),     -- Buffer output
-			   IO => portd(i),   -- Buffer inout port (connect directly to top-level port)
-			   I => portd_input(i),     -- Buffer input
-			   T => not portd_direction(i)      -- 3-state enable input, high=input, low=output 
-			);
-	end generate BUF_GEN_PORTD;
-	
---	portb(0) <= portb_buf(0) when portb_direction(0) = '1' else 'Z';
---	portb(1) <= portb_buf(1) when portb_direction(1) = '1' else 'Z';
---	portb(2) <= portb_buf(2) when portb_direction(2) = '1' else 'Z';
---	portb(3) <= portb_buf(3) when portb_direction(3) = '1' else 'Z';
---	portb(4) <= portb_buf(4) when portb_direction(4) = '1' else 'Z';
---	portb(5) <= portb_buf(5) when portb_direction(5) = '1' else 'Z';
---	portb(6) <= portb_buf(6) when portb_direction(6) = '1' else 'Z';
---	portb(7) <= portb_buf(7) when portb_direction(7) = '1' else 'Z';
-	
---	porta <= porta_buf;
---	portb <= portb_buf;
---	portc <= portc_buf;
---	portd <= portd_buf;
+	porta <= porta_buf;
+	portb <= portb_buf;
+	portc <= portc_buf;
+	portd <= portd_buf;
 	
 	brain : process(cpu_clock, real_rst)
 		variable pc : integer := 0;
@@ -284,6 +189,9 @@ begin
 						pc := pc + 1;
 						wide_buffer(7 downto 0) := program(pc);
 						pc := conv_integer(wide_buffer) - 1;
+					when opcodes.porta =>
+						pc := pc + 1;
+						porta_buf <= program(pc);
 					when opcodes.mova =>
 						pc := pc + 1;
 						register_a <= program(pc);
@@ -303,13 +211,13 @@ begin
 							
 							case wide_buffer_int is
 								when 0 =>
-									porta_input <= register_a;
+									porta_buf <= register_a;
 								when 1 =>
-									portb_input <= register_a;
+									portb_buf <= register_a;
 								when 2 =>
-									portc_input <= register_a;
+									portc_buf <= register_a;
 								when 3 =>
-									portd_input <= register_a;
+									portd_buf <= register_a;
 								when others =>
 									null;
 							end case;
@@ -352,26 +260,14 @@ begin
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_we <= "0";
 							
+							pc := pc + 2;
 							delay := 2;
 						elsif(delay = 2) then
 							delay := 1;
-							narrow_buffer_int := conv_integer(program(pc + 1) & program(pc + 2));
 						else
-							case narrow_buffer_int is
-								when 0 =>
-									register_a <= porta_output;
-								when 1 =>
-									register_a <= portb_output;
-								when 2 =>
-									register_a <= portc_output;
-								when 3 =>
-									register_a <= portd_output;
-								when others =>
-									register_a <= mem_data_out;
-							end case;
+							register_a <= mem_data_out;
 							
 							delay := 0;
-							pc := pc + 2;
 						end if;
 					
 					when opcodes.janez =>
@@ -491,10 +387,10 @@ begin
 						if(delay = 0) then
 							divider_dividend <= register_a;
 							divider_divisor <= program(pc + 1);
-							delay := 29;
-						elsif(delay = 29) then
+							delay := 21;
+						elsif(delay = 21) then
 							divider_ce <= '1';
-							delay := 28;
+							delay := 20;
 						elsif(delay > 1) then
 							delay := delay - 1;
 						elsif(delay = 1) then
@@ -524,10 +420,10 @@ begin
 						if(delay = 0) then
 							divider_dividend <= register_a;
 							divider_divisor <= program(pc + 1);
-							delay := 29;
-						elsif(delay = 29) then
+							delay := 21;
+						elsif(delay = 21) then
 							divider_ce <= '1';
-							delay := 28;
+							delay := 20	;
 						elsif(delay > 1) then
 							delay := delay - 1;
 						elsif(delay = 1) then
@@ -536,22 +432,6 @@ begin
 							pc := pc + 1;
 							delay := 0;
 						end if;
-					when opcodes.tris =>
-						narrow_buffer_int := conv_integer(program(pc + 1));
-						case narrow_buffer_int is
-							when 0 =>
-								porta_direction <= register_a;
-							when 1 =>
-								portb_direction <= register_a;
-							when 2 =>
-								portc_direction <= register_a;
-							when 3 =>
-								portd_direction <= register_a;
-							when others => 
-								null;
-						end case; 
-						pc := pc + 1;
-					
 					when others =>
 						null;
 				end case;
@@ -564,7 +444,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/1024 := 0;
+		variable counter : integer range 0 to 100000000/16 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
@@ -577,7 +457,6 @@ begin
 			counter := counter + 1;
 		end if;
 	end process;
---	cpu_clock <= clk;
 	
 	my_divider : cpu_divider
 		port map (
