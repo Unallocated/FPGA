@@ -11,13 +11,10 @@
 <msg type="warning" file="sim" num="471" delta="old" >The chosen IP does not support a VHDL behavioral model, generating a VHDL structural model instead.
 </msg>
 
-<msg type="warning" file="sim" num="89" delta="old" >A core named &lt;<arg fmt="%s" index="1">divider</arg>&gt; already exists in the output directory. Output products for this core may be overwritten.
+<msg type="info" file="sim" num="949" delta="old" >Finished generation of ASY schematic symbol.
 </msg>
 
-<msg type="info" file="sim" num="949" delta="new" >Finished generation of ASY schematic symbol.
-</msg>
-
-<msg type="info" file="sim" num="948" delta="new" >Finished FLIST file generation.
+<msg type="info" file="sim" num="948" delta="old" >Finished FLIST file generation.
 </msg>
 
 </messages>

@@ -19,32 +19,32 @@
 
   <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
 
-  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="memory.xise"/>
+  <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="cpu_divider.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_ASY" xil_pn:name="memory.asy" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="memory.sym" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_VHO" xil_pn:name="memory.vho" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_ASY" xil_pn:name="cpu_divider.asy" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="cpu_divider.sym" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHO" xil_pn:name="cpu_divider.vho" xil_pn:origination="imported"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1382580870" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1382580870">
+    <transform xil_pn:end_ts="1386384221" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1386384221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1384185676" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-4175709418674036128" xil_pn:start_ts="1384185676">
+    <transform xil_pn:end_ts="1386384221" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="3478317566912355" xil_pn:start_ts="1386384221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1384185676" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-8709347091874259249" xil_pn:start_ts="1384185676">
+    <transform xil_pn:end_ts="1386384221" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-3911064610703124238" xil_pn:start_ts="1386384221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1384185676" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1384185676">
+    <transform xil_pn:end_ts="1386384221" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1386384221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1384185676" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-8000053855138678878" xil_pn:start_ts="1384185676">
+    <transform xil_pn:end_ts="1386384221" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="3115020832436691493" xil_pn:start_ts="1386384221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>

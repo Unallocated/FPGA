@@ -7,7 +7,7 @@
 -- \   \   \/     Version: P.68d
 --  \   \         Application: netgen
 --  /   /         Filename: divider.vhd
--- /___/   /\     Timestamp: Mon Dec 02 21:20:06 2013
+-- /___/   /\     Timestamp: Fri Dec  6 21:39:16 2013
 -- \   \  /  \ 
 --  \___\/\___\
 --             
@@ -17,7 +17,7 @@
 -- Output file	: ./tmp/_cg/divider.vhd
 -- # of Entities	: 1
 -- Design Name	: divider
--- Xilinx	: C:\Xilinx\14.6\ISE_DS\ISE\
+-- Xilinx	: /opt/Xilinx/14.6/ISE_DS/ISE/
 --             
 -- Purpose:    
 --     This VHDL netlist is a verification model and uses simulation 
