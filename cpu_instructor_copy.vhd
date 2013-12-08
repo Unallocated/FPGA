@@ -217,15 +217,70 @@ architecture Behavioral of cpu_instructor_copy is
 	
 --	type program_type is array(0 to 511) of opcode;
 	type program_type is array(natural range <>) of opcode;
+	
 	constant program : program_type := (
+		opcodes.jmp,  x"00",x"03",
+		opcodes.call, x"00",x"7b",
+		opcodes.mova, x"7e",
+		opcodes.movaf,x"40",x"00",
+		opcodes.mova, x"01",
+		opcodes.movaf,x"40",x"01",
+		opcodes.call, x"00",x"31",
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"40",x"00",
+		opcodes.mova, x"02",
+		opcodes.movaf,x"40",x"01",
+		opcodes.call, x"00",x"31",
+		opcodes.mova, x"01",
+		opcodes.movaf,x"40",x"01",
+		opcodes.call, x"00",x"3b",
+		opcodes.movfa,x"40",x"00",
+		opcodes.movaf,x"00",x"00",
+		opcodes.jmp,  x"00",x"9c",
+		opcodes.call, x"00",x"74",
+		opcodes.call, x"00",x"5a",
+		opcodes.call, x"00",x"66",
+		opcodes.ret,  
+		opcodes.call, x"00",x"74",
 		opcodes.mova, x"00",
-		opcodes.tris, x"01",
-		opcodes.mova, x"FF",
-		opcodes.tris, x"00",
-		opcodes.movfa, x"00",x"01",
-		opcodes.movaf, x"00",x"00",
-		opcodes.noop,
-		opcodes.jmp, x"00", x"08"
+		opcodes.movaf,x"00",x"05",
+		opcodes.movfa,x"00",x"03",
+		opcodes.anda, x"fd",
+		opcodes.movaf,x"00",x"03",
+		opcodes.movfa,x"00",x"01",
+		opcodes.movaf,x"40",x"00",
+		opcodes.movfa,x"00",x"03",
+		opcodes.ora,  x"02",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movfa,x"40",x"00",
+		opcodes.movaf,x"00",x"01",
+		opcodes.ret,  
+		opcodes.movfa,x"00",x"03",
+		opcodes.anda, x"fe",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ora,  x"01",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.movfa,x"40",x"01",
+		opcodes.movaf,x"00",x"02",
+		opcodes.ret,  
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movaf,x"00",x"06",
+		opcodes.movaf,x"00",x"07",
+		opcodes.movaf,x"00",x"04",
+		opcodes.mova, x"00",
+		opcodes.movaf,x"00",x"01",
+		opcodes.movaf,x"00",x"02",
+		opcodes.movaf,x"00",x"00",
+		opcodes.ora,  x"01",
+		opcodes.ora,  x"02",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.noop
 	);
 
 	signal programmed : std_logic := '1';
@@ -469,6 +524,14 @@ begin
 									portc_input <= register_a;
 								when 3 =>
 									portd_input <= register_a;
+								when 4 =>
+									porta_direction <= register_a;
+								when 5 =>
+									portb_direction <= register_a;
+								when 6 =>
+									portc_direction <= register_a;
+								when 7 =>
+									portd_direction <= register_a;
 								when others =>
 									null;
 							end case;
@@ -498,6 +561,14 @@ begin
 											register_a <= portc_output;
 										when 3 =>
 											register_a <= portd_output;
+										when 4 =>
+											register_a <= porta_direction;
+										when 5 =>
+											register_a <= portb_direction;
+										when 6 =>
+											register_a <= portc_direction;
+										when 7 =>
+											register_a <= portd_direction;
 										when others =>
 											register_a <= mem_data_out;
 									end case;
@@ -732,21 +803,21 @@ begin
 								en <= '0';
 								pc := pc + 1;
 						end if;
-					when opcodes.tris =>
-						narrow_buffer_int := conv_integer(program(pc + 1));
-						case narrow_buffer_int is
-							when 0 =>
-								porta_direction <= register_a;
-							when 1 =>
-								portb_direction <= register_a;
-							when 2 =>
-								portc_direction <= register_a;
-							when 3 =>
-								portd_direction <= register_a;
-							when others => 
-								null;
-						end case; 
-						pc := pc + 1;
+--					when opcodes.tris =>
+--						narrow_buffer_int := conv_integer(program(pc + 1));
+--						case narrow_buffer_int is
+--							when 0 =>
+--								porta_direction <= register_a;
+--							when 1 =>
+--								portb_direction <= register_a;
+--							when 2 =>
+--								portc_direction <= register_a;
+--							when 3 =>
+--								portd_direction <= register_a;
+--							when others => 
+--								null;
+--						end case; 
+--						pc := pc + 1;
 					when others =>
 						null;
 				end case;
@@ -766,7 +837,7 @@ begin
 			counter := 0;
 			cpu_clock <= '0';
 		elsif(rising_edge(clk)) then
-			if(counter = 10) then
+			if(counter = 100000000/1024) then
 				cpu_clock <= not cpu_clock;
 				counter := 0;
 			end if;
