@@ -145,27 +145,47 @@ foreach(@lines){
 			$address =~ /^0x([a-fA-F0-9]{2})/;
 			$variables{$varName} = sprintf("%08b",hex($1));
 		}
-
 	}
 	$lineNumber++;
 }
 
 #print Dumper \%variables;
-
+#
 $lineNumber = 1;
 my @newLines;
 
-foreach(@lines){
+foreach my $line (@lines){
 	foreach my $variable (keys(%variables)){
-		if(! /^def/ && ! /\:/){
-			if(/ $variable / || / ${variable}$/){
+		if($line !~ /^def/ && $line !~ /\:/){
+			if($line =~ / ([\~]?)$variable / || $line =~/ ([\~]?)${variable}$/){
 				my $var = $variables{$variable};
-				s/ $variable/ $var/;
+				if($line =~ /([\~]{1})/){
+					print "Moo\n";
+					my ($one, $two) = split(" ",$var);
+					print "Fone: $one Ftwo: $two\n";
+					$one = oct("0b".$one);
+					$two = oct("0b".$two);
+					print "One: $one Two: $two\n";
+					if($1 eq "~"){
+						$one = (~$one) & 0xff;
+						$two = (~$two) & 0xff;
+					}
+					print "var: $var\n";
+
+					if($var =~ /^[0-1]{8}$/){
+						$var = sprintf("%08b", $one);
+					}else{
+						$var = sprintf("%08b %08b", $one, $two);
+					}
+				}
+				
+				$line =~ s/ [~]*$variable/ $var/;
 				last;
 			}
 		}
 	}
-	push(@newLines, $_);
+	print "Adding $line\n";
+	push(@newLines, $line);
 	$lineNumber++;
 }
 
@@ -175,7 +195,7 @@ my %labels;
 
 my $pc = 0;
 foreach (@newLines){
-	if(/^([a-zA-Z0-9]+)\:/){
+	if(/^([a-z0-9\-\_]+)\:/i){
 		if(exists($labels{$1})){
 			print "Error: Duplicate label '$1' at line number '$lineNumber'.\n";
 			exit(1);
@@ -199,13 +219,14 @@ foreach (@newLines){
 }
 
 foreach (@newLines){
-	if(/^[a-zA-Z0-9]+\:/ || /^def/){
+	if(/^[a-zA-Z0-9\-\_]+\:/ || /^def/){
 		next;
 	}
 
 	foreach my $label (keys(%labels)){
 		if($_ =~ /${label}$/ || $_ =~ /$label/){
 			my $replacement = sprintf("%08b %08b", (($labels{$label} & 0xff00) >> 8), $labels{$label} & 0xff);
+			print "Replacing $label with $replacement\n";
 			s/$label/$replacement/;
 			last;
 		}
@@ -222,10 +243,10 @@ my $pos = 0;
 
 foreach(@newLines2){
 	$lineNumber++;
-	if(/^$/){
+	if(/^\s*$/){
 		next;
 	}
-
+	print "Line: $_\n";
 	my @parts = split(' ');
 	my $opcode = shift(@parts);
 	if(! isValidOpcode($opcode)){
@@ -244,6 +265,8 @@ foreach(@newLines2){
 	$pos++;
 	for($a = 0; $a <= $#parts; $a++){
 		my $arg = $parts[$a];
+		$arg =~ s/[\~\!]+//g;
+		print "Arg: $arg\n";
 		if($arg =~ /^0x([a-fA-F0-9]{2})$/){
 			$print .= "x\"$1\",";
 		}elsif($arg =~ /^([0-1]{8})$/){
@@ -261,7 +284,7 @@ foreach(@newLines2){
 
 #$print =~ s/, (-- \d+ -> \d+\n)$/$1/;
 $print =~ s/[\r\n]+$//;
-$print =~ s/,[\s\t\r\n]+$//;
+$print =~ s/,[\s\t\r\n]*$//;
 
 print "\n--- COPY AND PASTE INTO VHD FILE ---\n";
 print "\tconstant program : program_type := (\n";
