@@ -1,4 +1,6 @@
 *
+!scripts/
+!assembly/
 !isim/*
 !.gitignore
 !*.asm
