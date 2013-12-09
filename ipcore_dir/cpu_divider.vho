@@ -55,7 +55,6 @@
 component cpu_divider
 	port (
 	clk: in std_logic;
-	ce: in std_logic;
 	rfd: out std_logic;
 	dividend: in std_logic_vector(7 downto 0);
 	divisor: in std_logic_vector(7 downto 0);
@@ -72,7 +71,6 @@ end component;
 your_instance_name : cpu_divider
 		port map (
 			clk => clk,
-			ce => ce,
 			rfd => rfd,
 			dividend => dividend,
 			divisor => divisor,

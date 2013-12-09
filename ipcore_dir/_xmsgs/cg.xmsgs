@@ -8,13 +8,13 @@
 <msg type="info" file="sim" num="172" delta="old" >Generating IP...
 </msg>
 
-<msg type="warning" file="sim" num="471" delta="old" >The chosen IP does not support a VHDL behavioral model, generating a VHDL structural model instead.
+<msg type="warning" file="sim" num="471" delta="new" >The chosen IP does not support a VHDL behavioral model, generating a VHDL structural model instead.
 </msg>
 
-<msg type="info" file="sim" num="949" delta="old" >Finished generation of ASY schematic symbol.
+<msg type="info" file="sim" num="949" delta="new" >Finished generation of ASY schematic symbol.
 </msg>
 
-<msg type="info" file="sim" num="948" delta="old" >Finished FLIST file generation.
+<msg type="info" file="sim" num="948" delta="new" >Finished FLIST file generation.
 </msg>
 
 </messages>

@@ -1,0 +1,3 @@
+vhdl work "ipcore_dir/memory.vhd"
+vhdl work "ipcore_dir/cpu_divider.vhd"
+vhdl work "class_cpu.vhd"

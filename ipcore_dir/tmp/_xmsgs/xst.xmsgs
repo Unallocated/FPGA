@@ -5,37 +5,40 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_pipe_v2_0/xbip_pipe_v2_0_xst.vhd" Line 207: Range is empty (null range)
+<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/root/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_pipe_v2_0/xbip_pipe_v2_0_xst.vhd" Line 207: Range is empty (null range)
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 499: Range is empty (null range)
+<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/root/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 499: Range is empty (null range)
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 500: Range is empty (null range)
+<msg type="warning" file="HDLCompiler" num="746" delta="new" >"/root/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 500: Range is empty (null range)
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="220" delta="new" >"/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 502: Assignment ignored
+<msg type="warning" file="HDLCompiler" num="220" delta="new" >"/root/FPGA/ipcore_dir/tmp/_cg/_bbx/xbip_utils_v2_0/bip_utils_pkg_v2_0.vhd" Line 502: Assignment ignored
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="634" delta="new" >"/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd" Line 235: Net &lt;<arg fmt="%s" index="1">quot_i[1][7]</arg>&gt; does not have a driver.
+<msg type="warning" file="HDLCompiler" num="634" delta="new" >"/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd" Line 235: Net &lt;<arg fmt="%s" index="1">quot_i[1][7]</arg>&gt; does not have a driver.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[2].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[2].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[3].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[3].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[4].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[4].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[5].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[5].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[6].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[6].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
 </msg>
 
-<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[7].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+<msg type="warning" file="Xst" num="2972" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%d" index="2">472</arg>. All outputs of instance &lt;<arg fmt="%s" index="3">div_loop[0].stage_zero.control_gen.ce_create[7].del_ce</arg>&gt; of block &lt;<arg fmt="%s" index="4">xbip_pipe_v2_0_xst</arg>&gt; are unconnected in block &lt;<arg fmt="%s" index="5">dividervdc</arg>&gt;. Underlying logic will be removed.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">SCLR</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -50,13 +53,16 @@
 <msg type="warning" file="Xst" num="2935" delta="new" >Signal &apos;<arg fmt="%s" index="1">DIVIDE_BY_ZERO</arg>&apos;, unconnected in block &apos;<arg fmt="%s" index="2">div_gen_synth</arg>&apos;, is tied to its initial value (<arg fmt="%s" index="3">0</arg>).
 </msg>
 
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">SCLR</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/bip_sdivider_synth.vhd</arg>&quot; line <arg fmt="%s" index="2">471</arg>: Output port &lt;<arg fmt="%s" index="3">rdy</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">divider_blk</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/bip_sdivider_synth.vhd</arg>&quot; line <arg fmt="%s" index="2">471</arg>: Output port &lt;<arg fmt="%s" index="3">rdy</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">divider_blk</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/bip_sdivider_synth.vhd</arg>&quot; line <arg fmt="%s" index="2">471</arg>: Output port &lt;<arg fmt="%s" index="3">sign_m</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">divider_blk</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/bip_sdivider_synth.vhd</arg>&quot; line <arg fmt="%s" index="2">471</arg>: Output port &lt;<arg fmt="%s" index="3">sign_m</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">divider_blk</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">nd</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -65,13 +71,13 @@
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">aclr</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">873</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">div_loop[0].adder_gen.no_reg.adsu_mod</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">873</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">div_loop[0].adder_gen.no_reg.adsu_mod</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">1169</arg>: Output port &lt;<arg fmt="%s" index="3">inv_o</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">remd_output.adsu_sel2</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">1169</arg>: Output port &lt;<arg fmt="%s" index="3">inv_o</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">remd_output.adsu_sel2</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">1169</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">remd_output.adsu_sel2</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/dividervdc_v.vhd</arg>&quot; line <arg fmt="%s" index="2">1169</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">remd_output.adsu_sel2</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="2935" delta="new" >Signal &apos;<arg fmt="%s" index="1">quot_i&lt;1&gt;</arg>&apos;, unconnected in block &apos;<arg fmt="%s" index="2">dividervdc</arg>&apos;, is tied to its initial value (<arg fmt="%s" index="3">00000000</arg>).
@@ -98,22 +104,31 @@
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">rdy</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">b_in</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -125,7 +140,7 @@
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">b_signed</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsub/c_addsub_xst.vhd</arg>&quot; line <arg fmt="%s" index="2">373</arg>: Output port &lt;<arg fmt="%s" index="3">q_c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">no_pipelining.the_addsub</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsub/c_addsub_xst.vhd</arg>&quot; line <arg fmt="%s" index="2">373</arg>: Output port &lt;<arg fmt="%s" index="3">q_c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">no_pipelining.the_addsub</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">b_out</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
@@ -176,22 +191,25 @@
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">q_c_out</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">s</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">s</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_ovfl</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsubreg_v.vhd</arg>&quot; line <arg fmt="%s" index="2">128</arg>: Output port &lt;<arg fmt="%s" index="3">q_b_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">add1</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">b_in</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -203,7 +221,7 @@
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">b_signed</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/main/git/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsub/c_addsub_xst.vhd</arg>&quot; line <arg fmt="%s" index="2">373</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">no_pipelining.the_addsub</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/root/FPGA/ipcore_dir/tmp/_cg/_bbx/sdivider_v6_0/addsub/c_addsub_xst.vhd</arg>&quot; line <arg fmt="%s" index="2">373</arg>: Output port &lt;<arg fmt="%s" index="3">c_out</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">no_pipelining.the_addsub</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">c_out</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
@@ -213,6 +231,9 @@
 </msg>
 
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">q_b_out</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">ce</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">aclr</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -243,6 +264,12 @@
 </msg>
 
 <msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">q_ovfl</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">CE</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">dclk_phase_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">dividervdc</arg>&gt;.

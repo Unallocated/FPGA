@@ -1,5 +1,5 @@
 The following files were generated for 'cpu_divider' in directory
-/home/main/git/FPGA/ipcore_dir/
+/root/FPGA/ipcore_dir/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.

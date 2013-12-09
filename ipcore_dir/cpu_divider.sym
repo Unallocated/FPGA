@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="cpu_divider">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2013-12-7T2:42:43</timestamp>
+    <timestamp>2013-12-9T3:30:50</timestamp>
     <pin polarity="Input" x="0" y="80" name="clk" />
-    <pin polarity="Input" x="0" y="112" name="ce" />
     <pin polarity="Input" x="0" y="208" name="dividend[7:0]" />
     <pin polarity="Input" x="0" y="240" name="divisor[7:0]" />
     <pin polarity="Output" x="576" y="80" name="rfd" />
@@ -14,8 +13,6 @@
         <rect width="512" x="32" y="32" height="352" />
         <line x2="32" y1="80" y2="80" x1="0" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="80" type="pin clk" />
-        <line x2="32" y1="112" y2="112" x1="0" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="112" type="pin ce" />
         <line x2="32" y1="208" y2="208" style="linewidth:W" x1="0" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="208" type="pin dividend[7:0]" />
         <line x2="32" y1="240" y2="240" style="linewidth:W" x1="0" />
