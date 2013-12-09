@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=/home/main/git/FPGA/class_cpu.ncd
-OUTFILE=/home/main/git/FPGA/class_cpu.bit
-FAMILY=Spartan6
-PART=xc6slx16-3csg324
-WORKINGDIR=/home/main/git/FPGA
-LICENSE=WebPack
-USER_INFO=210714202_0_0_033

@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "secureip" -o "C:/Users/main-local/Documents/GitHub/FPGA/divider_test_isim_beh.exe" -prj "C:/Users/main-local/Documents/GitHub/FPGA/divider_test_beh.prj" "work.divider_test" 
