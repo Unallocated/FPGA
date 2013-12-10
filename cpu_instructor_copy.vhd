@@ -220,12 +220,76 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	constant program : program_type := (
 		opcodes.jmp,  x"00",x"03",
-		opcodes.mova, x"ff",
+		opcodes.call, x"00",x"8e",
+		opcodes.mova, x"00",
+		opcodes.movaf,x"40",x"00",
+		opcodes.movaf,x"40",x"01",
+		opcodes.adda, x"01",
+		opcodes.xora, x"ff",
+		opcodes.movaf,x"40",x"00",
+		opcodes.xora, x"ff",
+		opcodes.movaf,x"40",x"01",
 		opcodes.push, 
-		opcodes.mova, x"55",
+		opcodes.call, x"00",x"44",
+		opcodes.pop,  
+		opcodes.movaf,x"00",x"00",
+		opcodes.jane, x"ff",x"00",x"0e",
+		opcodes.mova, x"00",
+		opcodes.adda, x"01",
+		opcodes.movaf,x"40",x"01",
+		opcodes.push, 
+		opcodes.call, x"00",x"4e",
+		opcodes.movfa,x"40",x"00",
 		opcodes.movaf,x"00",x"00",
 		opcodes.pop,  
-		opcodes.movaf,x"00",x"00"
+		opcodes.jane, x"ff",x"00",x"28",
+		opcodes.mova, x"7e",
+		opcodes.movaf,x"00",x"00",
+		opcodes.jmp,  x"00",x"af",
+		opcodes.call, x"00",x"87",
+		opcodes.call, x"00",x"6d",
+		opcodes.call, x"00",x"79",
+		opcodes.ret,  
+		opcodes.call, x"00",x"87",
+		opcodes.mova, x"00",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movfa,x"00",x"03",
+		opcodes.anda, x"fd",
+		opcodes.movaf,x"00",x"03",
+		opcodes.movfa,x"00",x"01",
+		opcodes.movaf,x"40",x"00",
+		opcodes.movfa,x"00",x"03",
+		opcodes.ora,  x"02",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movfa,x"40",x"00",
+		opcodes.movaf,x"00",x"01",
+		opcodes.ret,  
+		opcodes.movfa,x"00",x"03",
+		opcodes.anda, x"fe",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ora,  x"01",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.movfa,x"40",x"01",
+		opcodes.movaf,x"00",x"02",
+		opcodes.ret,  
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movaf,x"00",x"06",
+		opcodes.movaf,x"00",x"07",
+		opcodes.movaf,x"00",x"04",
+		opcodes.mova, x"00",
+		opcodes.movaf,x"00",x"01",
+		opcodes.movaf,x"00",x"02",
+		opcodes.movaf,x"00",x"00",
+		opcodes.ora,  x"01",
+		opcodes.ora,  x"02",
+		opcodes.movaf,x"00",x"03",
+		opcodes.ret,  
+		opcodes.noop
 	);
 
 	signal programmed : std_logic := '1';
@@ -530,8 +594,8 @@ begin
 							end case;
 						end if;
 					when opcodes.janez | opcodes.jane =>
-						wide_buffer := program(pc + 1) & program(pc + 2);
-						pc := pc + 2;
+						wide_buffer := program(pc + 2) & program(pc + 3);
+						
 						
 						case current_opcode is
 							when opcodes.janez =>
@@ -539,7 +603,7 @@ begin
 									pc := conv_integer(wide_buffer) - 1;
 								end if;
 							when opcodes.jane =>
-								if(register_a /= program(pc)) then
+								if(register_a /= program(pc + 1)) then
 									pc := conv_integer(wide_buffer) - 1;
 								end if;
 							when others => 
@@ -782,7 +846,7 @@ begin
 			counter := 0;
 			cpu_clock <= '0';
 		elsif(rising_edge(clk)) then
-			if(counter = 100000000/1024) then
+			if(counter = 100000000/4096) then
 				cpu_clock <= not cpu_clock;
 				counter := 0;
 			end if;
