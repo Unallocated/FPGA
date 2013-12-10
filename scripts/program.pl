@@ -93,7 +93,7 @@ my @incedLines;
 
 foreach(@lines){
 	$pos++;
-	if(/^inc (\w+\.inc)$/){
+	if(/^inc (.+\.inc)$/){
 		print "Including file $1\n";
 		if(! -f $1){
 			print "Error: Include file '$1' does not exist.\n";
