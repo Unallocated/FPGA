@@ -3,6 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.conv_integer;
 use IEEE.STD_LOGIC_ARITH.conv_std_logic_vector;
 use IEEE.NUMERIC_STD.all;
+use IEEE.MATH_REAL.ceil;
 
 Library UNISIM;
 use UNISIM.vcomponents.all;
@@ -17,7 +18,11 @@ entity cpu_instructor_copy is
 --           serial_out : out STD_LOGIC;
            serial_in : in STD_LOGIC;
            prog_clk : in STD_LOGIC;
-           prog_data : in STD_LOGIC);
+           prog_data : in STD_LOGIC;
+           sram_sck : out STD_LOGIC;
+           sram_so : out STD_LOGIC;
+           sram_si : in STD_LOGIC;
+           sram_cs_n : out STD_LOGIC);
 end cpu_instructor_copy;
 
 --
@@ -113,6 +118,23 @@ architecture Behavioral of cpu_instructor_copy is
 		);
 	END COMPONENT;
 	
+	COMPONENT sram
+	PORT(
+		clk : IN std_logic;
+		rst : IN std_logic;
+		si : IN std_logic;
+		data_in : IN std_logic_vector(7 downto 0);
+		start : IN std_logic;
+		we : IN std_logic;
+		addr : IN std_logic_vector(23 downto 0);          
+		data_out : OUT std_logic_vector(7 downto 0);
+		so : OUT std_logic;
+		done : OUT std_logic;
+		sck : OUT std_logic;
+		cs_n : OUT std_logic
+		);
+	END COMPONENT;
+	
 	signal cpu_clock : std_logic := '0';
 	signal real_rst : std_logic;
 	
@@ -136,6 +158,23 @@ architecture Behavioral of cpu_instructor_copy is
 	signal dividend_data : std_logic_vector(7 downto 0) := (others => '0');
 	signal data_out : std_logic_vector(7 downto 0);
 	
+	signal sram_clk : std_logic := '0';
+	signal sram_data_in : std_logic_vector(7 downto 0) :=  (others => '0');
+	signal sram_start : std_logic := '0';
+	signal sram_we : std_logic := '0';
+	signal sram_addr : std_logic_vector(23 downto 0) := (others => '0');
+	signal sram_data_out : std_logic_vector(7 downto 0) := (others => '0');
+	signal sram_done : std_logic := '0';
+	
+	
+	constant in_test_mode : std_logic := '0';
+	constant base_clock_rate_hz : integer := 100000000;
+	constant test_mode_divider : integer := base_clock_rate_hz;
+	constant normal_mode_divider : integer := 65536;
+	constant sram_test_mode_divider : integer := 2;
+	constant sram_normal_mode_divider : integer := normal_mode_divider / 2;
+--	constant sram_clock_target_hz : integer := 20000000;
+--	constant sram_clock_divider : integer := integer(ceil(real(base_clock_rate_hz) / real(sram_clock_target_hz)));
 	
 	subtype opcode is std_logic_vector(7 downto 0);
 	
@@ -237,10 +276,11 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.noop,
-		opcodes.rdser,
-		opcodes.movaf, x"00", x"00",
-		opcodes.jmp, x"00", x"00"
+		opcodes.mova, x"7e",
+		opcodes.movaf, x"80", x"00",
+		opcodes.mova, x"00",
+		opcodes.movfa, x"80", x"00",
+		opcodes.movaf, x"00", x"00"
 	);
 
 	signal programmed : std_logic := '1';
@@ -456,18 +496,29 @@ begin
 							when others =>
 								null;
 						end case;
+						
+						
 					when opcodes.movaf =>
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_data_in <= register_a;
+							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_data_in <= register_a;
+							sram_we <= '1';
 							
-							delay := 2;
+							delay := 4;
+						elsif(delay = 4) then
+							sram_start <= '1';
+							delay := 3;
+						elsif(delay = 3) then
+							if(sram_done = '0') then
+								delay := 2;
+								sram_start <= '0';
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "1";
-							delay := 1;
+							if(sram_done = '1') then
+								delay := 1;
+							end if;			
 						else
-							mem_we <= "0";
+							sram_we <= '0';
 							
 							case conv_integer(program(pc + 1) & program(pc + 2)) is
 								when 0 =>
@@ -492,14 +543,63 @@ begin
 							pc := pc + 2;
 							delay := 0;
 						end if;				
+						
+						
+--					when opcodes.movaf =>
+--						if(delay = 0) then
+--							mem_addr <= program(pc + 1) & program(pc + 2);
+--							mem_data_in <= register_a;
+--							
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= program(pc + 1) & program(pc + 2);
+--							mem_we <= "1";
+--							delay := 1;
+--						else
+--							mem_we <= "0";
+--							
+--							case conv_integer(program(pc + 1) & program(pc + 2)) is
+--								when 0 =>
+--									porta_input <= register_a;
+--								when 1 =>
+--									portb_input <= register_a;
+--								when 2 =>
+--									portc_input <= register_a;
+--								when 3 =>
+--									portd_input <= register_a;
+--								when 4 =>
+--									porta_direction <= not register_a;
+--								when 5 =>
+--									portb_direction <= not register_a;
+--								when 6 =>
+--									portc_direction <= not register_a;
+--								when 7 =>
+--									portd_direction <= not register_a;
+--								when others =>
+--									null;
+--							end case;
+--							pc := pc + 2;
+--							delay := 0;
+--						end if;				
+					
+					
 					when opcodes.movfa | opcodes.janef =>
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
+							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_we <= '0';
+							delay := 4;
+						elsif(delay = 4) then
+							sram_start <= '1';
+							delay := 3;
+						elsif(delay = 3) then
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 2;
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
+							if(sram_done = '1') then
+								delay := 1;
+							end if;
 						else
 							
 							delay := 0;
@@ -524,12 +624,12 @@ begin
 										when 7 =>
 											register_a <= portd_direction;
 										when others =>
-											register_a <= mem_data_out;
+											register_a <= sram_data_out;
 									end case;
 									
 									pc := pc + 2;
 								when opcodes.janef =>
-									if(register_a /= mem_data_out) then
+									if(register_a /= sram_data_out) then
 										pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
 									else
 										pc := pc + 2;
@@ -538,6 +638,54 @@ begin
 									null;
 							end case;
 						end if;
+					
+					
+--					when opcodes.movfa | opcodes.janef =>
+--						if(delay = 0) then
+--							mem_addr <= program(pc + 1) & program(pc + 2);
+--							mem_we <= "0";
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= program(pc + 1) & program(pc + 2);
+--							delay := 1;
+--						else
+--							
+--							delay := 0;
+--							
+--							case current_opcode is
+--								when opcodes.movfa =>
+--									case conv_integer(program(pc + 1) & program(pc + 2)) is
+--										when 0 =>
+--											register_a <= porta_output;
+--										when 1 =>
+--											register_a <= portb_output;
+--										when 2 =>
+--											register_a <= portc_output;
+--										when 3 =>
+--											register_a <= portd_output;
+--										when 4 =>
+--											register_a <= porta_direction;
+--										when 5 =>
+--											register_a <= portb_direction;
+--										when 6 =>
+--											register_a <= portc_direction;
+--										when 7 =>
+--											register_a <= portd_direction;
+--										when others =>
+--											register_a <= mem_data_out;
+--									end case;
+--									
+--									pc := pc + 2;
+--								when opcodes.janef =>
+--									if(register_a /= mem_data_out) then
+--										pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
+--									else
+--										pc := pc + 2;
+--									end if;
+--								when others =>
+--									null;
+--							end case;
+--						end if;
 					when opcodes.janez | opcodes.jane =>
 						wide_buffer := program(pc + 2) & program(pc + 3);
 						
@@ -840,19 +988,53 @@ begin
 		end if;
 	end process;
 
-	clock_divider : process(clk, real_rst)
+	clock_divider_proc : process(clk, real_rst)
 		variable counter : integer := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
 			cpu_clock <= '0';
 		elsif(rising_edge(clk)) then
-			if(counter = 100000000/16) then
-				cpu_clock <= not cpu_clock;
-				counter := 0;
+			if(in_test_mode = '1') then
+				if(counter = base_clock_rate_hz / test_mode_divider) then
+					cpu_clock <= not cpu_clock;
+					counter := 0;
+				else
+					counter := counter  + 1;
+				end if;
+			else
+				if(counter = base_clock_rate_hz / normal_mode_divider) then
+					cpu_clock <= not cpu_clock;
+					counter := 0;
+				else
+					counter := counter  + 1;
+				end if;
 			end if;
-			
-			counter := counter + 1;
+		end if;
+	end process;
+	
+	sram_clock_divider_proc : process(clk, real_rst)
+		variable counter : integer := 0;
+	begin
+		if(real_rst = '1') then
+			counter := 0;
+			sram_clk <= '0';
+		elsif(rising_edge(clk)) then
+			if(in_test_mode = '1') then
+				if(counter = base_clock_rate_hz / sram_test_mode_divider) then
+					sram_clk <= not sram_clk;
+					counter := 0;
+				else
+					counter := counter  + 1;
+				end if;
+			else
+				if(counter = base_clock_rate_hz / sram_normal_mode_divider) then
+					sram_clk <= not sram_clk;
+					counter := 0;
+				else
+					counter := counter  + 1;
+				end if;
+			end if;
 		end if;
 	end process;
 
@@ -897,6 +1079,21 @@ begin
 		rx => serial_in,
 		new_data => rx_new_data,
 		data => rx_data
+	);
+	
+	sram_instance : sram PORT MAP(
+		clk => sram_clk,
+		rst => real_rst,
+		si => sram_si,
+		data_in => sram_data_in,
+		start => sram_start,
+		we => sram_we,
+		addr => sram_addr,
+		data_out => sram_data_out,
+		so => sram_so,
+		done => sram_done,
+		sck => sram_sck,
+		cs_n => sram_cs_n
 	);
 
 end Behavioral;
