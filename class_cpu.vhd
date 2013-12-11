@@ -109,6 +109,11 @@ architecture Behavioral of class_cpu is
 		diva  : opcode;   -- divide register_a by the next byte (2 byte instr)
 		addca : opcode;   -- add next byte to register_a including the carry bit (2 byte instr)
 		moda  : opcode;   -- register_a mod the next byte (2 byte instr) 
+		xora  : opcode;   -- xor register_a with the next byte (2 byte instr)
+		ora   : opcode;   -- or register_a with the next byte (2 byte instr)
+		anda  : opcode;   -- and register_a with the next byte (2 byte instr)
+		nora  : opcode;   -- nora register_a with the next byte (2 byte instr)
+		xnora : opcode;   -- xnora register_a with the next byte (2 byte instr)
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -131,6 +136,11 @@ architecture Behavioral of class_cpu is
 		addca => "00010000",
 		call  => "00010001",
 		ret   => "00010010",
+		xora  => "00010111",
+		ora   => "00011000",
+		anda  => "00011001",
+		nora  => "00011010",
+		xnora => "00011011",
 		push  => "00100100",
 		pop   => "00100101",
 		diva  => "00100110",
@@ -534,6 +544,21 @@ begin
 							pc := pc + 1;
 							delay := 0;
 						end if;
+					when opcodes.xora =>
+						register_a <= program(pc + 1) xor register_a;
+						pc := pc + 1;
+					when opcodes.ora =>
+						register_a <= program(pc + 1) or register_a;
+						pc := pc + 1;
+					when opcodes.anda =>
+						register_a <= program(pc + 1) and register_a;
+						pc := pc + 1;
+					when opcodes.nora =>
+						register_a <= program(pc + 1) nor register_a;
+						pc := pc + 1;
+					when opcodes.xnora =>
+						register_a <= program(pc + 1) xnor register_a;
+						pc := pc + 1;
 					when others =>
 						null;
 				end case;
@@ -546,7 +571,7 @@ begin
 	end process;
 
 	clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/16 := 0;
+		variable counter : integer range 0 to 100000000/64 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
