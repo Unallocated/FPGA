@@ -142,11 +142,11 @@ architecture Behavioral of class_cpu is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.mova, x"fe",
-		opcodes.adda, x"08",
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"05",
+		opcodes.movfa,x"00",x"01",
 		opcodes.movaf,x"00",x"00",
-		opcodes.addca,x"04",
-		opcodes.movaf,x"00",x"00"
+		opcodes.jmp,  x"00",x"05"
 	);
 		
 	signal porta_output : std_logic_vector(portb'range) := (others => '0');
@@ -293,6 +293,14 @@ begin
 									portc_input <= register_a;
 								when 3 =>
 									portd_input <= register_a;
+								when 4 =>
+									porta_direction <= register_a;
+								when 5 =>
+									portb_direction <= register_a;
+								when 6 =>
+									portc_direction <= register_a;
+								when 7 =>
+									portd_direction <= register_a;
 								when others =>
 									null;
 							end case;
@@ -340,7 +348,25 @@ begin
 							delay := 1;
 						else
 							case conv_integer(program(pc + 1) & program(pc + 2)) is
-							register_a <= mem_data_out;
+								when 0 =>
+									register_a <= porta_output;
+								when 1 =>
+									register_a <= portb_output;
+								when 2 =>
+									register_a <= portc_output;
+								when 3 =>
+									register_a <= portd_output;
+								when 4 =>
+									register_a <= porta_direction;
+								when 5 =>
+									register_a <= portb_direction;
+								when 6 =>
+									register_a <= portc_direction;
+								when 7 =>
+									register_a <= portd_direction;
+								when others =>
+									register_a <= mem_data_out;
+							end case;
 							
 							pc := pc + 2;
 							delay := 0;
