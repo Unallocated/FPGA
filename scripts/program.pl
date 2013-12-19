@@ -64,6 +64,7 @@ addOpcode("jagtf", 35, 5);
 addOpcode("push", 36, 1);
 addOpcode("pop", 37, 1);
 addOpcode("diva", 38, 2);
+addOpcode("addcaf", 40, 3);
 
 my $largestOpcode = 0;
 foreach (keys(%{$opcodes})){
@@ -79,7 +80,7 @@ while(<FH>){
 	chomp;
 	s/\s{2,}/ /;
 	s/\r+//g;
-	s/[\s\t]*[(--)|(;)].+//g;
+	s/[\s\t]*[(\-\-)|(\;)].+//g;
 	push(@lines, $_);
 }
 close(FH);
@@ -159,7 +160,25 @@ foreach my $line (@lines){
 		if($line !~ /^def/ && $line !~ /\:/){
 			if($line =~ / ([\~]?)$variable / || $line =~/ ([\~]?)${variable}$/){
 				my $var = $variables{$variable};
-				if($line =~ /([\~]{1})/){
+				if($line =~ /\s+([\+]{1})\s+(\d+)/){
+					my $operator = $1;
+					my $value = $2;
+					print "Found an addition\n";
+					my ($high, $low) = split(" ", $var);
+					print "Adding $value to $high - $low\n";
+					my $combined = "${high}${low}";
+					my $combinedDec = oct("0b".$combined);
+					print "Combined Decimal Value: $combinedDec\n";
+					$combinedDec += $value;
+					my $bin = sprintf("%08b %08b", ($combinedDec >> 8) & 0xff, $combinedDec & 0xff);
+					if($var !~ /^[0-1]{8}$/){
+						$var = sprintf("%08b %08b", ($combinedDec >> 8) & 0xff, $combinedDec & 0xff);
+					}else{
+						$var = sprintf("%08b", $combinedDec & 0xff);
+					}
+
+					print "Final value: $var\n";
+				}elsif($line =~ /([\~]{1})/){
 					print "Moo\n";
 					my ($one, $two) = split(" ",$var);
 					print "Fone: $one Ftwo: $two\n";
@@ -178,8 +197,8 @@ foreach my $line (@lines){
 						$var = sprintf("%08b %08b", $one, $two);
 					}
 				}
-				
-				$line =~ s/ [~]*$variable/ $var/;
+				print "Preparing to replace $variable with $var\n";
+				$line =~ s/ [~]*$variable.*/ $var/;
 				last;
 			}
 		}
