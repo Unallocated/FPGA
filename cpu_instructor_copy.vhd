@@ -167,6 +167,7 @@ architecture Behavioral of cpu_instructor_copy is
 		diva  : opcode;   -- divide regiter_a by the next byte (2 byte instr)
 		divaf : opcode;
 		tris  : opcode;
+		addcaf: opcode;
 	end record;
 	
 	constant opcodes : opcodes_type := (
@@ -210,7 +211,8 @@ architecture Behavioral of cpu_instructor_copy is
 		pop   => "00100101",
 		diva  => "00100110",
 		divaf => "00100111",
-		tris  => "00101000"
+		tris  => "00101000",
+		addcaf=> "00101001"
 	);
 	
 	signal stack_origin : integer := conv_integer(x"8000");
@@ -220,74 +222,51 @@ architecture Behavioral of cpu_instructor_copy is
 	
 	constant program : program_type := (
 		opcodes.jmp,  x"00",x"03",
-		opcodes.call, x"00",x"8e",
-		opcodes.mova, x"00",
-		opcodes.movaf,x"40",x"00",
-		opcodes.movaf,x"40",x"01",
-		opcodes.adda, x"01",
-		opcodes.xora, x"ff",
-		opcodes.movaf,x"40",x"00",
-		opcodes.xora, x"ff",
-		opcodes.movaf,x"40",x"01",
-		opcodes.push, 
-		opcodes.call, x"00",x"44",
-		opcodes.pop,  
-		opcodes.movaf,x"00",x"00",
-		opcodes.jane, x"ff",x"00",x"0e",
-		opcodes.mova, x"00",
-		opcodes.adda, x"01",
-		opcodes.movaf,x"40",x"01",
-		opcodes.push, 
-		opcodes.call, x"00",x"4e",
-		opcodes.movfa,x"40",x"00",
-		opcodes.movaf,x"00",x"00",
-		opcodes.pop,  
-		opcodes.jane, x"ff",x"00",x"28",
-		opcodes.mova, x"7e",
-		opcodes.movaf,x"00",x"00",
-		opcodes.jmp,  x"00",x"af",
-		opcodes.call, x"00",x"87",
-		opcodes.call, x"00",x"6d",
-		opcodes.call, x"00",x"79",
-		opcodes.ret,  
-		opcodes.call, x"00",x"87",
-		opcodes.mova, x"00",
-		opcodes.movaf,x"00",x"05",
-		opcodes.movfa,x"00",x"03",
-		opcodes.anda, x"fd",
-		opcodes.movaf,x"00",x"03",
-		opcodes.movfa,x"00",x"01",
-		opcodes.movaf,x"40",x"00",
-		opcodes.movfa,x"00",x"03",
-		opcodes.ora,  x"02",
-		opcodes.movaf,x"00",x"03",
-		opcodes.ret,  
+		opcodes.call, x"00",x"09",
+		opcodes.jmp,  x"00",x"81",
 		opcodes.mova, x"ff",
-		opcodes.movaf,x"00",x"05",
-		opcodes.movfa,x"40",x"00",
+		opcodes.movaf,x"30",x"00",
+		opcodes.mova, x"03",
+		opcodes.movaf,x"30",x"01",
+		opcodes.mova, x"08",
+		opcodes.movaf,x"30",x"02",
+		opcodes.mova, x"44",
+		opcodes.movaf,x"30",x"03",
+		opcodes.call, x"00",x"6e",
+		opcodes.movfa,x"20",x"00",
+		opcodes.movaf,x"00",x"00",
+		opcodes.movfa,x"20",x"01",
 		opcodes.movaf,x"00",x"01",
 		opcodes.ret,  
-		opcodes.movfa,x"00",x"03",
-		opcodes.anda, x"fe",
-		opcodes.movaf,x"00",x"03",
-		opcodes.ora,  x"01",
-		opcodes.movaf,x"00",x"03",
+		opcodes.movfa,x"30",x"03",
+		opcodes.addcaf,x"30",x"06",
+		opcodes.movaf,x"20",x"03",
+		opcodes.movfa,x"30",x"02",
+		opcodes.addcaf,x"30",x"05",
+		opcodes.movaf,x"20",x"02",
+		opcodes.movfa,x"30",x"01",
+		opcodes.addcaf,x"30",x"04",
+		opcodes.movaf,x"20",x"01",
+		opcodes.movfa,x"30",x"00",
+		opcodes.addcaf,x"30",x"03",
+		opcodes.movaf,x"20",x"00",
 		opcodes.ret,  
-		opcodes.movfa,x"40",x"01",
-		opcodes.movaf,x"00",x"02",
+		opcodes.movfa,x"30",x"02",
+		opcodes.addcaf,x"30",x"05",
+		opcodes.movaf,x"20",x"02",
+		opcodes.movfa,x"30",x"01",
+		opcodes.addcaf,x"30",x"04",
+		opcodes.movaf,x"20",x"01",
+		opcodes.movfa,x"30",x"00",
+		opcodes.addcaf,x"30",x"03",
+		opcodes.movaf,x"20",x"00",
 		opcodes.ret,  
-		opcodes.mova, x"ff",
-		opcodes.movaf,x"00",x"05",
-		opcodes.movaf,x"00",x"06",
-		opcodes.movaf,x"00",x"07",
-		opcodes.movaf,x"00",x"04",
-		opcodes.mova, x"00",
-		opcodes.movaf,x"00",x"01",
-		opcodes.movaf,x"00",x"02",
-		opcodes.movaf,x"00",x"00",
-		opcodes.ora,  x"01",
-		opcodes.ora,  x"02",
-		opcodes.movaf,x"00",x"03",
+		opcodes.movfa,x"30",x"01",
+		opcodes.addcaf,x"30",x"03",
+		opcodes.movaf,x"20",x"01",
+		opcodes.movfa,x"30",x"00",
+		opcodes.addcaf,x"30",x"02",
+		opcodes.movaf,x"20",x"00",
 		opcodes.ret,  
 		opcodes.noop
 	);
@@ -750,7 +729,7 @@ begin
 							delay := 0;
 						end if;
 					
-					when opcodes.addaf | opcodes.subaf | opcodes.multaf =>
+					when opcodes.addaf | opcodes.subaf | opcodes.multaf | opcodes.addcaf =>
 						if(delay = 0) then
 							mem_addr <= program(pc + 1) & program(pc + 2);
 							mem_we <= "0";
@@ -763,7 +742,28 @@ begin
 							delay := 0;
 							case current_opcode is
 								when opcodes.addaf =>
+									if(conv_integer(register_a) + conv_integer(mem_data_out) > 255) then
+										flags.carry <= '1';
+									else
+										flags.carry <= '0';
+									end if;
 									register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(mem_data_out), 8);
+								when opcodes.addcaf =>
+									if(flags.carry = '1') then
+										if(conv_integer(register_a) + 1 + conv_integer(mem_data_out) > 255) then
+											flags.carry <= '1';
+										else
+											flags.carry <= '0';
+										end if;
+										register_a <= conv_std_logic_vector(conv_integer(register_a) + 1 + conv_integer(mem_data_out), 8);
+									else
+										if(conv_integer(register_a) + conv_integer(mem_data_out) > 255) then
+											flags.carry <= '1';
+										else
+											flags.carry <= '0';
+										end if;
+										register_a <= conv_std_logic_vector(conv_integer(register_a) + conv_integer(mem_data_out), 8);
+									end if;
 								when opcodes.subaf =>
 									register_a <= conv_std_logic_vector(conv_integer(register_a) - conv_integer(mem_data_out), 8);
 								when opcodes.multaf =>
@@ -839,23 +839,23 @@ begin
 		end if;
 	end process;
 
-	clock_divider : process(clk, real_rst)
-		variable counter : integer := 0;
-	begin
-		if(real_rst = '1') then
-			counter := 0;
-			cpu_clock <= '0';
-		elsif(rising_edge(clk)) then
-			if(counter = 100000000/4096) then
-				cpu_clock <= not cpu_clock;
-				counter := 0;
-			end if;
-			
-			counter := counter + 1;
-		end if;
-	end process;
+--	clock_divider : process(clk, real_rst)
+--		variable counter : integer := 0;
+--	begin
+--		if(real_rst = '1') then
+--			counter := 0;
+--			cpu_clock <= '0';
+--		elsif(rising_edge(clk)) then
+--			if(counter = 100000000/4096) then
+--				cpu_clock <= not cpu_clock;
+--				counter := 0;
+--			end if;
+--			
+--			counter := counter + 1;
+--		end if;
+--	end process;
 
---	cpu_clock <= clk;
+	cpu_clock <= clk;
 	cpu_memory : memory
 	  PORT MAP (
 		 clka => cpu_clock,
