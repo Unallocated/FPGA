@@ -28,16 +28,16 @@ pinDirection:
 ;   r = RET_STARTING_ADDRESS 0-3
 add32:  
   movfa ARG_STARTING_ADDRESS + 3
-  adda  ARG_STARTING_ADDRESS + 6
+  addcaf  ARG_STARTING_ADDRESS + 6
   movaf RET_STARTING_ADDRESS + 3
   movfa ARG_STARTING_ADDRESS + 2
-  addca ARG_STARTING_ADDRESS + 5
+  addcaf ARG_STARTING_ADDRESS + 5
   movaf RET_STARTING_ADDRESS + 2
   movfa ARG_STARTING_ADDRESS + 1
-  addca ARG_STARTING_ADDRESS + 4
+  addcaf ARG_STARTING_ADDRESS + 4
   movaf RET_STARTING_ADDRESS + 1
   movfa ARG_STARTING_ADDRESS
-  addca ARG_STARTING_ADDRESS + 3
+  addcaf ARG_STARTING_ADDRESS + 3
   movaf RET_STARTING_ADDRESS
   ret
 
@@ -47,13 +47,13 @@ add32:
 ;   r = RET_STARTING_ADDRESS 0-2
 add24:
   movfa ARG_STARTING_ADDRESS + 2
-  adda  ARG_STARTING_ADDRESS + 5
+  addcaf  ARG_STARTING_ADDRESS + 5
   movaf RET_STARTING_ADDRESS + 2
   movfa ARG_STARTING_ADDRESS + 1
-  addca ARG_STARTING_ADDRESS + 4
+  addcaf ARG_STARTING_ADDRESS + 4
   movaf RET_STARTING_ADDRESS + 1
   movfa ARG_STARTING_ADDRESS
-  addca ARG_STARTING_ADDRESS + 3
+  addcaf ARG_STARTING_ADDRESS + 3
   movaf RET_STARTING_ADDRESS
   ret
 
@@ -63,10 +63,10 @@ add24:
 ;   r = RET_STARTING_ADDRESS 0-1
 add16:
   movfa ARG_STARTING_ADDRESS + 1 ;load in the low byte of the first number
-  adda  ARG_STARTING_ADDRESS + 3 ;add the low byte of the first with the low byte of the second
+  addcaf  ARG_STARTING_ADDRESS + 3 ;add the low byte of the first with the low byte of the second
   movaf RET_STARTING_ADDRESS + 1 ;move the result to the low byte of the return address
   movfa ARG_STARTING_ADDRESS     ;load in the high byte of the first number
-  addca ARG_STARTING_ADDRESS + 2 ;add the high byte of the first with the low byte of the second (and add the carry bit)
+  addcaf ARG_STARTING_ADDRESS + 2 ;add the high byte of the first with the low byte of the second (and add the carry bit)
   movaf RET_STARTING_ADDRESS     ;move the result to the high byte of the return address
   ret                            ;return
 
