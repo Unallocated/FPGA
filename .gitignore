@@ -13,3 +13,4 @@ iseconfig/class_cpu.xreport
 !*.xise
 !*.gise
 !*.ucf
+ipcore_dir/cpu_divider.gise
