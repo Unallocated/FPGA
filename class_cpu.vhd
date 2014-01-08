@@ -93,6 +93,13 @@ architecture Behavioral of class_cpu is
 		carry => '0'
 	);
 	
+	type registers_t is record
+		r0 : std_logic_vector(15 downto 0);
+		r1 : std_logic_vector(15 downto 0);
+	end record;
+	
+	signal registers : registers_t := (others => (others => '0'));
+	
 	-- All opcodes are just 8 bit vectors.  This makes it easier
 	-- to define a signal as an opcode.  Much faster than having to
 	-- write out std_logic_vector(7 downto 0) for each opcode!
@@ -129,6 +136,13 @@ architecture Behavioral of class_cpu is
 		anda  : opcode;   -- and register_a with the next byte (2 byte instr)
 		nora  : opcode;   -- nora register_a with the next byte (2 byte instr)
 		xnora : opcode;   -- xnora register_a with the next byte (2 byte instr)
+		movrl : opcode;   -- move a value directly into register X's low byte (3 byte instr)
+		movrh : opcode;   -- move a value directly into register X's high byte (3 byte instr)
+		movrla: opcode;   -- move register X's low byte to register_a (2 byte instr)
+		movrha: opcode;   -- move register X's high byte to register_a (2 byte instr)
+		movarl: opcode;   -- move register_a to the low byte of register X (2 byte instr)
+		movarh: opcode;   -- move register_a to the high byte of register X (2 byte instr)
+		movpaf: opcode;   -- move register_a to the memory location pointed to by register X (2 byte instr)
 	end record;
 	
 	-- Available opcodes.  Each opcode needs a unique value
@@ -163,7 +177,14 @@ architecture Behavioral of class_cpu is
 		push  => "00100100",
 		pop   => "00100101",
 		diva  => "00100110",
-		moda  => "00100111"
+		moda  => "00100111",
+		movrl => "00101000",
+		movrh => "00101001",
+		movrla=> "00101010",
+		movrha=> "00101011",
+		movarl=> "00101100",
+		movarh=> "00101101",
+		movpaf=> "00101110"
 	);
 	
 	-- Defines where the stack starts at in memory.
@@ -176,11 +197,14 @@ architecture Behavioral of class_cpu is
 	
 	-- The actual program that will be run by the CPU
 	constant program : program_type := (
-		opcodes.mova, x"ff",
-		opcodes.movaf,x"00",x"05",
-		opcodes.movfa,x"00",x"01",
-		opcodes.movaf,x"00",x"00",
-		opcodes.jmp,  x"00",x"05"
+		opcodes.movrh, x"00", x"40",
+		opcodes.movrl, x"00", x"01",
+		opcodes.mova , x"87",
+		opcodes.movpaf,x"00",
+		opcodes.mova,  x"ff",
+		opcodes.movfa, x"40", x"01",
+		opcodes.movaf, x"00", x"00",
+		opcodes.jmp,   x"00", x"00"
 	);
 	
 	-- Each port on the CPU is bi-directional.  This means that a tri-state
@@ -320,9 +344,22 @@ begin
 						pc := pc + 1;
 						register_a <= program(pc);
 						
-					when opcodes.movaf =>
+					when opcodes.movaf | opcodes.movpaf =>
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
+							if(current_opcode = opcodes.movaf) then
+								wide_buffer := program(pc + 1) & program(pc + 2);
+							elsif(current_opcode = opcodes.movpaf) then
+								case conv_integer(program(pc + 1)) is
+									when 0 =>
+										wide_buffer := registers.r0;
+									when 1 =>
+										wide_buffer := registers.r1;
+									when others => 
+										null;
+								end case;
+							end if;
+							
+							mem_addr <= wide_buffer;
 							mem_data_in <= register_a;
 							
 							delay := 2;
@@ -332,7 +369,7 @@ begin
 						else
 							mem_we <= "0";
 							
-							case conv_integer(program(pc + 1) & program(pc + 2)) is
+							case conv_integer(wide_buffer) is
 								when 0 =>
 									porta_input <= register_a;
 								when 1 =>
@@ -353,7 +390,12 @@ begin
 									null;
 							end case;
 							
-							pc := pc + 2;
+							if(current_opcode = opcodes.movaf) then
+								pc := pc + 2;
+							elsif(current_opcode = opcodes.movpaf) then
+								pc := pc + 1;
+							end if;
+							
 							delay := 0;
 						end if;
 						
@@ -598,6 +640,79 @@ begin
 							when others =>
 								null;
 						end case;
+					
+					when opcodes.movrl =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								registers.r0(7 downto 0) <= program(pc + 2);
+							when 1 =>
+								registers.r1(7 downto 0) <= program(pc + 2);
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 2;
+					
+					when opcodes.movrh =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								registers.r0(15 downto 8) <= program(pc + 2);
+							when 1 =>
+								registers.r1(15 downto 8) <= program(pc + 2);
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 2;
+					
+					when opcodes.movrla =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								register_a <= registers.r0(7 downto 0);
+							when 1 =>
+								register_a <= registers.r1(7 downto 0);
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 1;
+						
+					when opcodes.movrha =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								register_a <= registers.r0(15 downto 8);
+							when 1 =>
+								register_a <= registers.r1(15 downto 8);
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 1;
+						
+					when opcodes.movarl =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								registers.r0(7 downto 0) <= register_a;
+							when 1 =>
+								registers.r1(7 downto 0) <= register_a;
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 1;
+						
+					when opcodes.movarh =>
+						case conv_integer(program(pc + 1)) is
+							when 0 =>
+								registers.r0(15 downto 8) <= register_a;
+							when 1 =>
+								registers.r1(15 downto 8) <= register_a;
+							when others =>
+								null;
+						end case;
+						
+						pc := pc + 1;
+					
 					when others =>
 						null;
 				end case;
