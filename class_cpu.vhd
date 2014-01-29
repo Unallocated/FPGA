@@ -199,7 +199,7 @@ architecture Behavioral of class_cpu is
 	
 	-- The actual program that will be run by the CPU
 	constant program : program_type := (
-		opcodes.mova,   x"46",
+		opcodes.mova,   x"7e",
 		opcodes.movaf,  x"40", x"01",
 		opcodes.mova,   x"ff",
 		opcodes.movrh,  x"00", x"40",
