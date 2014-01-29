@@ -143,6 +143,7 @@ architecture Behavioral of class_cpu is
 		movarl: opcode;   -- move register_a to the low byte of register X (2 byte instr)
 		movarh: opcode;   -- move register_a to the high byte of register X (2 byte instr)
 		movpaf: opcode;   -- move register_a to the memory location pointed to by register X (2 byte instr)
+		movpfa: opcode;   -- move value from memory location pointed to by register X to register_a (2 byte instr)
 	end record;
 	
 	-- Available opcodes.  Each opcode needs a unique value
@@ -184,7 +185,8 @@ architecture Behavioral of class_cpu is
 		movrha=> "00101011",
 		movarl=> "00101100",
 		movarh=> "00101101",
-		movpaf=> "00101110"
+		movpaf=> "00101110",
+		movpfa=> "00101111"
 	);
 	
 	-- Defines where the stack starts at in memory.
@@ -197,14 +199,14 @@ architecture Behavioral of class_cpu is
 	
 	-- The actual program that will be run by the CPU
 	constant program : program_type := (
-		opcodes.movrh, x"00", x"40",
-		opcodes.movrl, x"00", x"01",
-		opcodes.mova , x"87",
-		opcodes.movpaf,x"00",
-		opcodes.mova,  x"ff",
-		opcodes.movfa, x"40", x"01",
-		opcodes.movaf, x"00", x"00",
-		opcodes.jmp,   x"00", x"00"
+		opcodes.mova,   x"46",
+		opcodes.movaf,  x"40", x"01",
+		opcodes.mova,   x"ff",
+		opcodes.movrh,  x"00", x"40",
+		opcodes.movrl,  x"00", x"01",
+		opcodes.movpfa, x"00",
+		opcodes.movaf,  x"00", x"00",
+		opcodes.jmp,    x"00", x"00"
 	);
 	
 	-- Each port on the CPU is bi-directional.  This means that a tri-state
@@ -450,16 +452,30 @@ begin
 								null;
 						end case;
 					
-					when opcodes.movfa =>
+					when opcodes.movfa | opcodes.movpfa =>
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
+							if(current_opcode = opcodes.movfa) then
+								wide_buffer := program(pc + 1) & program(pc + 2);
+							else
+								case conv_integer(program(pc + 1)) is
+									when 0 =>
+										wide_buffer := registers.r0;
+									when 1 =>
+										wide_buffer := registers.r1;
+									when others => 
+										null;
+								end case;
+							end if;
+								
+								
+							mem_addr <= wide_buffer;
 							mem_we <= "0";
 							
 							delay := 2;
 						elsif(delay = 2) then
 							delay := 1;
 						else
-							case conv_integer(program(pc + 1) & program(pc + 2)) is
+							case conv_integer(wide_buffer) is
 								when 0 =>
 									register_a <= porta_output;
 								when 1 =>
@@ -480,7 +496,12 @@ begin
 									register_a <= mem_data_out;
 							end case;
 							
-							pc := pc + 2;
+							if(current_opcode = opcodes.movfa) then
+								pc := pc + 2;
+							else
+								pc := pc + 1;
+							end if;
+							
 							delay := 0;
 						end if;
 					
