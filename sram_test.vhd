@@ -109,7 +109,7 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
       wait for 100 ns;	
-
+		addr <= x"800005";
       wait for clk_period*10;
 		start <= '1';
 		wait for clk_period;

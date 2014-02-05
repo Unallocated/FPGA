@@ -69,17 +69,45 @@
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="sram.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="sram.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="sram.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="sram.ncd" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="sram.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="sram.ngd"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="sram.ngr"/>
+    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="sram.pad"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="sram.par" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="sram.pcf" xil_pn:subbranch="Map"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram.prj"/>
+    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="sram.ptwx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="sram.stx"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="sram.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="sram.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="sram.twx" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="sram.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="sram.vhi"/>
+    <file xil_pn:fileType="FILE_XPI" xil_pn:name="sram.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="sram.xst"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram_test_beh.prj"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="sram_envsettings.html"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="sram_fpga_editor.log"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="sram_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="sram_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="sram_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="sram_map.ncd" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="sram_map.ngm" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_map.xrpt"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_ngdbuild.xrpt"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="sram_pad.csv" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="sram_pad.txt" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_par.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="sram_summary.html"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="sram_summary.xml"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sram_test_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="sram_test_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="sram_test_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="sram_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="sram_xst.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="usage_statistics_webtalk.html"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="webtalk.log"/>
@@ -94,9 +122,14 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390961469" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1390961469">
+    <transform xil_pn:end_ts="1391564486" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1391564486">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="class_cpu.vhd"/>
       <outfile xil_pn:name="cpu_instructor_copy.vhd"/>
       <outfile xil_pn:name="serial_rx.vhd"/>
@@ -114,83 +147,59 @@
     <transform xil_pn:end_ts="1390961372" xil_pn:in_ck="3812117616627700841" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="4036362434682964035" xil_pn:start_ts="1390961372">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1390961469" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1390961469">
+    <transform xil_pn:end_ts="1391564486" xil_pn:in_ck="2452700448764312217" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1391564486">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="class_cpu.vhd"/>
       <outfile xil_pn:name="cpu_instructor_copy.vhd"/>
       <outfile xil_pn:name="serial_rx.vhd"/>
       <outfile xil_pn:name="sram.vhd"/>
       <outfile xil_pn:name="sram_test.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1390961474" xil_pn:in_ck="-231947199585602710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="8021894323529217584" xil_pn:start_ts="1390961469">
+    <transform xil_pn:end_ts="1391564487" xil_pn:in_ck="-231947199585602710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="8021894323529217584" xil_pn:start_ts="1391564486">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="sram_test_beh.prj"/>
       <outfile xil_pn:name="sram_test_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1390961474" xil_pn:in_ck="3616034903062263649" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7139996702641544611" xil_pn:start_ts="1390961474">
+    <transform xil_pn:end_ts="1391564487" xil_pn:in_ck="3616034903062263649" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7139996702641544611" xil_pn:start_ts="1391564487">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="sram_test_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1390955872" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1390955872">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-8459869867956640716" xil_pn:start_ts="1390960604">
+    <transform xil_pn:end_ts="1391560946" xil_pn:in_ck="5252585598274710" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="1289474809424044075" xil_pn:start_ts="1391560946">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:in_ck="3812117616627700841" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="4036362434682964035" xil_pn:start_ts="1390960604">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="ipcore_dir/cpu_divider.ngc"/>
-      <outfile xil_pn:name="ipcore_dir/cpu_divider.vhd"/>
-      <outfile xil_pn:name="ipcore_dir/memory.ngc"/>
-      <outfile xil_pn:name="ipcore_dir/memory.vhd"/>
-    </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:in_ck="3177180403299825046" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1390960604">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-8939919122300489546" xil_pn:start_ts="1390960604">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:in_ck="3177180403299825046" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="1106364426758808884" xil_pn:start_ts="1390960604">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1390960604" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="6237309206084172237" xil_pn:start_ts="1390960604">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1390961276" xil_pn:in_ck="-6929719013153756632" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-4459159122759093988" xil_pn:start_ts="1390961268">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="sram.lso"/>
-      <outfile xil_pn:name="sram.ngc"/>
-      <outfile xil_pn:name="sram.ngr"/>
-      <outfile xil_pn:name="sram.prj"/>
-      <outfile xil_pn:name="sram.stx"/>
-      <outfile xil_pn:name="sram.syr"/>
-      <outfile xil_pn:name="sram.xst"/>
-      <outfile xil_pn:name="sram_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
-    </transform>
-    <transform xil_pn:end_ts="1390956919" xil_pn:in_ck="5252585598274710" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-3882160272915247723" xil_pn:start_ts="1390956919">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputRemoved"/>
     </transform>
   </transforms>
 

@@ -17,6 +17,8 @@ entity sram is
 end sram;
 
 architecture Behavioral of sram is
+	constant WRITE_INSTR : std_logic_vector(7 downto 0) := x"02";
+	constant READ_INSTR : std_logic_vector(7 downto 0) := x"03";
 
 	type state_t is (IDLE, INSTR, ADDRESS, DATA);
 	signal state : state_t := IDLE;
@@ -25,6 +27,9 @@ architecture Behavioral of sram is
 	signal addr_buffer : std_logic_vector(addr'range);
 	signal we_buffer : std_logic;
 	signal start_buffer : std_logic := '0';
+	
+	signal bit_pos : integer range 0 to 23 := 0;
+	signal sck_flag : std_logic_vector(1 downto 0) := "00";
 begin
 
 	process(clk, rst)
@@ -32,30 +37,75 @@ begin
 		if(rst = '1') then
 			state <= IDLE;
 		elsif(rising_edge(clk)) then
-			
-			case state is
-				when IDLE =>
-					cs_n <= '1';
-					done <= '1';
-					
-					if(start = '1' and start_buffer = '0') then
-						state <= INSTR;
-						done <= '0';
-						cs_n <= '0';
-						data_in_buffer <= data_in;
-						addr_buffer <= addr;
-						we_buffer <= we;
-					end if;
-					
-					start_buffer <= start;
-					
-				when INSTR =>
-					state <= ADDRESS;
-				when ADDRESS =>
-					state <= DATA;
-				when DATA =>
-					state <= IDLE;
-			end case;
+			if(sck_flag = "01") then
+				sck <= '1';
+				sck_flag <= "10";
+			elsif(sck_flag = "10") then
+				sck <= '0';
+				sck_flag <= "00";
+			else
+				case state is
+					when IDLE =>
+						cs_n <= '1';
+						done <= '1';
+						bit_pos <= 7;
+						so <= '0';
+						sck_flag <= "00";
+						
+						if(start = '1' and start_buffer = '0') then
+							state <= INSTR;
+							done <= '0';
+							cs_n <= '0';
+							data_in_buffer <= data_in;
+							addr_buffer <= addr;
+							we_buffer <= we;
+						end if;
+						
+						start_buffer <= start;
+						
+					when INSTR =>
+						if(we_buffer = '1') then
+							so <= WRITE_INSTR(bit_pos);
+						else
+							so <= READ_INSTR(bit_pos);
+						end if;
+						
+						if(bit_pos = 0) then
+							state <= ADDRESS;
+							bit_pos <= 23;
+						else
+							bit_pos <= bit_pos - 1;
+						end if;
+						
+						sck_flag <= "01";
+					when ADDRESS =>
+						so <= addr_buffer(bit_pos);
+						
+						if(bit_pos = 0) then
+							state <= DATA;
+							bit_pos <= 7;
+						else
+							bit_pos <= bit_pos - 1;
+						end if;
+						
+						sck_flag <= "01";
+					when DATA =>
+						if(we_buffer = '1') then
+							so <= data_in_buffer(bit_pos);
+						else
+							data_out(bit_pos) <= si;
+						end if;
+						
+						if(bit_pos = 0) then
+							state <= IDLE;
+							bit_pos <= 7;
+						else
+							bit_pos <= bit_pos - 1;
+						end if;
+						
+						sck_flag <= "01";
+				end case;
+			end if;
 		end if;
 	end process;
 
