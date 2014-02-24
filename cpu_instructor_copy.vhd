@@ -170,7 +170,7 @@ architecture Behavioral of cpu_instructor_copy is
 	constant in_test_mode : std_logic := '0';
 	constant base_clock_rate_hz : integer := 100000000;
 	constant test_mode_divider : integer := base_clock_rate_hz;
-	constant normal_mode_divider : integer := 65536;
+	constant normal_mode_divider : integer := 512;
 	constant sram_test_mode_divider : integer := 2;
 	constant sram_normal_mode_divider : integer := normal_mode_divider / 2;
 --	constant sram_clock_target_hz : integer := 20000000;
@@ -276,11 +276,11 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
+		opcodes.call, x"00",x"08",
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"00",
 		opcodes.mova, x"7e",
-		opcodes.movaf, x"80", x"00",
-		opcodes.mova, x"00",
-		opcodes.movfa, x"80", x"00",
-		opcodes.movaf, x"00", x"00"
+		opcodes.movaf,x"00",x"00"
 	);
 
 	signal programmed : std_logic := '1';
@@ -415,6 +415,8 @@ begin
 --			end if;
 --		end if;
 --	end process;
+
+	
 	
 	brain : process(cpu_clock, real_rst)
 		variable pc : integer := 0;
@@ -427,6 +429,8 @@ begin
 		
 		
 	begin
+	
+		porta_input <= conv_std_logic_vector(pc, 8);
 		
 		if(real_rst = '1') then
 			pc := 0;
@@ -522,7 +526,8 @@ begin
 							
 							case conv_integer(program(pc + 1) & program(pc + 2)) is
 								when 0 =>
-									porta_input <= register_a;
+									null;
+--									porta_input <= register_a;
 								when 1 =>
 									portb_input <= register_a;
 								when 2 =>
@@ -712,29 +717,39 @@ begin
 						end if;
 					
 					when opcodes.xoraf | opcodes.oraf | opcodes.andaf | opcodes.noraf | opcodes.xnoraf | opcodes.nandaf =>
+					
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
+							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_we <= '0';
+							delay := 4;
+						elsif(delay = 4) then
+							sram_start <= '1';
+							delay := 3;
+						elsif(delay = 3) then
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 2;
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
+							if(sram_done = '1') then
+								delay := 1;
+							end if;
 						else
 							pc := pc + 2;
 							delay := 0;
 							case current_opcode is 
 								when opcodes.xoraf =>
-									register_a <= register_a xor mem_data_out;
+									register_a <= register_a xor sram_data_out;
 								when opcodes.oraf => 
-									register_a <= register_a or mem_data_out;
+									register_a <= register_a or sram_data_out;
 								when opcodes.andaf => 
-									register_a <= register_a and mem_data_out;
+									register_a <= register_a and sram_data_out;
 								when opcodes.noraf => 
-									register_a <= register_a nor mem_data_out;
+									register_a <= register_a nor sram_data_out;
 								when opcodes.xnoraf => 
-									register_a <= register_a xnor mem_data_out;
+									register_a <= register_a xnor sram_data_out;
 								when opcodes.nandaf => 
-									register_a <= register_a nand mem_data_out;
+									register_a <= register_a nand sram_data_out;
 								when others => 
 									null;
 							end case;
@@ -748,15 +763,24 @@ begin
 						end if;
 					when opcodes.jagtf =>
 						if(delay = 0) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							mem_we <= "0";
-							delay := 2;
+							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_we <= '0';
+							delay := 4;
+						elsif(delay = 4) then
+							sram_start <= '1';
+							delay := 3;
+						elsif(delay = 3) then
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 2;
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= program(pc + 1) & program(pc + 2);
-							delay := 1;
+							if(sram_done = '1') then
+								delay := 1;
+							end if;
 						else
 							delay := 0;
-							if(conv_integer(register_a) > conv_integer(mem_data_out)) then
+							if(conv_integer(register_a) > conv_integer(sram_data_out)) then
 								pc := conv_integer(program(pc + 3) & program(pc + 4)) - 1;
 							else
 								pc := pc + 4;
@@ -765,53 +789,107 @@ begin
 					when opcodes.call =>
 						if(delay = 0) then
 							wide_buffer := conv_std_logic_vector(pc + 3, 16);
-							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
-							mem_data_in <= wide_buffer(15 downto 8);
-							delay := 5;
+							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer, 16);
+							sram_data_in <= wide_buffer(15 downto 8);
+							sram_we <= '1';
+							delay := 7;
+						elsif(delay = 7) then
+							sram_start <= '1';
+							delay := 6;
+						elsif(delay = 6) then
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 5;
+							end if;
 						elsif(delay = 5) then
-							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
-							mem_we <= "1";
-							delay := 4;
+							if(sram_done = '1') then
+								delay := 4;
+							end if;
+							
+							
 						elsif(delay = 4) then
-							mem_we <= "0";
+							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer + 1, 16);
+							sram_data_in <= wide_buffer(7 downto 0);
+							sram_we <= '1';
 							delay := 3;
 						elsif(delay = 3) then
-							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
-							mem_data_in <= wide_buffer(7 downto 0);
+							sram_start <= '1';
 							delay := 2;
 						elsif(delay = 2) then
-							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
-							mem_we <= "1";
-							delay := 1;
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 1;
+							end if;
 						elsif(delay = 1) then
-							mem_we <= "0";
-							stack_pointer := stack_pointer + 2;
-							pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
-							delay := 0;
+							if(sram_done = '1') then
+								stack_pointer := stack_pointer + 2;
+								pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
+								delay := 0;
+								sram_we <= '0';
+							end if;
 						end if;
+					
+					
 					when opcodes.ret =>
 						if(delay = 0) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
-							mem_we <= "0";
-							delay := 5;
+							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer - 1, 16);
+							sram_we <= '0';
+							delay := 7;
+						elsif(delay = 7) then
+							sram_start <= '1';
+							delay := 6;
+						elsif(delay = 6) then
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 5;
+							end if;
 						elsif(delay = 5) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
-							delay := 4;
+							if(sram_done = '1') then
+								wide_buffer(7 downto 0) := sram_data_out;
+								delay := 4;
+							end if;
 						elsif(delay = 4) then
-							wide_buffer(7 downto 0) := mem_data_out;
+							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer - 2, 16);
 							delay := 3;
 						elsif(delay = 3) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+							sram_start <= '1';
 							delay := 2;
 						elsif(delay = 2) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
-							delay := 1;
+							if(sram_done <= '0') then
+								sram_start <= '0';
+								delay := 1;
+							end if;
 						elsif(delay = 1) then
-							wide_buffer(15 downto 8) := mem_data_out;
-							pc := conv_integer(wide_buffer) - 1;
-							stack_pointer := stack_pointer - 2;
-							delay := 0;
+							if(sram_done = '1') then
+								wide_buffer(15 downto 8) := sram_data_out;
+								pc := conv_integer(wide_buffer) - 1;
+								stack_pointer := stack_pointer - 2;
+								delay := 0;
+							end if;
 						end if;
+					
+--						if(delay = 0) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							mem_we <= "0";
+--							delay := 5;
+--						elsif(delay = 5) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							delay := 4;
+--						elsif(delay = 4) then
+--							wide_buffer(7 downto 0) := mem_data_out;
+--							delay := 3;
+--						elsif(delay = 3) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+--							delay := 1;
+--						elsif(delay = 1) then
+--							wide_buffer(15 downto 8) := mem_data_out;
+--							pc := conv_integer(wide_buffer) - 1;
+--							stack_pointer := stack_pointer - 2;
+--							delay := 0;
+--						end if;
 					when opcodes.push =>
 						if(delay = 0) then
 							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
