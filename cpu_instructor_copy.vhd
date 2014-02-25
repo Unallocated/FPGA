@@ -119,6 +119,10 @@ architecture Behavioral of cpu_instructor_copy is
 	END COMPONENT;
 	
 	COMPONENT sram
+	GENERIC(
+		avail_addr_width : integer := 16;
+	   actual_addr_width : integer := 24
+	);
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
@@ -126,7 +130,7 @@ architecture Behavioral of cpu_instructor_copy is
 		data_in : IN std_logic_vector(7 downto 0);
 		start : IN std_logic;
 		we : IN std_logic;
-		addr : IN std_logic_vector(23 downto 0);          
+		addr : IN std_logic_vector(15 downto 0);          
 		data_out : OUT std_logic_vector(7 downto 0);
 		so : OUT std_logic;
 		done : OUT std_logic;
@@ -162,7 +166,7 @@ architecture Behavioral of cpu_instructor_copy is
 	signal sram_data_in : std_logic_vector(7 downto 0) :=  (others => '0');
 	signal sram_start : std_logic := '0';
 	signal sram_we : std_logic := '0';
-	signal sram_addr : std_logic_vector(23 downto 0) := (others => '0');
+	signal sram_addr : std_logic_vector(15 downto 0) := (others => '0');
 	signal sram_data_out : std_logic_vector(7 downto 0) := (others => '0');
 	signal sram_done : std_logic := '0';
 	
@@ -276,12 +280,14 @@ architecture Behavioral of cpu_instructor_copy is
 	type program_type is array(natural range <>) of opcode;
 	
 	constant program : program_type := (
-		opcodes.call, x"00",x"08",
-		opcodes.mova, x"ff",
-		opcodes.movaf,x"00",x"00",
 		opcodes.mova, x"7e",
-		opcodes.movaf,x"00",x"00"
+		opcodes.movaf, x"40", x"00",
+		opcodes.mova, x"55",
+		opcodes.movaf, x"00", x"00",
+		opcodes.movfa, x"40", x"00",
+		opcodes.movaf, x"00", x"00"
 	);
+
 
 	signal programmed : std_logic := '1';
 	
@@ -430,7 +436,7 @@ begin
 		
 	begin
 	
-		porta_input <= conv_std_logic_vector(pc, 8);
+		--porta_input <= conv_std_logic_vector(pc, 8);
 		
 		if(real_rst = '1') then
 			pc := 0;
@@ -504,7 +510,7 @@ begin
 						
 					when opcodes.movaf =>
 						if(delay = 0) then
-							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_addr <= program(pc + 1) & program(pc + 2);
 							sram_data_in <= register_a;
 							sram_we <= '1';
 							
@@ -526,8 +532,7 @@ begin
 							
 							case conv_integer(program(pc + 1) & program(pc + 2)) is
 								when 0 =>
-									null;
---									porta_input <= register_a;
+									porta_input <= register_a;
 								when 1 =>
 									portb_input <= register_a;
 								when 2 =>
@@ -590,7 +595,7 @@ begin
 					
 					when opcodes.movfa | opcodes.janef =>
 						if(delay = 0) then
-							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_addr <= program(pc + 1) & program(pc + 2);
 							sram_we <= '0';
 							delay := 4;
 						elsif(delay = 4) then
@@ -719,7 +724,7 @@ begin
 					when opcodes.xoraf | opcodes.oraf | opcodes.andaf | opcodes.noraf | opcodes.xnoraf | opcodes.nandaf =>
 					
 						if(delay = 0) then
-							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_addr <= program(pc + 1) & program(pc + 2);
 							sram_we <= '0';
 							delay := 4;
 						elsif(delay = 4) then
@@ -763,7 +768,7 @@ begin
 						end if;
 					when opcodes.jagtf =>
 						if(delay = 0) then
-							sram_addr <= "00000000" & program(pc + 1) & program(pc + 2);
+							sram_addr <= program(pc + 1) & program(pc + 2);
 							sram_we <= '0';
 							delay := 4;
 						elsif(delay = 4) then
@@ -786,10 +791,13 @@ begin
 								pc := pc + 4;
 							end if;
 						end if;
+						
+						
+						
 					when opcodes.call =>
 						if(delay = 0) then
 							wide_buffer := conv_std_logic_vector(pc + 3, 16);
-							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer, 16);
+							sram_addr <= conv_std_logic_vector(stack_pointer, 16);
 							sram_data_in <= wide_buffer(15 downto 8);
 							sram_we <= '1';
 							delay := 7;
@@ -808,7 +816,7 @@ begin
 							
 							
 						elsif(delay = 4) then
-							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer + 1, 16);
+							sram_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
 							sram_data_in <= wide_buffer(7 downto 0);
 							sram_we <= '1';
 							delay := 3;
@@ -832,7 +840,7 @@ begin
 					
 					when opcodes.ret =>
 						if(delay = 0) then
-							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer - 1, 16);
+							sram_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
 							sram_we <= '0';
 							delay := 7;
 						elsif(delay = 7) then
@@ -849,7 +857,7 @@ begin
 								delay := 4;
 							end if;
 						elsif(delay = 4) then
-							sram_addr <= "00000000" & conv_std_logic_vector(stack_pointer - 2, 16);
+							sram_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
 							delay := 3;
 						elsif(delay = 3) then
 							sram_start <= '1';
