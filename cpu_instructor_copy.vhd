@@ -795,47 +795,90 @@ begin
 						
 						
 					when opcodes.call =>
-						if(delay = 0) then
-							wide_buffer := conv_std_logic_vector(pc + 3, 16);
-							sram_addr <= conv_std_logic_vector(stack_pointer, 16);
-							sram_data_in <= wide_buffer(15 downto 8);
-							sram_we <= '1';
-							delay := 7;
-						elsif(delay = 7) then
-							sram_start <= '1';
-							delay := 6;
-						elsif(delay = 6) then
-							if(sram_done <= '0') then
-								sram_start <= '0';
-								delay := 5;
-							end if;
-						elsif(delay = 5) then
-							if(sram_done = '1') then
-								delay := 4;
-							end if;
-							
-							
-						elsif(delay = 4) then
-							sram_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
-							sram_data_in <= wide_buffer(7 downto 0);
-							sram_we <= '1';
-							delay := 3;
-						elsif(delay = 3) then
-							sram_start <= '1';
-							delay := 2;
-						elsif(delay = 2) then
-							if(sram_done <= '0') then
-								sram_start <= '0';
-								delay := 1;
-							end if;
-						elsif(delay = 1) then
-							if(sram_done = '1') then
+						case delay is
+							when 0 =>
+								wide_buffer := conv_std_logic_vector(pc + 3, 16);
+								sram_addr <= conv_std_logic_vector(stack_pointer, 16);
+								sram_data_in <= wide_buffer(15 downto 8);
+								sram_we <= '1';
+								delay := 7;
+							when 6 =>
+								sram_start <= '1';
+								if(sram_done = '0') then
+									delay := 5;
+									sram_start <= '0';
+								end if;
+							when 5 =>
+								if(sram_done = '1') then
+									delay := 4;
+								end if;
+							when 4 =>
+								sram_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
+								sram_data_in <= wide_buffer(7 downto 0);
+								sram_we <= '1';
+								delay := 3;
+							when 3 =>
+								sram_start <= '1';
+								if(sram_done = '0') then
+									sram_start <= '0';
+									delay := 2;
+								end if;
+							when 2 =>
+								if(sram_done = '1') then
+									delay := 1;
+								end if;
+							when 1 =>
 								stack_pointer := stack_pointer + 2;
 								pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
 								delay := 0;
-								sram_we <= '0';
-							end if;
-						end if;
+							when others =>
+								delay := 0;
+						end case;
+							
+						
+						
+					-- when opcodes.call =>
+						-- if(delay = 0) then
+							-- wide_buffer := conv_std_logic_vector(pc + 3, 16);
+							-- sram_addr <= conv_std_logic_vector(stack_pointer, 16);
+							-- sram_data_in <= wide_buffer(15 downto 8);
+							-- sram_we <= '1';
+							-- delay := 7;
+						-- elsif(delay = 7) then
+							-- sram_start <= '1';
+							-- delay := 6;
+						-- elsif(delay = 6) then
+							-- if(sram_done <= '0') then
+								-- sram_start <= '0';
+								-- delay := 5;
+							-- end if;
+						-- elsif(delay = 5) then
+							-- if(sram_done = '1') then
+								-- delay := 4;
+							-- end if;
+							
+							
+						-- elsif(delay = 4) then
+							-- sram_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
+							-- sram_data_in <= wide_buffer(7 downto 0);
+							-- sram_we <= '1';
+							-- delay := 3;
+						-- elsif(delay = 3) then
+							-- sram_start <= '1';
+							-- delay := 2;
+						-- elsif(delay = 2) then
+							-- if(sram_done <= '0') then
+								-- sram_start <= '0';
+								-- delay := 1;
+							-- end if;
+						-- elsif(delay = 1) then
+							-- if(sram_done = '1') then
+								-- stack_pointer := stack_pointer + 2;
+								-- pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
+								-- delay := 0;
+								-- sram_we <= '0';
+							-- end if;
+						-- end if;
 					
 					
 					when opcodes.ret =>
