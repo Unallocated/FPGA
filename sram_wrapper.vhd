@@ -14,6 +14,9 @@ end sram_wrapper;
 architecture Behavioral of sram_wrapper is
 
 	COMPONENT sram
+	Generic(
+			avail_addr_width : integer
+	);
 	PORT(
 		clk : IN std_logic;
 		rst : IN std_logic;
@@ -21,7 +24,7 @@ architecture Behavioral of sram_wrapper is
 		data_in : IN std_logic_vector(7 downto 0);
 		start : IN std_logic;
 		we : IN std_logic;
-		addr : IN std_logic_vector(16 downto 0);          
+		addr : IN std_logic_vector;          
 		data_out : OUT std_logic_vector(7 downto 0);
 		so : OUT std_logic;
 		done : OUT std_logic;
@@ -35,7 +38,7 @@ architecture Behavioral of sram_wrapper is
 	signal we : std_logic := '0';
 	signal data_out : std_logic_vector(7 downto 0) := (others => '0');
 	signal done : std_logic := '0';
-	signal addr : std_logic_vector(16 downto 0) := (others => '0');
+	signal addr : std_logic_vector(7 downto 0) := (others => '0');
 	
 	signal slow_clk : std_logic := '0';
 	
@@ -57,7 +60,7 @@ begin
 		elsif(rising_edge(slow_clk)) then
 			case state is
 				when WRT =>
-					addr <= "00000000000000001";
+					addr <= "00000001";
 					data_in <= x"55";
 					we <= '1';
 					
@@ -105,7 +108,11 @@ begin
 		end if;
 	end process;
 
-	Inst_sram: sram PORT MAP(
+	Inst_sram: sram 
+	Generic map (
+		avail_addr_width => 8
+	)
+	PORT MAP(
 		clk => slow_clk,
 		rst => rst,
 		si => si,

@@ -13,7 +13,11 @@ entity class_cpu is
            porta : inout  STD_LOGIC_VECTOR (7 downto 0);
            portb : inout  STD_LOGIC_VECTOR (7 downto 0);
            portc : inout  STD_LOGIC_VECTOR (7 downto 0);
-           portd : inout  STD_LOGIC_VECTOR (7 downto 0));
+           portd : inout  STD_LOGIC_VECTOR (7 downto 0);
+			  sram_cs_n : out STD_LOGIC;
+			  sram_si : in STD_LOGIC;
+			  sram_sck : out STD_LOGIC;
+			  sram_so : out STD_LOGIC);
 end class_cpu;
 --
 -- add, sub, mult, divide
@@ -56,6 +60,26 @@ architecture Behavioral of class_cpu is
 	  );
 	END COMPONENT;
 	
+	COMPONENT sram
+	Generic(
+			avail_addr_width : integer
+	);
+	PORT(
+		clk : IN std_logic;
+		rst : IN std_logic;
+		si : IN std_logic;
+		data_in : IN std_logic_vector(7 downto 0);
+		start : IN std_logic;
+		we : IN std_logic;
+		addr : IN std_logic_vector;          
+		data_out : OUT std_logic_vector(7 downto 0);
+		so : OUT std_logic;
+		done : OUT std_logic;
+		sck : OUT std_logic;
+		cs_n : OUT std_logic
+		);
+	END COMPONENT;
+	
 	-- We do not run the cpu at the FPGA base clock since 100/50Mhz is wayyy to fast for 
 	-- troubleshooting.  Check the clock_divider process at the bottom for info.
 	signal cpu_clock : std_logic := '0';
@@ -81,6 +105,15 @@ architecture Behavioral of class_cpu is
 	signal divider_dividend : std_logic_vector(7 downto 0);
 	signal divider_quotient : std_logic_vector(7 downto 0);
 	signal divider_fractional : std_logic_vector(7 downto 0);
+	
+	-- Signals for SPI memory
+	signal sram_data_in : std_logic_vector(7 downto 0) := (others => '0');
+	signal sram_start : std_logic := '0';
+	signal sram_we : std_logic := '0';
+	signal sram_data_out : std_logic_vector(7 downto 0) := (others => '0');
+	signal sram_done : std_logic := '0';
+	signal sram_addr : std_logic_vector(15 downto 0) := (others => '0');
+	signal sram_clock : std_logic := '0';
 	
 	-- Flags type (currently just a carry bit)
 	-- It is a record for ease of extension later on
@@ -199,14 +232,8 @@ architecture Behavioral of class_cpu is
 	
 	-- The actual program that will be run by the CPU
 	constant program : program_type := (
-		opcodes.mova,   x"7e",
-		opcodes.movaf,  x"40", x"01",
-		opcodes.mova,   x"ff",
-		opcodes.movrh,  x"00", x"40",
-		opcodes.movrl,  x"00", x"01",
-		opcodes.movpfa, x"00",
-		opcodes.movaf,  x"00", x"00",
-		opcodes.jmp,    x"00", x"00"
+		opcodes.mova, x"7e",
+		opcodes.movaf, x"00", x"00"
 	);
 	
 	-- Each port on the CPU is bi-directional.  This means that a tri-state
@@ -361,45 +388,103 @@ begin
 								end case;
 							end if;
 							
-							mem_addr <= wide_buffer;
-							mem_data_in <= register_a;
+							sram_addr <= wide_buffer;
+							sram_data_in <= register_a;
+							sram_we <= '1';
 							
 							delay := 2;
 						elsif(delay = 2) then
-							mem_we <= "1";
-							delay := 1;
-						else
-							mem_we <= "0";
-							
-							case conv_integer(wide_buffer) is
-								when 0 =>
-									porta_input <= register_a;
-								when 1 =>
-									portb_input <= register_a;
-								when 2 =>
-									portc_input <= register_a;
-								when 3 =>
-									portd_input <= register_a;
-								when 4 =>
-									porta_direction <= register_a;
-								when 5 =>
-									portb_direction <= register_a;
-								when 6 =>
-									portc_direction <= register_a;
-								when 7 =>
-									portd_direction <= register_a;
-								when others =>
-									null;
-							end case;
-							
-							if(current_opcode = opcodes.movaf) then
-								pc := pc + 2;
-							elsif(current_opcode = opcodes.movpaf) then
-								pc := pc + 1;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								delay := 1;
+								sram_start <= '0';
 							end if;
+						else
+							if(sram_done = '1') then
+								case conv_integer(wide_buffer) is
+									when 0 =>
+										porta_input <= register_a;
+									when 1 =>
+										portb_input <= register_a;
+									when 2 =>
+										portc_input <= register_a;
+									when 3 =>
+										portd_input <= register_a;
+									when 4 =>
+										porta_direction <= register_a;
+									when 5 =>
+										portb_direction <= register_a;
+									when 6 =>
+										portc_direction <= register_a;
+									when 7 =>
+										portd_direction <= register_a;
+									when others =>
+										null;
+								end case;
+								
+								if(current_opcode = opcodes.movaf) then
+									pc := pc + 2;
+								elsif(current_opcode = opcodes.movpaf) then
+									pc := pc + 1;
+								end if;
 							
-							delay := 0;
+								delay := 0;
+							end if;
 						end if;
+--					when opcodes.movaf | opcodes.movpaf =>
+--						if(delay = 0) then
+--							if(current_opcode = opcodes.movaf) then
+--								wide_buffer := program(pc + 1) & program(pc + 2);
+--							elsif(current_opcode = opcodes.movpaf) then
+--								case conv_integer(program(pc + 1)) is
+--									when 0 =>
+--										wide_buffer := registers.r0;
+--									when 1 =>
+--										wide_buffer := registers.r1;
+--									when others => 
+--										null;
+--								end case;
+--							end if;
+--							
+--							mem_addr <= wide_buffer;
+--							mem_data_in <= register_a;
+--							
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_we <= "1";
+--							delay := 1;
+--						else
+--							mem_we <= "0";
+--							
+--							case conv_integer(wide_buffer) is
+--								when 0 =>
+--									porta_input <= register_a;
+--								when 1 =>
+--									portb_input <= register_a;
+--								when 2 =>
+--									portc_input <= register_a;
+--								when 3 =>
+--									portd_input <= register_a;
+--								when 4 =>
+--									porta_direction <= register_a;
+--								when 5 =>
+--									portb_direction <= register_a;
+--								when 6 =>
+--									portc_direction <= register_a;
+--								when 7 =>
+--									portd_direction <= register_a;
+--								when others =>
+--									null;
+--							end case;
+--							
+--							if(current_opcode = opcodes.movaf) then
+--								pc := pc + 2;
+--							elsif(current_opcode = opcodes.movpaf) then
+--								pc := pc + 1;
+--							end if;
+--							
+--							delay := 0;
+--						end if;
 						
 					-- adda, suba, mula
 					when opcodes.adda | opcodes.suba | opcodes.mula | opcodes.addca =>
@@ -468,41 +553,47 @@ begin
 							end if;
 								
 								
-							mem_addr <= wide_buffer;
-							mem_we <= "0";
+							sram_addr <= wide_buffer;
+							sram_we <= '0';
 							
 							delay := 2;
 						elsif(delay = 2) then
-							delay := 1;
-						else
-							case conv_integer(wide_buffer) is
-								when 0 =>
-									register_a <= porta_output;
-								when 1 =>
-									register_a <= portb_output;
-								when 2 =>
-									register_a <= portc_output;
-								when 3 =>
-									register_a <= portd_output;
-								when 4 =>
-									register_a <= porta_direction;
-								when 5 =>
-									register_a <= portb_direction;
-								when 6 =>
-									register_a <= portc_direction;
-								when 7 =>
-									register_a <= portd_direction;
-								when others =>
-									register_a <= mem_data_out;
-							end case;
-							
-							if(current_opcode = opcodes.movfa) then
-								pc := pc + 2;
-							else
-								pc := pc + 1;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								sram_start <= '0';
+								delay := 1;
 							end if;
-							
-							delay := 0;
+						else
+							if(sram_done = '1') then
+								case conv_integer(wide_buffer) is
+									when 0 =>
+										register_a <= porta_output;
+									when 1 =>
+										register_a <= portb_output;
+									when 2 =>
+										register_a <= portc_output;
+									when 3 =>
+										register_a <= portd_output;
+									when 4 =>
+										register_a <= porta_direction;
+									when 5 =>
+										register_a <= portb_direction;
+									when 6 =>
+										register_a <= portc_direction;
+									when 7 =>
+										register_a <= portd_direction;
+									when others =>
+										register_a <= mem_data_out;
+								end case;
+								
+								if(current_opcode = opcodes.movfa) then
+									pc := pc + 2;
+								else
+									pc := pc + 1;
+								end if;
+								
+								delay := 0;
+							end if;
 						end if;
 					
 					when opcodes.janez =>
@@ -745,7 +836,7 @@ begin
 		end if;
 	end process;
 
-	clock_divider : process(clk, real_rst)
+	cpu_clock_divider : process(clk, real_rst)
 		variable counter : integer range 0 to 100000000/64 := 0;
 	begin
 		if(real_rst = '1') then
@@ -754,6 +845,21 @@ begin
 		elsif(rising_edge(clk)) then
 			if(counter = 0) then
 				cpu_clock <= not cpu_clock;
+			end if;
+			
+			counter := counter + 1;
+		end if;
+	end process;
+	
+	sram_clock_divider : process(clk, real_rst)
+		variable counter : integer range 0 to 100000000/32 := 0;
+	begin
+		if(real_rst = '1') then
+			counter := 0;
+			sram_clock <= '0';
+		elsif(rising_edge(clk)) then
+			if(counter = 0) then
+				sram_clock <= not sram_clock;
 			end if;
 			
 			counter := counter + 1;
@@ -778,6 +884,25 @@ begin
 		 dina => mem_data_in,
 		 douta => mem_data_out
 	  );
+	  
+	 spi_memory : sram 
+	 Generic map (
+		avail_addr_width => 16
+	 )
+	 PORT MAP(
+		clk => sram_clock,
+		rst => real_rst,
+		si => sram_si,
+		data_in => sram_data_in,
+		start => sram_start,
+		we => sram_we,
+		addr => sram_addr,
+		data_out => sram_data_out,
+		so => sram_so,
+		done => sram_done,
+		sck => sram_sck,
+		cs_n => sram_cs_n
+	);
 
 end Behavioral;
 
