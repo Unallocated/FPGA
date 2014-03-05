@@ -232,8 +232,15 @@ architecture Behavioral of class_cpu is
 	
 	-- The actual program that will be run by the CPU
 	constant program : program_type := (
+		opcodes.jmp,  x"00",x"09",
 		opcodes.mova, x"7e",
-		opcodes.movaf, x"00", x"00"
+		opcodes.movaf,x"00",x"00",
+		opcodes.ret,  
+		opcodes.mova, x"ff",
+		opcodes.movaf,x"00",x"00",
+		opcodes.call, x"00",x"03",
+		opcodes.mova, x"55",
+		opcodes.movaf,x"00",x"00"
 	);
 	
 	-- Each port on the CPU is bi-directional.  This means that a tri-state
@@ -583,7 +590,7 @@ begin
 									when 7 =>
 										register_a <= portd_direction;
 									when others =>
-										register_a <= mem_data_out;
+										register_a <= sram_data_out;
 								end case;
 								
 								if(current_opcode = opcodes.movfa) then
@@ -629,57 +636,124 @@ begin
 							
 							delay := 0;
 						end if;
-							
 					when opcodes.call =>
 						if(delay = 0) then
 							wide_buffer := conv_std_logic_vector(pc + 3, 16);
-							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
-							mem_data_in <= wide_buffer(15 downto 8);
+							sram_addr <= conv_std_logic_vector(stack_pointer, 16);
+							sram_data_in <= wide_buffer(15 downto 8);
+							sram_we <= '1';
 							delay := 5;
 						elsif(delay = 5) then
-							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
-							mem_we <= "1";
-							delay := 4;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								delay := 4;
+								sram_start <= '0';
+							end if;
 						elsif(delay = 4) then
-							mem_we <= "0";
-							delay := 3;
+							if(sram_done = '1') then
+								sram_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
+								sram_data_in <= wide_buffer(7 downto 0);
+								sram_we <= '1';
+								delay := 3;
+							end if;
 						elsif(delay = 3) then
-							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
-							mem_data_in <= wide_buffer(7 downto 0);
-							delay := 2;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								sram_start <= '0';
+								delay := 2;
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
-							mem_we <= "1";
-							delay := 1;
-						elsif(delay = 1) then
-							mem_we <= "0";
-							stack_pointer := stack_pointer + 2;
-							pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
-							delay := 0;
-						end if;
+							if(sram_done = '1') then
+								stack_pointer := stack_pointer + 2;
+								pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
+								delay := 0;
+							end if;
+						end if;		
+--					when opcodes.call =>
+--						if(delay = 0) then
+--							wide_buffer := conv_std_logic_vector(pc + 3, 16);
+--							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+--							mem_data_in <= wide_buffer(15 downto 8);
+--							delay := 5;
+--						elsif(delay = 5) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer, 16);
+--							mem_we <= "1";
+--							delay := 4;
+--						elsif(delay = 4) then
+--							mem_we <= "0";
+--							delay := 3;
+--						elsif(delay = 3) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
+--							mem_data_in <= wide_buffer(7 downto 0);
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer + 1, 16);
+--							mem_we <= "1";
+--							delay := 1;
+--						elsif(delay = 1) then
+--							mem_we <= "0";
+--							stack_pointer := stack_pointer + 2;
+--							pc := conv_integer(program(pc + 1) & program(pc + 2)) - 1;
+--							delay := 0;
+--						end if;
+
+
 					when opcodes.ret =>
 						if(delay = 0) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
-							mem_we <= "0";
+							sram_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+							sram_we <= '0';
 							delay := 5;
 						elsif(delay = 5) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
-							delay := 4;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								delay := 4;
+								sram_start <= '0';
+							end if;
 						elsif(delay = 4) then
-							wide_buffer(7 downto 0) := mem_data_out;
-							delay := 3;
+							if(sram_done = '1') then
+								wide_buffer(7 downto 0) := sram_data_out;
+								delay := 3;
+								
+								sram_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+							end if;
 						elsif(delay = 3) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
-							delay := 2;
+							sram_start <= '1';
+							if(sram_done = '0') then
+								delay := 2;
+								sram_start <= '0';
+							end if;
 						elsif(delay = 2) then
-							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
-							delay := 1;
-						elsif(delay = 1) then
-							wide_buffer(15 downto 8) := mem_data_out;
-							pc := conv_integer(wide_buffer) - 1;
-							stack_pointer := stack_pointer - 2;
-							delay := 0;
+							if(sram_done = '1') then
+								wide_buffer(15 downto 8) := sram_data_out;
+								pc := conv_integer(wide_buffer) - 1;
+								stack_pointer := stack_pointer - 2;
+								delay := 0;
+							end if;
+						
 						end if;
+--					when opcodes.ret =>
+--						if(delay = 0) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							mem_we <= "0";
+--							delay := 5;
+--						elsif(delay = 5) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 1, 16);
+--							delay := 4;
+--						elsif(delay = 4) then
+--							wide_buffer(7 downto 0) := mem_data_out;
+--							delay := 3;
+--						elsif(delay = 3) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+--							delay := 2;
+--						elsif(delay = 2) then
+--							mem_addr <= conv_std_logic_vector(stack_pointer - 2, 16);
+--							delay := 1;
+--						elsif(delay = 1) then
+--							wide_buffer(15 downto 8) := mem_data_out;
+--							pc := conv_integer(wide_buffer) - 1;
+--							stack_pointer := stack_pointer - 2;
+--							delay := 0;
+--						end if;
 					
 					when opcodes.push =>
 						if(delay = 0) then
@@ -837,7 +911,7 @@ begin
 	end process;
 
 	cpu_clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/64 := 0;
+		variable counter : integer range 0 to 100000000/256 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
@@ -852,7 +926,7 @@ begin
 	end process;
 	
 	sram_clock_divider : process(clk, real_rst)
-		variable counter : integer range 0 to 100000000/32 := 0;
+		variable counter : integer range 0 to 100000000/128 := 0;
 	begin
 		if(real_rst = '1') then
 			counter := 0;
